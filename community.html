@@ -1,0 +1,689 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="Join the ArttulOS Community - Connect, contribute, and help shape the future of ArttulOS.">
+    <meta name="author" content="The ArttulOS Team">
+
+    <title>ArttulOS Community - The Heart of Our Project</title>
+
+    <!-- CSS FILES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <style>
+    @font-face {
+        font-family: 'FreeSans';
+        src: url('fonts/FreeSans.woff2') format('woff2'),
+             url('fonts/FreeSans.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+    }
+    @font-face {
+        font-family: 'FreeSans';
+        src: url('fonts/FreeSansBold.woff2') format('woff2'),
+             url('fonts/FreeSansBold.woff') format('woff');
+        font-weight: bold;
+        font-style: normal;
+        font-display: swap;
+    }
+
+     :root {
+        /* Established ArttulOS Color Palette */
+        --primary-color: #5E35B1;
+        --primary-color-rgb: 94, 53, 177;
+        --secondary-color: #3949AB;
+        --secondary-color-rgb: 57, 73, 171;
+        --accent-color: #7E57C2;
+        --accent-color-rgb: 126, 87, 194;
+
+        --white-color: #E0D6EF;
+        --white-color-rgb: 224, 214, 239;
+        --dark-color: #1C2331;
+        --dark-color-rgb: 28, 35, 49;
+
+        --text-color-on-dark: var(--white-color);
+        --heading-color-on-dark: #D1C4E9;
+        --link-color-on-dark: #B39DDB;
+        --link-hover-on-dark: var(--white-color);
+
+        --body-font-family: 'FreeSans', sans-serif;
+
+        /* Unique Layout - Community Page Focus */
+        --bg-main-start: var(--dark-color);
+        --bg-main-end: #0A071F; /* Even darker, more purple-ish dark */
+
+        --community-hero-bg-start: var(--primary-color);
+        --community-hero-bg-end: var(--secondary-color); /* Blend of primary and secondary */
+
+        --connect-channel-bg: rgba(var(--accent-color-rgb), 0.1);
+        --connect-channel-border: rgba(var(--accent-color-rgb), 0.3);
+        --connect-channel-hover-bg: rgba(var(--accent-color-rgb), 0.2);
+
+        --contribute-card-bg: rgba(var(--white-color-rgb), 0.035);
+        --contribute-card-border: rgba(var(--secondary-color-rgb), 0.25);
+        --contribute-card-hover-border: rgba(var(--secondary-color-rgb), 0.6);
+        --contribute-card-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        --contribute-card-hover-shadow: 0 10px 30px rgba(var(--secondary-color-rgb),0.15);
+
+        --coc-bg: var(--primary-color); /* Solid, important background */
+
+        --button-primary-bg-start: var(--accent-color);
+        --button-primary-bg-end: var(--primary-color);
+        --button-primary-hover-bg-start: var(--primary-color);
+        --button-primary-hover-bg-end: var(--accent-color);
+
+        --button-outline-border: var(--accent-color);
+        --button-outline-hover-bg: var(--accent-color);
+        --button-outline-hover-text: var(--dark-color);
+
+        --footer-bg-color: #070515; /* Very dark for footer */
+
+        --border-radius-small:         8px;
+        --border-radius-medium:        16px; /* More rounding for cards */
+        --border-radius-large:         30px; /* Pill buttons */
+
+        --h1-font-size:                clamp(2.8rem, 6vw, 4.2rem);
+        --h2-font-size:                clamp(2rem, 4.5vw, 3rem); /* Slightly larger H2 */
+        --h3-font-size:                clamp(1.5rem, 3.5vw, 2rem);
+     }
+
+    /* --- Global & Body --- */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+        font-family: var(--body-font-family);
+        background-color: var(--bg-main-start);
+        background-image: linear-gradient(175deg, var(--bg-main-start) 0%, var(--bg-main-end) 60%, var(--primary-color) 100%);
+        background-attachment: fixed;
+        color: var(--text-color-on-dark);
+        overflow-x: hidden;
+        line-height: 1.7;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--heading-color-on-dark);
+        font-family: var(--body-font-family);
+        font-weight: bold;
+    }
+    h1 { font-size: var(--h1-font-size); }
+    h2 { font-size: var(--h2-font-size); margin-bottom: 1.8rem;} /* More space after H2 */
+    h3 { font-size: var(--h3-font-size); margin-bottom: 1.2rem;}
+
+    p { margin-bottom: 1.25rem; color: rgba(var(--white-color-rgb), 0.85); font-weight: normal; }
+    p.lead {
+        font-size: clamp(1.1rem, 2.5vw, 1.4rem); /* Responsive lead */
+        font-weight: 300;
+        color: rgba(var(--white-color-rgb), 0.9);
+        max-width: 800px; margin-left: auto; margin-right: auto; /* Center lead */
+    }
+
+    a {
+        color: var(--link-color-on-dark); text-decoration: none;
+        transition: color 0.3s ease, opacity 0.3s ease;
+    }
+    a:hover {
+        color: var(--white-color); opacity: 0.85;
+    }
+
+    .section-padding { padding-top: 120px; padding-bottom: 120px; } /* More padding */
+    .section-padding-sm { padding-top: 80px; padding-bottom: 80px; }
+
+    /* --- Navigation Bar (Consistent) --- */
+    .navbar {
+        background: rgba(var(--dark-color-rgb), 0.5); /* Slightly less opacity */
+        backdrop-filter: blur(18px); /* More blur */
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(var(--primary-color-rgb), 0.15);
+    }
+    .navbar.scrolled {
+        background: rgba(var(--dark-color-rgb), 0.8);
+        box-shadow: 0 5px 25px rgba(0,0,0,0.25);
+    }
+    .navbar-brand { font-size: 1.8em; font-weight: bold; color: var(--white-color) !important; }
+    .navbar-brand:hover { color: var(--accent-color) !important; }
+    .navbar-nav .nav-link {
+        color: rgba(var(--white-color-rgb), 0.8); font-weight: 500;
+        padding: 0.5rem 1rem; position: relative;
+    }
+    .navbar-nav .nav-link::after {
+        content: ''; position: absolute; bottom: -2px; left: 50%; transform: translateX(-50%);
+        width: 0; height: 3px; background-color: var(--accent-color); border-radius:3px;
+        transition: width 0.35s ease;
+    }
+    .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active { color: var(--white-color); }
+    .navbar-nav .nav-link:hover::after, .navbar-nav .nav-link.active::after { width: 40%; }
+    .navbar-toggler { border-color: rgba(var(--white-color-rgb), 0.4); }
+    .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28224, 214, 239, 0.95%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    /* --- Community Hero Section --- */
+    .community-hero {
+        min-height: 70vh; /* Shorter than main hero, but still impactful */
+        padding: 12rem 0 8rem 0;
+        background-image: linear-gradient(140deg, var(--community-hero-bg-start) 0%, var(--community-hero-bg-end) 100%);
+        position: relative;
+        display: flex; align-items: center; justify-content: center;
+        text-align: center;
+        overflow: hidden;
+    }
+    .community-hero::before { /* Abstract pattern overlay */
+        content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+        background-image:
+            radial-gradient(circle at 20% 30%, rgba(var(--white-color-rgb), 0.05) 0px, transparent 20%),
+            radial-gradient(circle at 80% 70%, rgba(var(--white-color-rgb), 0.04) 0px, transparent 20%);
+        background-size: 100px 100px;
+        opacity: 0.7;
+        animation: slowPan 40s linear infinite alternate;
+    }
+    @keyframes slowPan {
+        from { background-position: 0% 0%; }
+        to { background-position: 100% 100%; }
+    }
+    .community-hero .container { position: relative; z-index: 1; }
+    .community-hero h1 {
+        color: var(--white-color) !important; font-weight: 700;
+        text-shadow: 0 3px 15px rgba(var(--dark-color-rgb),0.3);
+        animation: popIn 0.9s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.2s backwards;
+    }
+    .community-hero p.lead {
+        color: rgba(var(--white-color-rgb), 0.9) !important;
+        font-size: clamp(1.2rem, 3vw, 1.6rem);
+        margin-bottom: 2.5rem; font-weight: 300;
+        animation: slideUpFade 1.1s ease-out 0.5s backwards;
+    }
+    .hero-cta-button { /* Main CTA for hero */
+        display: inline-block;
+        background: var(--white-color);
+        color: var(--primary-color) !important;
+        padding: 0.9rem 2.8rem;
+        border-radius: var(--border-radius-large);
+        font-weight: bold; text-transform: uppercase; letter-spacing: 0.8px;
+        box-shadow: 0 7px 22px rgba(var(--dark-color-rgb), 0.25);
+        transition: all 0.3s ease-in-out;
+        animation: slideUpFade 1.1s ease-out 0.8s backwards;
+    }
+    .hero-cta-button:hover {
+        transform: translateY(-4px) scale(1.03);
+        box-shadow: 0 10px 30px rgba(var(--white-color-rgb), 0.3);
+        background: var(--link-hover-on-dark);
+    }
+    .hero-cta-button .bi { margin-left: 0.6rem; vertical-align: -0.1em; }
+
+
+    /* --- Connect Channels Section --- */
+    .connect-channels-section {
+        padding-top: 120px; padding-bottom: 80px; /* Less padding at bottom to flow into next */
+    }
+    .channel-block {
+        background: var(--connect-channel-bg);
+        border: 1px solid var(--connect-channel-border);
+        border-radius: var(--border-radius-medium);
+        padding: 2.5rem;
+        text-align: center;
+        transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        min-height: 300px; /* Ensure blocks have some height */
+        animation: popInCards 0.6s ease-out backwards;
+    }
+     /* Stagger channel block animations */
+    .channel-block:nth-of-type(1) { animation-delay: 0.2s; }
+    .channel-block:nth-of-type(2) { animation-delay: 0.35s; }
+    .channel-block:nth-of-type(3) { animation-delay: 0.5s; }
+
+    .channel-block:hover {
+        background: var(--connect-channel-hover-bg);
+        transform: translateY(-8px);
+        box-shadow: 0 10px 30px rgba(var(--accent-color-rgb), 0.15);
+    }
+    .channel-block .channel-icon {
+        font-size: 3.5rem; /* Larger icon for these prominent blocks */
+        color: var(--accent-color);
+        margin-bottom: 1.5rem;
+    }
+    .channel-block h3 {
+        color: var(--heading-color-on-dark);
+        font-size: 1.8rem; /* Prominent title */
+        margin-bottom: 1rem;
+    }
+    .channel-block p {
+        color: rgba(var(--white-color-rgb), 0.8);
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+        max-width: 300px; /* Constrain paragraph width */
+    }
+    .channel-block .btn-channel { /* Button for channel blocks */
+        display: inline-block;
+        background: transparent;
+        color: var(--link-color-on-dark) !important;
+        border: 2px solid var(--button-outline-border);
+        padding: 0.7rem 2rem;
+        border-radius: var(--border-radius-large);
+        font-weight: 500; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+    }
+    .channel-block .btn-channel:hover {
+        background: var(--button-outline-hover-bg);
+        color: var(--button-outline-hover-text) !important;
+        border-color: var(--button-outline-hover-bg);
+    }
+
+    /* --- Contribution Section --- */
+    .contribution-section {
+        padding-top: 80px; padding-bottom: 100px;
+        /* background: linear-gradient(to bottom, rgba(var(--primary-color-rgb),0.02), rgba(var(--secondary-color-rgb),0.05)); */
+    }
+    .contribution-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2.5rem; /* Consistent gap */
+    }
+    .contribution-card { /* Shares some base style with community-card but can be tweaked */
+        background: var(--contribute-card-bg);
+        border-radius: var(--border-radius-medium);
+        padding: 2rem;
+        height: 100%;
+        box-shadow: var(--contribute-card-shadow);
+        transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+        border: 1px solid var(--contribute-card-border);
+        display: flex; flex-direction: column;
+        animation: popInCards 0.6s ease-out backwards;
+    }
+     /* Stagger contribution card animations */
+    .contribution-card:nth-of-type(1) { animation-delay: 0.2s; }
+    .contribution-card:nth-of-type(2) { animation-delay: 0.3s; }
+    .contribution-card:nth-of-type(3) { animation-delay: 0.4s; }
+    .contribution-card:nth-of-type(4) { animation-delay: 0.5s; }
+    .contribution-card:nth-of-type(5) { animation-delay: 0.6s; }
+    .contribution-card:nth-of-type(6) { animation-delay: 0.7s; }
+
+    .contribution-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--contribute-card-hover-shadow);
+        border-color: var(--contribute-card-hover-border);
+    }
+    .contribution-card .card-icon {
+        font-size: 2.5rem; color: var(--secondary-color); /* Use secondary for these icons */
+        margin-bottom: 1.2rem; display: block;
+        background: rgba(var(--secondary-color-rgb),0.1);
+        width: 60px; height: 60px; line-height: 60px;
+        border-radius: var(--border-radius-small); text-align:center;
+        /* margin-left: auto; margin-right: auto; */ /* If card text is centered */
+    }
+    .contribution-card h4 { /* Using H4 for titles here */
+        color: var(--heading-color-on-dark); margin-bottom: 0.8rem;
+        font-size: 1.4rem; font-weight: 600;
+    }
+    .contribution-card p {
+        color: rgba(var(--white-color-rgb), 0.75); font-size: 0.9rem;
+        margin-bottom: 1.2rem; flex-grow: 1;
+    }
+    .contribution-card ul { list-style: none; padding-left: 0; margin-bottom: 1.2rem; }
+    .contribution-card ul li { margin-bottom: 0.5rem; display: flex; align-items: center; font-size: 0.9rem; }
+    .contribution-card ul li i.bi { margin-right: 0.6rem; color: var(--secondary-color); }
+
+    .contribution-card .btn-contribution-action {
+        display: inline-block; background: transparent;
+        color: var(--link-color-on-dark) !important;
+        border: 2px solid var(--secondary-color); /* Use secondary for outline */
+        padding: 0.6rem 1.5rem; border-radius: var(--border-radius-large);
+        font-weight: 500; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.5px;
+        transition: all 0.3s ease; margin-top: auto;
+    }
+    .contribution-card .btn-contribution-action:hover {
+        background: var(--secondary-color);
+        color: var(--white-color) !important;
+        border-color: var(--secondary-color);
+    }
+     .contribution-card .btn-contribution-action.social-follow-btn { /* Specific for social follow buttons */
+        margin-bottom: 0.5rem; /* Space between multiple stacked buttons */
+    }
+
+
+    /* --- Code of Conduct Section --- */
+    .code-of-conduct-section-community { /* Unique class */
+        padding: 5rem 0; /* More vertical padding */
+        background-color: var(--coc-bg);
+        color: var(--white-color);
+        text-align: center;
+        margin-top: 80px; /* Space from previous section */
+        position: relative;
+        overflow: hidden;
+    }
+    .code-of-conduct-section-community::before { /* Pattern for CoC section */
+        content: ''; position: absolute; top: 0; left: 0; right:0; bottom:0;
+        background-image: url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M20 0L20 40M0 20L40 20" stroke="rgba(224, 214, 239, 0.05)" stroke-width="1"/></svg>');
+        opacity: 0.7;
+    }
+    .code-of-conduct-section-community .container { position: relative; z-index: 1; }
+    .code-of-conduct-section-community .coc-icon {
+        font-size: 4rem; margin-bottom: 1.5rem; display: inline-block;
+        color: var(--white-color); opacity: 0.8;
+    }
+    .code-of-conduct-section-community h2 {
+        color: var(--white-color) !important;
+        font-weight: 700;
+        margin-bottom: 1.2rem;
+    }
+    .code-of-conduct-section-community p.lead {
+        color: rgba(var(--white-color-rgb), 0.9) !important;
+        margin-bottom: 2rem;
+    }
+    .code-of-conduct-section-community .btn-coc {
+        background: var(--white-color);
+        color: var(--primary-color) !important;
+        border: none; padding: 0.9rem 2.8rem;
+        border-radius: var(--border-radius-large); font-weight: bold;
+        text-transform: uppercase; letter-spacing: 0.5px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        transition: all 0.3s ease;
+    }
+    .code-of-conduct-section-community .btn-coc:hover {
+        background: var(--link-hover-on-dark); /* Uses white-color from root */
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 8px 28px rgba(var(--white-color-rgb), 0.25);
+    }
+
+    /* --- Footer (Consistent) --- */
+    .site-footer {
+        background-color: var(--footer-bg-color);
+        border-top: 1px solid rgba(var(--primary-color-rgb), 0.15);
+        padding-top: 3rem; padding-bottom: 1rem;
+    }
+    .site-footer-top { border-bottom: 1px solid rgba(var(--white-color-rgb), 0.07); padding-bottom: 2rem; margin-bottom: 2rem;}
+    .site-footer h2, .site-footer h5.site-footer-title { color: var(--heading-color-on-dark); }
+    .site-footer-links .site-footer-link { color: var(--link-color-on-dark); }
+    .site-footer-links .site-footer-link:hover { color: var(--white-color); }
+    .site-footer p { color: var(--link-color-on-dark) !important; opacity: 0.75; }
+    .site-footer .copyright-text { opacity: 0.6; font-size: 0.85rem; }
+    .site-footer .copyright-text a { color: var(--white-color) !important; opacity: 0.8; }
+    .site-footer .social-icon-item .social-icon-link {
+        background-color: rgba(var(--white-color-rgb), 0.04); color: var(--link-color-on-dark);
+        transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    }
+    .site-footer .social-icon-item .social-icon-link:hover {
+        background-color: var(--accent-color); color: var(--white-color);
+    }
+
+    /* Animations (already defined) */
+    @keyframes popIn { /* ... */ }
+    @keyframes slideUpFade { /* ... */ }
+    @keyframes popInCards { /* ... */ }
+
+    /* Responsive (already defined, may need minor tweaks for new elements) */
+    @media (max-width: 768px) {
+        .channel-block { min-height: auto; padding: 2rem 1.5rem; }
+        .code-of-conduct-section-community { padding: 3.5rem 0; }
+    }
+    @media (max-width: 576px) {
+        .contribution-card .btn-contribution-action.social-follow-btn {
+            display: block; width: 100%;
+        }
+        .contribution-card .btn-contribution-action.social-follow-btn + .btn-contribution-action.social-follow-btn {
+             margin-top: 0.75rem;
+        }
+    }
+
+	</style>
+</head>
+
+<body>
+    <main>
+        <nav class="navbar navbar-expand-lg sticky-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">ArttulOS</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                     <ul class="navbar-nav align-items-lg-center ms-auto me-lg-5">
+                        <li class="nav-item"><a class="nav-link" href="index.html#section_1">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="community.html">Community</a></li>
+                        <li class="nav-item"><a class="nav-link" href="roadmap.html">Roadmap</a></li>
+                        <li class="nav-item"><a class="nav-link" href="documentation.html">Docs</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="download.html">Download</a></li>
+                        <li class="nav-item"><a class="nav-link" href="arttulcat.html">ArttulCat</a></li>
+                         <li class="nav-item"><a class="nav-link" href="https://matrix.to/#/#arttulos:matrix.org" target="_blank" rel="noopener">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <section class="community-hero">
+            <div class="section-overlay"></div>
+            <div class="container">
+                <h1 class="mb-3">Welcome to the Heart of ArttulOS</h1>
+                <p class="lead mb-5">This is where ideas spark, collaborations flourish, and the future of ArttulOS is shaped – together.</p>
+                <a href="https://matrix.to/#/#arttulos:matrix.org" target="_blank" rel="noopener" class="hero-cta-button">
+                    <i class="bi bi-chat-quote-fill"></i> Join Our Matrix Chat
+                </a>
+            </div>
+        </section>
+
+        <section class="connect-channels-section">
+            <div class="container">
+                <div class="row text-center mb-5 pb-3">
+                    <div class="col-12">
+                        <h2 class="mb-3">Connect With Us</h2>
+                        <p class="lead">Find your space, join the conversation, and stay updated.</p>
+                    </div>
+                </div>
+                <div class="row gy-4 gx-lg-5 justify-content-center">
+                   <div class="col-lg-4 col-md-6">
+                        <div class="channel-block">
+                            <i class="bi bi-github channel-icon"></i>
+                            <h3>GitHub Hub</h3>
+                            <p>Track development, report issues, and explore our project's source code.</p>
+                            <a href="https://github.com/ArttulOS" target="_blank" rel="noopener" class="btn btn-channel">Explore Repositories <i class="bi bi-arrow-right-short"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="channel-block">
+                            <i class="bi bi-chat-left-dots-fill channel-icon"></i>
+                            <h3>Matrix Chat</h3>
+                            <p>Our primary hub for real-time discussions, support, and community interaction.</p>
+                            <a href="https://matrix.to/#/#arttulos:matrix.org" target="_blank" rel="noopener" class="btn btn-channel">Join #arttulos:matrix.org <i class="bi bi-arrow-right-short"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="channel-block">
+                            <i class="bi bi-newspaper channel-icon"></i>
+                            <h3>Substack News</h3>
+                            <p>Subscribe for official announcements, release notes, and in-depth project updates.</p>
+                            <a href="https://substack.com/@arttulos" target="_blank" rel="noopener" class="btn btn-channel">Read & Subscribe <i class="bi bi-arrow-right-short"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contribution-section section-padding">
+            <div class="container">
+                <div class="row text-center mb-5 pb-3">
+                    <div class="col-12">
+                        <h2 class="mb-3">Become a Contributor</h2>
+                        <p class="lead">ArttulOS is built by people like you. Every contribution, no matter the size, is valued and makes a real impact.</p>
+                    </div>
+                </div>
+
+                <div class="contribution-grid">
+                    <div class="contribution-card">
+                        <i class="bi bi-code-slash card-icon"></i>
+                        <h4>Code & Development</h4>
+                        <p>Dive into the codebase, fix bugs, implement features, or help optimize performance. Your technical skills are invaluable.</p>
+                        <a href="arttulos_contributing.html#code-contributions" class="btn btn-contribution-action">Coding Guidelines <i class="bi bi-arrow-right-short"></i></a>
+                    </div>
+                    <div class="contribution-card">
+                        <i class="bi bi-file-earmark-text-fill card-icon"></i>
+                        <h4>Documentation</h4>
+                        <p>Help us create clear, comprehensive, and user-friendly documentation, guides, and tutorials.</p>
+                        <a href="documentation.html" class="btn btn-contribution-action">Improve Docs <i class="bi bi-arrow-right-short"></i></a>
+                    </div>
+                    <div class="contribution-card">
+                       <i class="bi bi-translate card-icon"></i>
+                        <h4>Translations (L10n)</h4>
+                        <p>Make ArttulOS accessible worldwide by translating the OS, website, and documentation.</p>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfz8Np2ethqtnYCgsJmqoOGLjhdiIzWa-zIZY32xf5zB1pznw/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-contribution-action">Join Translation Team <i class="bi bi-arrow-right-short"></i></a>
+                    </div>
+                     <div class="contribution-card">
+                       <i class="bi bi-bug-fill card-icon"></i>
+                        <h4>Testing & Feedback</h4>
+                        <p>Be on the front lines! Test development builds, identify issues, and provide constructive feedback.</p>
+                         <a href="https://github.com/ArttulOS" target="_blank" rel="noopener" class="btn btn-contribution-action">Report Issues <i class="bi bi-arrow-right-short"></i></a>
+                    </div>
+                     <div class="contribution-card">
+                       <i class="bi bi-palette-fill card-icon"></i>
+                        <h4>Artwork & Design</h4>
+                        <p>Lend your artistic talents to create stunning wallpapers, icons, themes, and promotional materials.</p>
+                        <a href="artcontributions.html" class="btn btn-contribution-action">Design Guidelines <i class="bi bi-arrow-right-short"></i></a>
+                    </div>
+                    <div class="contribution-card">
+                       <i class="bi bi-megaphone-fill card-icon"></i>
+                        <h4>Follow & Share</h4>
+                        <p>Stay connected and help us grow by following our social channels and sharing our progress.</p>
+                        <a href="https://x.com/ArttulOS" target="_blank" rel="noopener" class="btn btn-contribution-action social-follow-btn">
+                            <i class="bi bi-twitter"></i> Twitter
+                        </a>
+                        <a href="https://mastodon.social/@arttulos" target="_blank" rel="noopener" class="btn btn-contribution-action social-follow-btn">
+                            <i class="bi bi-mastodon"></i> Mastodon
+                        </a>
+                        <a href="https://bsky.app/profile/arttulos.bsky.social" target="_blank" rel="noopener" class="btn btn-contribution-action social-follow-btn">
+                            <i class="bi bi-cloud-fill"></i> Bluesky
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="code-of-conduct-section-community section-padding-sm">
+            <div class="container">
+                <div class="coc-icon"><i class="bi bi-shield-shaded"></i></div>
+                <h2 class="mb-3">Our Community Promise</h2>
+                <p class="lead mb-4">We are dedicated to maintaining a respectful, inclusive, and collaborative environment for everyone.<br> Please familiarize yourself with our Code of Conduct.</p>
+                <a href="behavioralguidelines.html" class="btn btn-coc">Read Our Code of Conduct <i class="bi bi-journals"></i></a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="site-footer-top py-4">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-12 mb-3 mb-lg-0 text-center text-lg-start">
+                        <h2 class="text-white mb-0">ArttulOS</h2></div>
+                    <div class="col-lg-6 col-12 d-flex justify-content-center justify-content-lg-end align-items-center">
+                        <ul class="social-icon d-flex mb-0">
+                            <li class="social-icon-item"><a href="https://x.com/ArttulOS" target="_blank" rel="noopener" class="social-icon-link bi-twitter"></a></li>
+                            <li class="social-icon-item"><a href="https://github.com/ArttulOS" target="_blank" rel="noopener" class="social-icon-link bi-github"></a></li>
+                            <li class="social-icon-item"><a href="https://mastodon.social/@arttulos" target="_blank" rel="noopener" class="social-icon-link bi-mastodon"></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-12 mb-4">
+                    <h5 class="site-footer-title mb-3">Quick Links</h5>
+                    <ul class="site-footer-links">
+                        <li class="site-footer-link-item"><a href="index.html#section_1" class="site-footer-link">Home</a></li>
+                        <li class="site-footer-link-item"><a href="about.html" class="site-footer-link">About ArttulOS</a></li>
+                        <li class="site-footer-link-item"><a href="community.html" class="site-footer-link">Community</a></li>
+                        <li class="site-footer-link-item"><a href="roadmap.html" class="site-footer-link">Roadmap</a></li>
+                        <li class="site-footer-link-item"><a href="documentation.html" class="site-footer-link">Documentation</a></li>
+                        <li class="site-footer-link-item"><a href="contact.html" class="site-footer-link">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12 mb-4">
+                    <h5 class="site-footer-title mb-3">Get In Touch</h5>
+                    <p class="d-flex mb-1 flex-wrap"><a href="mailto:arttulos@proton.me" class="site-footer-link" style="word-break: break-all;">arttulos@proton.me</a></p>
+                    <p class="d-flex mt-2"><a href="https://matrix.to/#/#arttulos:matrix.org" target="_blank" rel="noopener" class="site-footer-link">Matrix Chat</a></p>
+                </div>
+                <div class="col-lg-4 col-md-12 col-12 mb-4">
+                    <h5 class="site-footer-title mb-3">Project Essentials</h5>
+                    <p class="d-flex mt-3 mb-2"><a href="https://github.com/ArttulOS" target="_blank" rel="noopener" class="site-footer-link"><i class="bi bi-github me-2"></i>GitHub Repository</a></p>
+                    <p class="d-flex mt-2 mb-2"><a href="arttulos_contributing.html" class="site-footer-link"><i class="bi bi-file-code-fill me-2"></i>Contribution Guidelines</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="site-footer-bottom py-3">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-7 col-md-7 col-12 text-center text-md-start">
+                        <p class="copyright-text mb-0">Copyright © <span id="currentYear"></span> The ArttulOS Project. All Rights Reserved.</p>
+                         <p class="copyright-text small mb-0 mt-1">Original Template: <a href="https://templatemo.com/tm-583-festava-live" target="_blank" rel="noopener">Festava Live</a> by TemplateMo. Distributed by: <a href="https://themewagon.com" target="_blank" rel="noopener">ThemeWagon</a></p>
+                    </div>
+                    <div class="col-lg-5 col-md-5 col-12 text-center text-md-end mt-3 mt-md-0">
+                        <ul class="site-footer-links d-inline-flex flex-wrap justify-content-center justify-content-md-end">
+                            <li class="site-footer-link-item mx-2"><a href="TermsandConditions.html" class="site-footer-link">Terms</a></li>
+                            <li class="site-footer-link-item mx-2"><a href="privacypolicy.html" class="site-footer-link">Privacy</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous" defer></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const mainNav = document.getElementById('mainNav');
+            if (mainNav) {
+                window.addEventListener('scroll', () => mainNav.classList.toggle('scrolled', window.scrollY > 50));
+            }
+
+            const currentYearSpan = document.getElementById('currentYear');
+            if (currentYearSpan) currentYearSpan.textContent = new Date().getFullYear();
+
+            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+            const currentPath = window.location.pathname.split("/").pop() || 'index.html'; // Default to index if path is "/"
+            let isCommunityPage = currentPath === 'community.html';
+
+            navLinks.forEach(link => {
+                const linkPath = (link.getAttribute('href') || "").split("/").pop().split("#")[0] || 'index.html';
+                link.classList.toggle('active', linkPath === currentPath);
+            });
+            // Ensure Community link is active if specifically on community.html and no other logic made it active
+            if (isCommunityPage) {
+                 const communityLink = document.querySelector('.navbar-nav .nav-link[href="community.html"]');
+                 if (communityLink && !communityLink.classList.contains('active')) {
+                     navLinks.forEach(l => l.classList.remove('active'));
+                     communityLink.classList.add('active');
+                 }
+            }
+
+
+            // Card animation staggering
+            function staggerAnimations(selector) {
+                const elements = document.querySelectorAll(selector);
+                elements.forEach((el, index) => {
+                    el.style.animationDelay = `${0.2 + index * 0.1}s`; // Faster stagger
+                });
+            }
+            staggerAnimations('.channel-block');
+            staggerAnimations('.contribution-card');
+
+            const cocSection = document.querySelector('.code-of-conduct-section-community');
+            if (cocSection) {
+                 const longestCardSet = Math.max(document.querySelectorAll('.channel-block').length, document.querySelectorAll('.contribution-card').length);
+                 cocSection.style.animationDelay = `${0.2 + longestCardSet * 0.1 + 0.1}s`;
+                 cocSection.classList.add('popInCards'); // Add animation class
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ArttulOS Terms and Conditions</title>
+  <style>
+    @font-face {
+      font-family: 'FreeSans';
+      src: url('fonts/FreeSans.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'FreeSans', sans-serif;
+      background: linear-gradient(135deg, #6a0dad, #ff69b4);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    header {
+      width: 100%;
+      text-align: center;
+      background: #6a0dad;
+      color: white;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      background: #000;
+      color: #fff;
+      max-width: 800px;
+      width: 90%;
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #ff90cb;
+      position: relative;
+    }
+
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+    }
+
+    .nav-buttons button {
+      background: #ff69b4;
+      border: none;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      font-size: 1.2rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .nav-buttons button:hover {
+      background: #ff85c1;
+    }
+
+    a {
+      color: #ff69b4;
+      text-decoration: underline;
+    }
+
+    footer {
+      margin-top: auto;
+      text-align: center;
+      padding: 1rem;
+      color: #ffe0f7;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ArttulOS Terms and Conditions</h1>
+  </header>
+
+  <div class="container">
+    <div class="page active" id="page-1">
+      <h2>1. License & Freedom</h2>
+      <p>ArttulOS is licensed under the <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank">GNU AGPL v3.0</a>.</p>
+      <ul>
+        <li>You may use, view, modify, fork, and redistribute this software freely.</li>
+        <li>If the software is used over a network, the source must be made available to users.</li>
+        <li>This license ensures all users retain freedom to inspect and modify the code.</li>
+      </ul>
+
+      <h2>2. Attribution Requirements</h2>
+      <p>Anyone distributing or modifying ArttulOS must provide clear credit and links to:</p>
+      <ul>
+        <li><a href="https://arttulos.org" target="_blank">ArttulOS</a></li>
+        <li><a href="https://www.redhat.com" target="_blank">Red Hat</a></li>
+        <li><a href="https://rockylinux.org" target="_blank">Rocky Linux</a></li>
+      </ul>
+    </div>
+
+    <div class="page" id="page-2">
+      <h2>3. No Warranty</h2>
+      <p>This software is provided “as is” without warranty of any kind, express or implied.</p>
+      <p>You assume all responsibility for using, modifying, or distributing this software.</p>
+
+      <h2>4. Limitation of Liability</h2>
+      <p>In no event shall ArttulOS developers or contributors be held liable for any damages arising from use of this software.</p>
+    </div>
+
+    <div class="page" id="page-3">
+      <h2>5. Acceptance of Terms</h2>
+      <p>By using ArttulOS, you agree to these terms and the AGPL-3.0 license conditions.</p>
+
+      <h2>6. Changes to the Terms</h2>
+      <p>We reserve the right to revise these terms at any time. Continued use implies acceptance.</p>
+
+      <h2>7. Governing Law</h2>
+      <p>These terms are governed by the laws applicable to free software in your jurisdiction.</p>
+    </div>
+
+    <div class="nav-buttons">
+      <button onclick="prevPage()">← Back</button>
+      <button onclick="nextPage()">Next →</button>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 <a href="https://arttulos.org" target="_blank" style="color:#ffe0f7;">ArttulOS</a> — Licensed under AGPL-3.0
+  </footer>
+
+  <script>
+    const pages = document.querySelectorAll('.page');
+    let current = 0;
+
+    function showPage(index) {
+      pages.forEach((page, i) => {
+        page.classList.toggle('active', i === index);
+      });
+    }
+
+    function nextPage() {
+      if (current < pages.length - 1) {
+        current++;
+        showPage(current);
+      }
+    }
+
+    function prevPage() {
+      if (current > 0) {
+        current--;
+        showPage(current);
+      }
+    }
+  </script>
+</body>
+</html>

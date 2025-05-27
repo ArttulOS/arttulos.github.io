@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArttulOS Contribution Guidelines</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #8A2BE2, #FF69B4); /* Purple to Pink gradient */
+            color: #333; /* Default text color */
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align to top for potentially taller content box */
+            min-height: 100vh;
+            box-sizing: border-box;
+            overflow-y: auto; /* Allow body scroll if needed */
+        }
+
+        .content-box {
+            background-color: #000000; /* Black box */
+            color: #FFFFFF; /* White text inside the box */
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            width: 90%;
+            line-height: 1.7;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            position: relative; /* For positioning home button if needed absolutely */
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #FFB6C1; /* LightPink */
+            padding-bottom: 10px;
+        }
+
+        .content-box h1 {
+            color: #DDA0DD; /* Plum */
+            text-align: left; /* Align with button */
+            margin: 0; /* Reset margin */
+            flex-grow: 1; /* Allow h1 to take space */
+        }
+
+        .content-box h2 {
+            color: #FFC0CB; /* Pink */
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .content-box h3 {
+            color: #E6E6FA; /* Lavender */
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .content-box ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        .content-box li {
+            margin-bottom: 10px;
+        }
+
+        .content-box p {
+            margin-bottom: 15px;
+        }
+
+        .content-box strong {
+            color: #FFB6C1; /* LightPink */
+        }
+
+        .thank-you {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #8A2BE2; /* Purple */
+            text-align: center;
+            font-style: italic;
+            color: #E6E6FA; /* Lavender */
+        }
+
+        .navigation-button {
+            display: inline-block;
+            background-color: #DDA0DD; /* Plum */
+            color: #000000;
+            padding: 10px 18px; /* Slightly adjusted padding */
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 0.9em;
+        }
+
+        .navigation-button:hover {
+            background-color: #FFB6C1; /* LightPink */
+        }
+
+        .navigation-button.home-button {
+            background-color: #C71585; /* MediumVioletRed */
+            color: #FFFFFF;
+            /* margin-left: 15px; /* Space from h1 */
+        }
+         .navigation-button.home-button:hover {
+            background-color: #DB7093; /* PaleVioletRed */
+        }
+
+        .continue-button-container {
+            text-align: center;
+            margin-top: 25px; /* More space above continue button */
+            margin-bottom: 10px; /* Space below continue button */
+        }
+
+        .guideline-section {
+            display: none; /* Hide sections by default */
+            padding-bottom: 10px; /* Space before next section's button appears */
+        }
+
+        .guideline-section.active {
+            display: block; /* Show active section */
+        }
+
+        pre {
+            background-color: #222;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 0.9em;
+            overflow-x: auto;
+            color: #f0f0f0; /* Lighter text for code block */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="content-box">
+        <div class="header-container">
+            <h1>Welcome to ArttulOS Development!</h1>
+            <a href="index.html" class="navigation-button home-button">Back to Home</a>
+        </div>
+
+        <div id="section-intro" class="guideline-section">
+            <p>
+                We are thrilled you're considering contributing to ArttulOS! Your expertise and effort
+                are invaluable to the growth and improvement of this project. To ensure a smooth and
+                productive collaboration, please take a moment to review these guidelines.
+            </p>
+            <div class="continue-button-container">
+                <button class="navigation-button" onclick="showSection('section-core')">Continue Reading ▼</button>
+            </div>
+        </div>
+
+        <div id="section-core" class="guideline-section">
+            <h2>Core Contribution Principles</h2>
+            <ul>
+                <li>
+                    <strong>AI-Assisted Code:</strong> We embrace modern tools! Code generated with the help of AI (e.g., GitHub Copilot, ChatGPT)
+                    is <strong>allowed and welcome</strong>. However, <strong>you, the contributor, are fully responsible</strong>
+                    for its correctness, functionality, security, and adherence to all other guidelines outlined here.
+                    Thoroughly test and understand any AI-generated code before submitting it.
+                </li>
+                <li>
+                    <strong>Keep it Technical, Not Political:</strong> ArttulOS is a technology project focused on software development.
+                    To maintain a neutral and inclusive environment, <strong>you must not introduce political discussions,
+                    symbols, commentary, or affiliations</strong> into any aspect of your contribution. This includes code,
+                    comments, commit messages, documentation, and any project-related communication channels.
+                </li>
+                <li>
+                    <strong>Optimization is Key:</strong> Strive for efficiency. Your code should be optimized for performance
+                    (CPU, memory usage) and resourcefulness. Think about algorithmic complexity and efficient data structures.
+                    If a particular design choice prioritizes readability or simplicity over raw speed for a good reason,
+                    please document this trade-off in your comments.
+                </li>
+                <li>
+                    <strong>Clarity Through Comments:</strong> Good code is understandable. Your contributions <strong>must be well-commented</strong>.
+                    Comments should explain the 'why' behind complex logic, non-obvious decisions, and the purpose of functions/modules,
+                    not just restate what the code does (if it's self-evident). Public APIs and intricate sections particularly need clear documentation.
+                </li>
+            </ul>
+            <div class="continue-button-container">
+                <button class="navigation-button" onclick="showSection('section-headers')">Continue Reading ▼</button>
+            </div>
+        </div>
+
+        <div id="section-headers" class="guideline-section">
+            <h2>File Header Requirements</h2>
+            <p>
+                To maintain clarity, traceability, and proper licensing, all source code files contributed to ArttulOS
+                <strong>must begin with a header comment block</strong>. This block should contain the following information:
+            </p>
+            <ul>
+                <li><strong>Project Name:</strong> Clearly state "ArttulOS".</li>
+                <li>
+                    <strong>File License:</strong> Specify the license under which this particular file is distributed
+                    (e.g., MIT, GPLv3, Apache 2.0). This should be consistent with the overall project license unless
+                    explicitly stated otherwise for that specific file.
+                </li>
+                <li>
+                    <strong>Contributors:</strong> A list of individuals (names or consistent handles) who have made
+                    significant contributions to <em>this specific file</em>. Please add your name/handle when you make
+                    substantial changes.
+                </li>
+            </ul>
+            <p><em>Example (syntax will vary by language):</em></p>
+            <pre><code>// Project: ArttulOS
+// License: MIT (or specific license for this file)
+// Contributors:
+//   - Your Name/Handle (Year of first contribution)
+//   - Another Contributor (Year)
+
+// ... rest of the file code ...
+</code></pre>
+            <div class="continue-button-container">
+                <button class="navigation-button" onclick="showSection('section-legal')">Continue Reading ▼</button>
+            </div>
+        </div>
+
+        <div id="section-legal" class="guideline-section">
+            <h2>Contributor Responsibilities & Legal Considerations</h2>
+            <ul>
+                <li>
+                    <strong>Developer Sign-Off / Certificate of Origin:</strong> By submitting your contribution (e.g., via a Pull Request),
+                    you are certifying that you have the right to submit it under the project's license and that the work
+                    is your own original work, or that you have the necessary rights to contribute it. This is often formalized
+                    as a Developer Certificate of Origin (DCO) or similar agreement. Ensure you understand and agree to this principle.
+                    Specific DCO procedures, if any, will be detailed in our repository (e.g., commit message sign-offs).
+                </li>
+                <li>
+                    <strong>Adherence to Third-Party Licenses:</strong> It is <strong>your critical responsibility</strong> to ensure
+                    that any third-party code, libraries, assets, or other materials you introduce into the project are
+                    compatible with ArttulOS's overall license and that you strictly adhere to all terms and conditions
+                    of those third-party licenses.
+                    <ul>
+                        <li>Clearly document any third-party inclusions, their source, and their specific licenses.</li>
+                        <li>Do not include code or assets with incompatible licenses. If in doubt, ask!</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Contact Staff for Clarification:</strong> If you have any questions about these guidelines, the
+                    contribution process, licensing (yours or third-party), or require clarification on any aspect of
+                    ArttulOS development, please <strong>do not hesitate to contact a member of the ArttulOS staff
+                    or core development team</strong>. We are here to help ensure your contribution experience is positive
+                    and compliant. (Refer to the project's main README or community channels for contact information).
+                </li>
+            </ul>
+            <div class="continue-button-container">
+                <button class="navigation-button" onclick="showSection('section-best-practices')">Continue Reading ▼</button>
+            </div>
+        </div>
+
+        <div id="section-best-practices" class="guideline-section">
+            <h2>General Best Practices</h2>
+            <ul>
+                <li><strong>Code Style:</strong> While we are still formalizing a strict style guide, please try to match the style of existing code in the project. Consistency is important.</li>
+                <li><strong>Testing:</strong> Ensure your code works as expected. Include tests where appropriate, especially for new features or bug fixes.</li>
+                <li><strong>Commit Messages:</strong> Write clear, concise, and descriptive commit messages. Explain what changed and why. Refer to any relevant DCO sign-off procedures if implemented.</li>
+                <li><strong>Pull Requests:</strong> Keep pull requests focused on a single issue or feature. Provide a clear description of the changes.</li>
+            </ul>
+            <div class="continue-button-container">
+                <button class="navigation-button" onclick="showSection('section-thank-you')">View Final Message ▼</button>
+            </div>
+        </div>
+
+        <div id="section-thank-you" class="guideline-section">
+            <div class="thank-you">
+                <p>
+                    Thank you immensely for dedicating your time and skills to ArttulOS!
+                    By adhering to these guidelines, you help us build a robust, efficient, legal, and welcoming project.
+                    We truly appreciate your contributions and look forward to your amazing work!
+                </p>
+            </div>
+            <!-- Optional: Add a "Back to Start" button or another Home button -->
+            <div class="continue-button-container">
+                 <button class="navigation-button" onclick="showSection('section-intro')">Back to Start of Guidelines</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        let currentVisibleSectionId = null;
+
+        function showSection(sectionIdToShow) {
+            // Hide the currently visible section, if any
+            if (currentVisibleSectionId) {
+                const currentSection = document.getElementById(currentVisibleSectionId);
+                if (currentSection) {
+                    currentSection.classList.remove('active');
+                }
+            }
+
+            // Show the new section
+            const nextSection = document.getElementById(sectionIdToShow);
+            if (nextSection) {
+                nextSection.classList.add('active');
+                currentVisibleSectionId = sectionIdToShow;
+
+                // Scroll the content box or the window to the top of the content box
+                // to ensure the new section is visible.
+                const contentBox = document.querySelector('.content-box');
+                if (contentBox.scrollHeight > contentBox.clientHeight) {
+                    // If content-box itself is scrollable (less likely with this setup)
+                    contentBox.scrollTop = 0;
+                } else {
+                    // Scroll window to bring top of content-box into view
+                    contentBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        }
+
+        // Initially show the first section
+        document.addEventListener('DOMContentLoaded', () => {
+            showSection('section-intro');
+        });
+    </script>
+
+</body>
+</html>

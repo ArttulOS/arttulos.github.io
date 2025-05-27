@@ -1,0 +1,873 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Official ArttulOS Documentation - Guides, tutorials, API references, and more.">
+    <meta name="author" content="The ArttulOS Team">
+    <title>ArttulOS Documentation - Your Guide with Smart Search</title>
+
+    <!-- CSS FILES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <style>
+    @font-face {
+        font-family: 'FreeSans';
+        src: url('fonts/FreeSans.woff2') format('woff2'),
+             url('fonts/FreeSans.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+    }
+    @font-face {
+        font-family: 'FreeSans';
+        src: url('fonts/FreeSansBold.woff2') format('woff2'),
+             url('fonts/FreeSansBold.woff') format('woff');
+        font-weight: bold;
+        font-style: normal;
+        font-display: swap;
+    }
+
+     :root {
+        /* Established ArttulOS Color Palette */
+        --primary-color: #5E35B1;
+        --primary-color-rgb: 94, 53, 177;
+        --secondary-color: #3949AB;
+        --secondary-color-rgb: 57, 73, 171;
+        --accent-color: #7E57C2;
+        --accent-color-rgb: 126, 87, 194;
+
+        --white-color: #E0D6EF;
+        --white-color-rgb: 224, 214, 239;
+        --dark-color: #1C2331;
+        --dark-color-rgb: 28, 35, 49;
+
+        --text-color-on-dark: var(--white-color);
+        --heading-color-on-dark: #D1C4E9;
+        --link-color-on-dark: #B39DDB;
+        --link-hover-on-dark: var(--white-color);
+
+        --body-font-family: 'FreeSans', sans-serif;
+
+        /* Documentation Page Specific & Gorgeous Design */
+        --doc-bg-main-start: var(--dark-color);
+        --doc-bg-main-end: #110E28; /* Very dark, deep purple for backdrop */
+
+        --doc-hero-bg-start: var(--secondary-color);
+        --doc-hero-bg-end: var(--primary-color);
+
+        --doc-sidebar-bg: rgba(var(--dark-color-rgb), 0.7);
+        --doc-sidebar-border: rgba(var(--primary-color-rgb), 0.3);
+        --doc-sidebar-link-active-bg: rgba(var(--accent-color-rgb), 0.15);
+        --doc-sidebar-link-active-border: var(--accent-color);
+
+        --doc-content-wrapper-bg: transparent;
+        --doc-page-bg: #282A3A;
+        --doc-page-shadow: 0 10px 40px rgba(0,0,0,0.35);
+        --doc-page-border: rgba(var(--white-color-rgb), 0.08);
+
+        --doc-text-main: var(--white-color);
+        --doc-heading-main: var(--heading-color-on-dark);
+        --doc-link-main: var(--accent-color);
+        --doc-link-hover-main: var(--link-hover-on-dark);
+
+        --doc-code-bg: #1E1F2B;
+        --doc-code-text: #C5C8C6;
+        --doc-code-border: rgba(var(--white-color-rgb), 0.1);
+
+        --footer-bg-color: #0B091A;
+
+        --border-radius-small:         6px;
+        --border-radius-medium:        10px;
+        --border-radius-large:         18px;
+
+        --h1-font-size:                clamp(2.5rem, 5vw, 3.5rem);
+        --h2-font-size:                clamp(1.8rem, 4vw, 2.5rem);
+        --h3-font-size:                clamp(1.4rem, 3vw, 1.9rem);
+     }
+
+    /* Global & Body */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+        font-family: var(--body-font-family);
+        background-color: var(--doc-bg-main-start);
+        background-image: linear-gradient(175deg, var(--doc-bg-main-start) 0%, var(--doc-bg-main-end) 100%);
+        background-attachment: fixed;
+        color: var(--text-color-on-dark);
+        overflow-x: hidden;
+        line-height: 1.7;
+    }
+    /* Navigation Bar */
+    .navbar {
+        background: rgba(var(--dark-color-rgb), 0.5); backdrop-filter: blur(18px);
+        padding: 1rem 0; border-bottom: 1px solid rgba(var(--primary-color-rgb), 0.15);
+        position: sticky; top: 0; z-index: 1030; /* Make navbar sticky */
+    }
+    .navbar.scrolled { background: rgba(var(--dark-color-rgb), 0.8); box-shadow: 0 5px 25px rgba(0,0,0,0.25); }
+    .navbar-brand { font-size: 1.8em; font-weight: bold; color: var(--white-color) !important; }
+    .navbar-brand:hover { color: var(--accent-color) !important; }
+    .navbar-nav .nav-link {
+        color: rgba(var(--white-color-rgb), 0.8); font-weight: 500;
+        padding: 0.5rem 1rem; position: relative;
+    }
+    .navbar-nav .nav-link::after {
+        content: ''; position: absolute; bottom: -2px; left: 50%; transform: translateX(-50%);
+        width: 0; height: 3px; background-color: var(--accent-color); border-radius:3px;
+        transition: width 0.35s ease;
+    }
+    .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active { color: var(--white-color); }
+    .navbar-nav .nav-link:hover::after, .navbar-nav .nav-link.active::after { width: 40%; }
+    .navbar-toggler { border-color: rgba(var(--white-color-rgb), 0.4); }
+    .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28224, 214, 239, 0.95%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+    /* Documentation Hero */
+    .doc-hero {
+        padding: 9rem 0 6rem 0; /* Reduced top padding slightly as nav is sticky */
+        background-image: linear-gradient(140deg, var(--doc-hero-bg-start) 0%, var(--doc-hero-bg-end) 100%);
+        position: relative; text-align: center; overflow: hidden;
+    }
+    .doc-hero .section-overlay-pattern {
+        content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80"><path fill="rgba(224, 214, 239, 0.03)" d="M40 0L0 40L40 80L80 40z"/></svg>');
+        opacity: 0.7; animation: subtlePulse 10s infinite alternate;
+    }
+    @keyframes subtlePulse { from { opacity: 0.5; } to { opacity: 0.8; } }
+    .doc-hero .container { position: relative; z-index: 1; }
+    .doc-hero h1 {
+        font-size: var(--h1-font-size); color: var(--white-color) !important; font-weight: 700;
+        text-shadow: 0 3px 18px rgba(var(--dark-color-rgb),0.3);
+        animation: popIn 0.9s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.2s backwards;
+    }
+    .doc-hero p.lead {
+        color: rgba(var(--white-color-rgb), 0.92) !important;
+        font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+        margin-bottom: 2rem; font-weight: 300;
+        animation: slideUpFade 1.1s ease-out 0.5s backwards;
+    }
+    /* Search Form & AI Suggestion */
+    .doc-search-form { position: relative; }
+    .doc-search-form .form-control {
+        background-color: rgba(var(--white-color-rgb), 0.08);
+        border: 1px solid rgba(var(--accent-color-rgb), 0.4);
+        color: var(--white-color);
+        padding: 0.9rem 1.5rem; padding-right: 3.5rem;
+        border-radius: var(--border-radius-large);
+        font-size: 1rem;
+    }
+    .doc-search-form .form-control::placeholder { color: rgba(var(--white-color-rgb), 0.5); }
+    .doc-search-form .form-control:focus {
+        background-color: rgba(var(--white-color-rgb), 0.12);
+        border-color: var(--accent-color);
+        box-shadow: 0 0 0 0.25rem rgba(var(--accent-color-rgb),0.2);
+    }
+    .doc-search-form .btn-search-submit {
+        background: var(--accent-color); color: var(--white-color);
+        border: 1px solid var(--accent-color);
+        padding: 0.9rem 1.5rem;
+        border-radius: var(--border-radius-large);
+        transition: background-color 0.3s ease;
+        position: absolute; right: 0; top: 0; height: 100%;
+        border-top-left-radius: 0; border-bottom-left-radius: 0;
+    }
+    .doc-search-form .btn-search-submit:hover { background: var(--primary-color); border-color: var(--primary-color); }
+
+    .ai-search-suggestion {
+        display: none; margin-top: 1.5rem; padding: 1.2rem;
+        background: rgba(var(--accent-color-rgb), 0.08);
+        border-radius: var(--border-radius-medium);
+        border: 1px solid rgba(var(--accent-color-rgb), 0.2);
+        text-align: left;
+    }
+    .ai-search-suggestion p {
+        margin-bottom: 0.75rem; font-size: 0.95rem;
+        color: rgba(var(--white-color-rgb), 0.8);
+    }
+    .ai-search-suggestion .btn-ai-ask {
+        background: linear-gradient(145deg, var(--accent-color), var(--primary-color));
+        color: var(--white-color) !important; border: none;
+        padding: 0.6rem 1.2rem; border-radius: var(--border-radius-large);
+        font-weight: 500; font-size: 0.9rem;
+        transition: all 0.3s ease;
+    }
+    .ai-search-suggestion .btn-ai-ask:hover:not(:disabled) {
+        background: linear-gradient(145deg, var(--primary-color), var(--accent-color));
+        transform: translateY(-2px);
+    }
+    .ai-search-suggestion .btn-ai-ask:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+    .ai-search-suggestion .ai-disclaimer {
+        font-size: 0.8rem; opacity: 0.6; margin-top: 1rem;
+    }
+
+    /* Search Results Area */
+    #searchResultsContainer {
+        margin-top: 2rem; padding: 1.5rem;
+        background: rgba(var(--dark-color-rgb), 0.3);
+        border-radius: var(--border-radius-medium);
+        display: none;
+    }
+    #searchResultsContainer h3 { color: var(--accent-color); margin-bottom: 1rem; }
+    .search-result-item { padding: 0.75rem 0; border-bottom: 1px solid rgba(var(--white-color-rgb), 0.1); }
+    .search-result-item:last-child { border-bottom: none; }
+    .search-result-item a { color: var(--link-color-on-dark); font-weight: 500; display: block; margin-bottom: 0.25rem; }
+    .search-result-item a:hover { color: var(--white-color); }
+    .search-result-item .snippet {
+        font-size: 0.85rem; color: rgba(var(--white-color-rgb), 0.7);
+        display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+        overflow: hidden; text-overflow: ellipsis;
+    }
+    .search-result-item .snippet strong { color: var(--accent-color); font-weight: bold; }
+    .no-results { color: rgba(var(--white-color-rgb), 0.7); font-style: italic; }
+
+
+    /* Documentation Layout & Page Styles */
+    .documentation-main-content { padding-top: 50px; padding-bottom: 80px; }
+    .documentation-layout { display: flex; gap: 2.5rem; align-items: flex-start; }
+    .doc-sidebar {
+        flex: 0 0 300px; background-color: var(--doc-sidebar-bg);
+        padding: 2rem; border-radius: var(--border-radius-medium);
+        border: 1px solid var(--doc-sidebar-border);
+        height: calc(100vh - 140px - 70px); /* Viewport height - nav height - some buffer */
+        overflow-y: auto;
+        position: sticky; top: calc(70px + 2rem); /* Sticky below navbar + some margin */
+        box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+    }
+    .doc-sidebar::-webkit-scrollbar { width: 8px; }
+    .doc-sidebar::-webkit-scrollbar-track { background: rgba(var(--dark-color-rgb),0.3); border-radius:4px; }
+    .doc-sidebar::-webkit-scrollbar-thumb { background: var(--accent-color); border-radius:4px; }
+    .doc-sidebar::-webkit-scrollbar-thumb:hover { background: var(--primary-color); }
+
+    .doc-sidebar h5.sidebar-title {
+        color: var(--accent-color); margin-bottom: 1.2rem;
+        font-size: 1.15rem; font-weight: 600;
+        border-bottom: 1px solid var(--doc-sidebar-border);
+        padding-bottom: 0.75rem;
+    }
+    .doc-nav .nav-link {
+        color: var(--link-color-on-dark); padding: 0.6rem 0.5rem;
+        font-size: 0.98rem; border-left: 4px solid transparent;
+        transition: all 0.25s ease-out;
+        border-radius: var(--border-radius-small);
+    }
+    .doc-nav .nav-link:hover {
+        color: var(--white-color);
+        background-color: rgba(var(--accent-color-rgb),0.08);
+        padding-left: calc(0.5rem + 4px);
+    }
+    .doc-nav .nav-link.active {
+        color: var(--white-color);
+        font-weight: 500;
+        background-color: var(--doc-sidebar-link-active-bg);
+        border-left-color: var(--doc-sidebar-link-active-border);
+        padding-left: calc(0.5rem + 4px);
+    }
+    .doc-nav .nav .nav-link { padding-left: 1.8rem; font-size: 0.92rem; }
+    .doc-nav .nav .nav-link.active { padding-left: calc(1.8rem + 4px); }
+
+    .doc-content-wrapper { flex-grow: 1; background-color: var(--doc-content-wrapper-bg); perspective: 1500px; }
+    .doc-page-container { position: relative; }
+    .doc-page {
+        background-color: var(--doc-page-bg); color: var(--doc-text-main);
+        padding: 2.5rem 3rem; border-radius: var(--border-radius-medium);
+        box-shadow: var(--doc-page-shadow); border: 1px solid var(--doc-page-border);
+        min-height: 60vh; animation: pageFadeIn 0.5s ease-out;
+    }
+    @keyframes pageFadeIn { from { opacity: 0.3; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .doc-page h1, .doc-page h2, .doc-page h3, .doc-page h4, .doc-page h5, .doc-page h6 {
+        color: var(--doc-heading-main); margin-top: 2em; margin-bottom: 1em;
+        font-weight: 600;
+    }
+    .doc-page h1 { font-size: calc(var(--h1-font-size) * 0.8); }
+    .doc-page h2 { font-size: calc(var(--h2-font-size) * 0.85); }
+    .doc-page h3 { font-size: calc(var(--h3-font-size) * 0.9); }
+    .doc-page h1:first-child, .doc-page h2:first-child, .doc-page h3:first-child { margin-top: 0; }
+
+    .doc-page p { line-height: 1.85; margin-bottom: 1.35rem; color: var(--doc-text-main); opacity: 0.9; }
+    .doc-page a { color: var(--doc-link-main); text-decoration: underline; text-decoration-color: rgba(var(--accent-color-rgb),0.5); }
+    .doc-page a:hover { color: var(--doc-link-hover-main); text-decoration-color: var(--doc-link-hover-main); }
+    .doc-page ul, .doc-page ol { padding-left: 1.8rem; margin-bottom: 1.35rem; }
+    .doc-page li { margin-bottom: 0.6rem; }
+    .doc-page code {
+        background-color: var(--doc-code-bg); color: var(--doc-code-text);
+        padding: 0.25em 0.5em; border-radius: var(--border-radius-small);
+        font-size: 0.92em; border: 1px solid var(--doc-code-border);
+    }
+    .doc-page pre {
+        background-color: var(--doc-code-bg); color: var(--doc-code-text);
+        padding: 1.25rem; border-radius: var(--border-radius-small);
+        overflow-x: auto; font-size: 0.9em; margin: 1.5rem 0;
+        border: 1px solid var(--doc-code-border);
+        box-shadow: inset 0 2px 10px rgba(0,0,0,0.2);
+    }
+    .doc-page pre code { background-color: transparent; padding: 0; border: none; box-shadow: none; }
+    .doc-page blockquote {
+        border-left: 5px solid var(--accent-color); padding: 1rem 1.5rem;
+        margin: 1.5rem 0; font-style: italic;
+        background: rgba(var(--accent-color-rgb),0.05);
+        color: rgba(var(--white-color-rgb), 0.85);
+        border-radius: 0 var(--border-radius-small) var(--border-radius-small) 0;
+    }
+    .doc-page hr { border-top: 1px solid var(--doc-page-border); margin: 2.5rem 0; }
+    .doc-page img { max-width: 100%; height: auto; border-radius: var(--border-radius-small); margin: 1.2rem 0; box-shadow: 0 3px 10px rgba(0,0,0,0.15); }
+
+    .doc-page-navigation {
+        display: flex; justify-content: space-between; align-items: center;
+        margin-top: 3rem; padding-top: 2rem;
+        border-top: 1px solid var(--doc-page-border);
+    }
+    .doc-page-navigation .btn-nav {
+        display: inline-flex; align-items: center;
+        background: transparent;
+        color: var(--link-color-on-dark) !important;
+        border: 2px solid var(--button-outline-border);
+        padding: 0.7rem 1.5rem; border-radius: var(--border-radius-large);
+        font-weight: 500; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+    }
+    .doc-page-navigation .btn-nav:hover {
+        background: var(--button-outline-hover-bg);
+        color: var(--button-outline-hover-text) !important;
+        border-color: var(--button-outline-hover-bg);
+    }
+    .doc-page-navigation .btn-nav.disabled { opacity: 0.4; pointer-events: none; border-color: rgba(var(--white-color-rgb),0.2); }
+    .doc-page-navigation .btn-nav .bi { font-size: 1.1em; }
+    .doc-page-navigation .btn-nav .bi-arrow-left { margin-right: 0.5rem; }
+    .doc-page-navigation .btn-nav .bi-arrow-right { margin-left: 0.5rem; }
+
+
+    /* Footer */
+    .site-footer {
+        background-color: var(--footer-bg-color);
+        border-top: 1px solid rgba(var(--primary-color-rgb), 0.15);
+        padding-top: 3rem; padding-bottom: 1rem;
+    }
+    .site-footer-top { border-bottom: 1px solid rgba(var(--white-color-rgb), 0.07); padding-bottom: 2rem; margin-bottom: 2rem;}
+    .site-footer h2, .site-footer h5.site-footer-title { color: var(--heading-color-on-dark); }
+    .site-footer-links .site-footer-link { color: var(--link-color-on-dark); }
+    .site-footer-links .site-footer-link:hover { color: var(--white-color); }
+    .site-footer p { color: var(--link-color-on-dark) !important; opacity: 0.75; }
+    .site-footer .copyright-text { opacity: 0.6; font-size: 0.85rem; }
+    .site-footer .copyright-text a { color: var(--white-color) !important; opacity: 0.8; }
+    .site-footer .social-icon-item .social-icon-link {
+        background-color: rgba(var(--white-color-rgb), 0.04); color: var(--link-color-on-dark);
+        transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    }
+    .site-footer .social-icon-item .social-icon-link:hover {
+        background-color: var(--accent-color); color: var(--white-color);
+    }
+
+    /* Animations */
+    @keyframes popIn { from { opacity: 0; transform: scale(0.8) translateY(15px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+    @keyframes slideUpFade { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Responsive */
+    @media (max-width: 991px) {
+        .documentation-layout { flex-direction: column; }
+        .doc-sidebar {
+            width: 100%; flex: 0 0 auto;
+            height: auto; max-height: 40vh;
+            position: static;
+            margin-bottom: 2rem;
+            top: auto; /* Reset sticky top for mobile */
+        }
+        .doc-content-wrapper { margin-left: 0; }
+        .doc-page { padding: 2rem 1.5rem; }
+    }
+    @media (max-width: 768px) {
+        .doc-hero { padding: 7rem 0 4rem 0; }
+        .doc-search-form .input-group { flex-direction: column; }
+        .doc-search-form .form-control {
+             border-radius: var(--border-radius-large) !important; margin-bottom: 0.75rem;
+             padding-right: 1.5rem;
+        }
+        .doc-search-form .btn-search-submit {
+            border-radius: var(--border-radius-large) !important; width: 100%;
+            position: static; height: auto;
+        }
+    }
+
+	</style>
+</head>
+
+<body>
+    <main>
+        <nav class="navbar navbar-expand-lg sticky-top" id="mainNav">
+             <div class="container">
+                <a class="navbar-brand" href="index.html">ArttulOS</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                     <ul class="navbar-nav align-items-lg-center ms-auto me-lg-5">
+                        <li class="nav-item"><a class="nav-link" href="index.html#section_1">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="community.html">Community</a></li>
+                        <li class="nav-item"><a class="nav-link" href="roadmap.html">Roadmap</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="documentation.html">Docs</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="download.html">Download</a></li>
+                        <li class="nav-item"><a class="nav-link" href="arttulcat.html">ArttulCat</a></li>
+                        <li class="nav-item"><a class="nav-link" href="https://matrix.to/#/#arttulos:matrix.org" target="_blank" rel="noopener">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <section class="doc-hero">
+            <div class="section-overlay-pattern"></div>
+            <div class="container text-center position-relative">
+                <h1 class="mb-3">ArttulOS Knowledge Base</h1>
+                <p class="lead">Your comprehensive guide to installing, using, and developing with ArttulOS. Ask a question or browse topics.</p>
+                <form class="doc-search-form mt-4 mx-auto" style="max-width: 700px;" role="search" onsubmit="performSearch(); return false;">
+                    <div class="input-group input-group-lg">
+                        <input type="search" class="form-control" placeholder="Search docs or ask AI (e.g., 'how to install dnf')" aria-label="Search documentation" id="docSearchInput">
+                        <button class="btn btn-search-submit" type="button" id="docSearchButton" title="Keyword Search">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                </form>
+                <div class="ai-search-suggestion" id="aiSearchSuggestion">
+                    <p><i class="bi bi-lightbulb-fill me-2"></i>Need more specific answers? Our advanced AI search is coming soon!</p>
+                    <button class="btn btn-ai-ask" id="askAIButton" disabled title="ArttulAI Coming Soon!">
+                        <i class="bi bi-stars"></i> Ask ArttulAI (Coming Soon)
+                    </button>
+                    <p class="ai-disclaimer" id="aiDisclaimer">
+                        In the meantime, our smart keyword search can help you find relevant sections.
+                        True natural language understanding is under development.
+                    </p>
+                </div>
+                <div id="searchResultsContainer" class="text-start">
+                    <h3 id="searchResultsTitle">Search Results</h3>
+                    <div id="searchResultsList"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="documentation-main-content">
+            <div class="container">
+                <div class="documentation-layout">
+                    <aside class="doc-sidebar">
+                        <h5 class="sidebar-title">Table of Contents</h5>
+                        <nav class="nav doc-nav flex-column" id="docSidebarNav">
+                            <a class="nav-link active" href="#introduction">Introduction</a>
+                            <a class="nav-link" href="#getting-started">Getting Started</a>
+                            <nav class="nav doc-nav flex-column ms-3">
+                                <a class="nav-link" href="#installation">Installation Guide</a>
+                                <a class="nav-link" href="#first-boot">First Boot & Setup</a>
+                            </nav>
+                            <a class="nav-link" href="#desktop-environment">Desktop Environment</a>
+                            <nav class="nav doc-nav flex-column ms-3">
+                                <a class="nav-link" href="#theming">Theming & Customization</a>
+                                <a class="nav-link" href="#applications">Core Applications</a>
+                            </nav>
+                            <a class="nav-link" href="#package-management">Package Management (DNF)</a>
+                            <a class="nav-link" href="#development">For Developers</a>
+                            <nav class="nav doc-nav flex-column ms-3">
+                                <a class="nav-link" href="#building-from-source">Building from Source</a>
+                                <a class="nav-link" href="#contributing-code">Contributing Code</a>
+                            </nav>
+                            <a class="nav-link" href="#troubleshooting">Troubleshooting</a>
+                            <a class="nav-link" href="#faq">FAQ</a>
+                            <a class="nav-link" href="#glossary">Glossary</a>
+                        </nav>
+                    </aside>
+
+                    <div class="doc-content-wrapper">
+                        <div class="doc-page-container" id="docPageContainer">
+                            {/* Initial content will be loaded here by JavaScript */}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="site-footer-top py-4">
+             <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-12 mb-3 mb-lg-0 text-center text-lg-start">
+                        <h2 class="text-white mb-0">ArttulOS</h2></div>
+                    <div class="col-lg-6 col-12 d-flex justify-content-center justify-content-lg-end align-items-center">
+                        <ul class="social-icon d-flex mb-0">
+                            <li class="social-icon-item"><a href="https://x.com/ArttulOS" target="_blank" rel="noopener" class="social-icon-link bi-twitter"></a></li>
+                            <li class="social-icon-item"><a href="https://github.com/ArttulOS" target="_blank" rel="noopener" class="social-icon-link bi-github"></a></li>
+                            <li class="social-icon-item"><a href="https://mastodon.social/@arttulos" target="_blank" rel="noopener" class="social-icon-link bi-mastodon"></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-12 mb-4">
+                    <h5 class="site-footer-title mb-3">Quick Links</h5>
+                    <ul class="site-footer-links">
+                        <li class="site-footer-link-item"><a href="index.html#section_1" class="site-footer-link">Home</a></li>
+                        <li class="site-footer-link-item"><a href="about.html" class="site-footer-link">About ArttulOS</a></li>
+                        <li class="site-footer-link-item"><a href="community.html" class="site-footer-link">Community</a></li>
+                        <li class="site-footer-link-item"><a href="roadmap.html" class="site-footer-link">Roadmap</a></li>
+                        <li class="site-footer-link-item"><a href="documentation.html" class="site-footer-link">Documentation</a></li>
+                        <li class="site-footer-link-item"><a href="contact.html" class="site-footer-link">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12 mb-4">
+                    <h5 class="site-footer-title mb-3">Get In Touch</h5>
+                    <p class="d-flex mb-1 flex-wrap"><a href="mailto:arttulos@proton.me" class="site-footer-link" style="word-break: break-all;">arttulos@proton.me</a></p>
+                    <p class="d-flex mt-2"><a href="https://matrix.to/#/#arttulos:matrix.org" target="_blank" rel="noopener" class="site-footer-link">Matrix Chat</a></p>
+                </div>
+                <div class="col-lg-4 col-md-12 col-12 mb-4">
+                    <h5 class="site-footer-title mb-3">Project Essentials</h5>
+                    <p class="d-flex mt-3 mb-2"><a href="https://github.com/ArttulOS" target="_blank" rel="noopener" class="site-footer-link"><i class="bi bi-github me-2"></i>GitHub Repository</a></p>
+                    <p class="d-flex mt-2 mb-2"><a href="arttulos_contributing.html" class="site-footer-link"><i class="bi bi-file-code-fill me-2"></i>Contribution Guidelines</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="site-footer-bottom py-3">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-7 col-md-7 col-12 text-center text-md-start">
+                        <p class="copyright-text mb-0">Copyright © <span id="currentYear"></span> The ArttulOS Project. All Rights Reserved.</p>
+                         <p class="copyright-text small mb-0 mt-1">Original Template: <a href="https://templatemo.com/tm-583-festava-live" target="_blank" rel="noopener">Festava Live</a> by TemplateMo. Distributed by: <a href="https://themewagon.com" target="_blank" rel="noopener">ThemeWagon</a></p>
+                    </div>
+                    <div class="col-lg-5 col-md-5 col-12 text-center text-md-end mt-3 mt-md-0">
+                        <ul class="site-footer-links d-inline-flex flex-wrap justify-content-center justify-content-md-end">
+                            <li class="site-footer-link-item mx-2"><a href="TermsandConditions.html" class="site-footer-link">Terms</a></li>
+                            <li class="site-footer-link-item mx-2"><a href="privacypolicy.html" class="site-footer-link">Privacy</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/lunr/lunr.min.js"></script>
+    <script>
+        const docPagesData = {
+            "#introduction": {
+                title: "Introduction to ArttulOS",
+                content: `<h1>Introduction to ArttulOS</h1><p>Welcome to the official documentation for ArttulOS! This guide is designed to help you get started with ArttulOS, whether you are a new user, an experienced Linux enthusiast, or a developer looking to contribute.</p><p>ArttulOS is an RPM-based Linux distribution built on the robust and stable foundation of Rocky Linux. Our mission is to provide a user-friendly, aesthetically pleasing, and powerful computing experience. We focus on simplicity, performance, and a curated set of tools that enhance productivity and creativity.</p><p>Our core philosophy revolves around open source principles, user empowerment, and beautiful design. We believe that technology should be accessible and enjoyable for everyone.</p>`,
+                keywords: "arttulos, introduction, overview, rocky linux, rpm, open source, user-friendly",
+                prev: null, next: "#getting-started"
+            },
+            "#getting-started": {
+                title: "Getting Started",
+                content: `<h2>Getting Started</h2><p>This section will guide you through the initial steps to get ArttulOS up and running on your system. It covers everything from downloading the ISO to your first login.</p>`,
+                keywords: "getting started, download, install, setup, new user",
+                prev: "#introduction", next: "#installation"
+            },
+            "#installation": {
+                title: "Installation Guide",
+                content: `<h3>Installation Guide</h3><p>Before you begin, ensure your system meets the minimum requirements:</p><ul><li>2 GHz dual-core processor or better</li><li>4 GB RAM (8 GB recommended for a smoother experience)</li><li>25 GB of hard drive space (SSD recommended)</li><li>Internet access for downloading and updates</li></ul><p>Download the latest ISO image from our <a href="download.html">Downloads page</a>. You can then create a bootable USB drive using tools like Rufus (Windows), balenaEtcher (cross-platform), or <code>dd</code> (Linux/macOS).</p><pre><code>sudo dd if=/path/to/arttulos.iso of=/dev/sdX bs=4M status=progress oflag=sync</code></pre><p><strong>Warning:</strong> Replace <code>/path/to/arttulos.iso</code> with the actual path to your downloaded ISO and <code>/dev/sdX</code> with your USB drive identifier. Using the wrong device for <code>of=/dev/sdX</code> can lead to data loss. Be very careful!</p><blockquote>It's always a good idea to back up your important data before installing a new operating system.</blockquote><p>Once your bootable media is ready, boot your computer from it and follow the on-screen installation wizard. The installer is designed to be intuitive, guiding you through partitioning, user creation, and software selection.</p>`,
+                keywords: "installation, install, requirements, usb, bootable, iso, dd command, partitioning",
+                prev: "#getting-started", next: "#first-boot"
+            },
+            "#first-boot": {
+                title: "First Boot & Setup",
+                content: `<h3>First Boot & Setup</h3><p>After successful installation, reboot your system. You'll be greeted by the ArttulOS login screen. Log in with the user credentials you created during installation.</p><p>On your first login, you might be guided through a brief welcome setup to configure things like your language, keyboard layout, and online accounts. Take a moment to explore the desktop and familiarize yourself with the layout.</p><p>One of the first things you should do is update your system to ensure you have the latest security patches and software versions:</p><pre><code>sudo dnf update -y</code></pre><p>This simple command will refresh your package lists and upgrade all installed packages. It's good practice to run this regularly.</p>`,
+                keywords: "first boot, login, setup, configuration, update, dnf, package manager",
+                prev: "#installation", next: "#desktop-environment"
+            },
+            "#desktop-environment": {
+                title: "Desktop Environment",
+                content: `<h2>The ArttulOS Desktop</h2><p>ArttulOS aims to provide a clean, efficient, and visually appealing desktop experience. Our default environment is a customized version of GNOME, designed for ease of use and performance, without unnecessary clutter.</p><p>We've focused on sensible defaults, useful extensions pre-configured, and a cohesive visual style that aligns with the ArttulOS brand.</p><img src="images/placeholder-desktop.jpg" alt="ArttulOS Desktop Environment Concept" loading="lazy" style="border: 1px solid var(--doc-page-border);">`,
+                keywords: "desktop, environment, gnome, ui, user interface, look and feel, extensions",
+                prev: "#first-boot", next: "#theming"
+            },
+             "#theming": {
+                title: "Theming & Customization",
+                content: `<h3>Theming & Customization</h3><p>We've developed a unique ArttulOS theme that extends to GTK applications, icons, cursors, and system sounds, creating a cohesive and polished look. This theme prioritizes readability, modern aesthetics, and subtle visual cues.</p><p>Users can, of course, further customize their desktop environment. ArttulOS is compatible with standard GNOME theming mechanisms. You can install alternative themes, icon packs, and extensions available through community repositories or online sources like <a href="https://www.gnome-look.org/" target="_blank" rel="noopener">GNOME-Look.org</a>.</p><p>To change themes, you would typically use the <strong>GNOME Tweaks</strong> tool (often installable via <code>sudo dnf install gnome-tweaks</code>) under the "Appearance" section.</p>`,
+                keywords: "theming, themes, customization, appearance, icons, gtk, extensions, gnome tweaks",
+                prev: "#desktop-environment", next: "#applications"
+            },
+            "#applications": {
+                title: "Core Applications",
+                content: `<h3>Core Applications</h3><p>ArttulOS ships with a curated set of essential applications to get you started:</p><ul><li><strong>Web Browser:</strong> ArttulCat (latest stable version)</li><li><strong>File Manager:</strong> Nautilus (GNOME Files)</li><li><strong>Text Editor:</strong> GNOME Text Editor (formerly Gedit)</li><li><strong>Terminal Emulator:</strong> GNOME Terminal</li><li><strong>System Settings:</strong> Centralized control panel for system configuration.</li><li><strong>Software Center:</strong> A graphical tool to browse and install applications.</li></ul><p>Additional software can be easily installed using the DNF package manager via the terminal or the graphical Software Center.</p>`,
+                keywords: "applications, software, default apps, firefox, file manager, text editor, terminal, software center",
+                prev: "#theming", next: "#package-management"
+            },
+            "#package-management": {
+                title: "Package Management (DNF)",
+                content: `<h2>Package Management (DNF)</h2><p>ArttulOS utilizes the DNF (Dandified YUM) package manager, which is standard for RPM-based distributions like Fedora, CentOS Stream, and Rocky Linux.</p><h3>Common DNF Commands</h3><ul><li><strong>Update system:</strong> <code>sudo dnf update</code> or <code>sudo dnf upgrade</code></li><li><strong>Install a package:</strong> <code>sudo dnf install packagename</code></li><li><strong>Remove a package:</strong> <code>sudo dnf remove packagename</code></li><li><strong>Search for a package:</strong> <code>dnf search keyword</code></li><li><strong>Show package information:</strong> <code>dnf info packagename</code></li><li><strong>List installed packages:</strong> <code>dnf list installed</code></li><li><strong>Clean up cached packages:</strong> <code>sudo dnf clean all</code></li><li><strong>Enable a modular repository stream (if applicable):</strong> <code>sudo dnf module enable module:stream</code></li></ul><p>DNF also supports groups (<code>sudo dnf groupinstall "Group Name"</code>), history (<code>dnf history list</code>), and provides a powerful and flexible way to manage software on your system.</p>`,
+                keywords: "package management, dnf, yum, install software, remove package, update, repositories, rpm, modules, groups",
+                prev: "#applications", next: "#development"
+            },
+            "#development": {
+                title: "For Developers",
+                content: `<h2>For Developers</h2><p>Information for those looking to contribute to ArttulOS, build packages, or develop applications on the platform.</p>`,
+                keywords: "development, developers, contributing, build, source code, programming, sdk, tools",
+                prev: "#package-management", next: "#building-from-source"
+            },
+            "#building-from-source": {
+                title: "Building from Source",
+                content: `<h3>Building ArttulOS Components from Source</h3><p>Most ArttulOS specific packages and customizations are built using standard RPM packaging tools. You'll typically need <code>rpm-build</code>, <code>mock</code>, and the development dependencies for the specific package.</p><p>Clone the relevant Git repository from <a href="https://github.com/ArttulOS" target="_blank" rel="noopener">our GitHub organization</a>. Each repository should contain a <code>.spec</code> file and instructions (often in a <code>README.md</code> or <code>BUILDING.md</code>) for building the SRPM and then the RPM.</p><p>Example for a generic package:</p><pre><code># Install build dependencies (example)
+sudo dnf builddep /path/to/package.spec
+
+# Build SRPM
+rpmbuild -bs /path/to/package.spec
+
+# Build RPM (often done in a clean chroot like mock)
+mock -r arttulos-buildroot --rebuild /path/to/package.src.rpm</code></pre><p>Refer to individual package repositories for precise build instructions.</p>`,
+                keywords: "build, compile, source code, git, make, rpmbuild, mock, srpm, spec file, development environment",
+                prev: "#development", next: "#contributing-code"
+            },
+            "#contributing-code": {
+                title: "Contributing Code",
+                content: `<h3>Contributing Code</h3><p>We welcome code contributions! Please follow these general guidelines:</p><ol><li>Fork the relevant repository on GitHub.</li><li>Create a new branch for your feature or bug fix: <code>git checkout -b my-cool-feature</code></li><li>Make your changes, adhering to any coding standards mentioned in the repository.</li><li>Commit your changes with clear, descriptive commit messages.</li><li>Push your branch to your fork: <code>git push origin my-cool-feature</code></li><li>Open a Pull Request (PR) against the main branch of the ArttulOS repository.</li><li>Clearly describe your changes in the PR and link to any relevant issues.</li></ol><p>Please see our full <a href="developerguidelines.html">Contribution Guidelines</a> for more details on code style, commit message formatting, and the review process.</p>`,
+                keywords: "contribute, code, patches, pull request, pr, git, github, gitlab, coding standards, workflow",
+                prev: "#building-from-source", next: "#troubleshooting"
+            },
+            "#troubleshooting": {
+                title: "Troubleshooting Common Issues",
+                content: `<h2>Troubleshooting Common Issues</h2><p>This section will be populated with solutions to common problems encountered by users. If you encounter an issue not listed here, please check our <a href="community.html">community forums</a> or <a href="https://matrix.to/#/#arttulos:matrix.org" target="_blank" rel="noopener">Matrix chat</a>.</p><h4>Installation Fails</h4><ul><li>Ensure your ISO download was not corrupted by <a href="https://docs.redhat.com/en/documentation/jboss_enterprise_application_platform_common_criteria_certification/5/html/common_criteria_configuration_guide/verify_rhn_downloaded_files_md5">verifying its checksum</a>.</li><li>Try a different USB drive or USB port.</li><li>Ensure Secure Boot is disabled in your UEFI/BIOS settings if you encounter issues.</li><li>Check for sufficient disk space on the target drive.</li></ul><h4>No Network Connection</h4><ul><li>Verify your network cable is plugged in or Wi-Fi is enabled.</li><li>Check <code>ip addr</code> to see if your network interface has an IP address.</li><li>For Wi-Fi, ensure you have the correct drivers. Some proprietary Wi-Fi chips may require additional firmware. You can search for your Wi-Fi chipset and "Linux driver".</li></ul>`,
+                keywords: "troubleshooting, issues, problems, errors, support, help, debug, installation fail, no network, wifi",
+                prev: "#contributing-code", next: "#faq"
+            },
+            "#faq": {
+                title: "Frequently Asked Questions",
+                content: `<h2>Frequently Asked Questions</h2><h4>What is ArttulOS based on?</h4><p>ArttulOS is built upon the stable and enterprise-grade foundation of Rocky Linux, which is itself a community-driven rebuild of Red Hat Enterprise Linux (RHEL).</p><h4>Is ArttulOS free to use?</h4><p>Yes, ArttulOS is completely free and open source. You can download, use, modify, and redistribute it according to its open source licenses.</p><h4>What desktop environment does ArttulOS use?</h4><p>Our primary focus for the initial releases is a customized GNOME desktop environment, optimized for aesthetics and usability. We may explore other desktop environment options in the future based on community interest.</p><h4>How can I contribute?</h4><p>There are many ways! You can contribute code, documentation, translations, artwork, test releases, report bugs, or help others in the community. Check our <a href="community.html">Community page</a> for details.</p>`,
+                keywords: "faq, questions, answers, common queries, help, based on, license, free, desktop environment, contribute",
+                prev: "#troubleshooting", next: "#glossary"
+            },
+            "#glossary": {
+                title: "Glossary of Terms",
+                content: `<h2>Glossary</h2><dl><dt>DNF (Dandified YUM)</dt><dd>The default package manager for ArttulOS and other RPM-based distributions like Fedora and Rocky Linux.</dd><dt>RPM (Red Hat Package Manager)</dt><dd>A package management system used by many Linux distributions. ArttulOS uses RPM packages.</dd><dt>ISO Image</dt><dd>A disk image file containing the complete ArttulOS installation media.</dd><dt>Rocky Linux</dt><dd>The enterprise-grade Linux distribution that ArttulOS is based on.</dd><dt>GNOME</dt><dd>A popular, modern, and user-friendly desktop environment used by ArttulOS.</dd><dt>LTS (Long-Term Support)</dt><dd>Refers to a version of software that is supported with updates for an extended period, often several years.</dd></dl>`,
+                keywords: "glossary, terms, definitions, vocabulary, linux terms, dnf, rpm, iso, rocky, gnome, lts",
+                prev: "#faq", next: null
+            }
+        };
+
+        const docPageContainer = document.getElementById('docPageContainer');
+        const docSidebarNav = document.getElementById('docSidebarNav');
+        const mainNav = document.getElementById('mainNav');
+        const searchInput = document.getElementById('docSearchInput');
+        const searchButton = document.getElementById('docSearchButton');
+        const searchResultsContainer = document.getElementById('searchResultsContainer');
+        const searchResultsList = document.getElementById('searchResultsList');
+        const searchResultsTitle = document.getElementById('searchResultsTitle');
+        const aiSearchSuggestion = document.getElementById('aiSearchSuggestion');
+        const askAIButton = document.getElementById('askAIButton');
+        const aiDisclaimer = document.getElementById('aiDisclaimer');
+
+        let lunrIdx;
+
+        function stripHtml(html) {
+           let tmp = document.createElement("DIV");
+           tmp.innerHTML = html;
+           return tmp.textContent || tmp.innerText || "";
+        }
+
+        function buildLunrIndex() {
+            lunrIdx = lunr(function () {
+                this.ref('id');
+                this.field('title', { boost: 10 });
+                this.field('content');
+                this.field('keywords', { boost: 5 });
+
+                for (const id in docPagesData) {
+                    this.add({
+                        id: id,
+                        title: docPagesData[id].title,
+                        content: stripHtml(docPagesData[id].content),
+                        keywords: docPagesData[id].keywords || ""
+                    });
+                }
+            });
+        }
+
+        function performSearch() {
+            const query = searchInput.value.trim();
+            searchResultsList.innerHTML = '';
+
+            if (!query) {
+                searchResultsContainer.style.display = 'none';
+                aiSearchSuggestion.style.display = 'none';
+                return;
+            }
+
+            const results = lunrIdx.search(query);
+            searchResultsContainer.style.display = 'block';
+            searchResultsTitle.textContent = `Search Results for "${query}"`;
+
+            if (results.length > 0) {
+                results.forEach(result => {
+                    const pageId = result.ref;
+                    const pageData = docPagesData[pageId];
+                    const item = document.createElement('div');
+                    item.classList.add('search-result-item');
+
+                    let contentSnippet = stripHtml(pageData.content).substring(0, 180); // Slightly longer snippet
+                    if (stripHtml(pageData.content).length > 180) contentSnippet += "...";
+
+                    const queryTerms = query.toLowerCase().split(/\s+/).filter(term => term.length > 1);
+                    queryTerms.forEach(term => {
+                        const regex = new RegExp(term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi'); // Escape special chars for regex
+                        contentSnippet = contentSnippet.replace(regex, '<strong>$&</strong>');
+                    });
+
+                    item.innerHTML = `
+                        <a href="${pageId}">${pageData.title}</a>
+                        <p class="snippet">${contentSnippet}</p>
+                    `;
+                    item.querySelector('a').addEventListener('click', (e) => {
+                        e.preventDefault();
+                        loadPageContent(pageId);
+                        // No need to hide searchResultsContainer here, loadPageContent will do it.
+                    });
+                    searchResultsList.appendChild(item);
+                });
+                aiSearchSuggestion.style.display = 'block';
+                aiDisclaimer.textContent = "Our smart keyword search found these results. True natural language understanding with ArttulAI is under development.";
+            } else {
+                searchResultsList.innerHTML = '<p class="no-results">No documents found matching your keyword search.</p>';
+                aiSearchSuggestion.style.display = 'block';
+                aiDisclaimer.textContent = "No matches with keyword search. Our upcoming ArttulAI might be able to help with more complex questions once available.";
+            }
+        }
+
+        function updateActiveSidebarLink(targetId) {
+            docSidebarNav.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === targetId) {
+                    link.classList.add('active');
+                    let parentNav = link.closest('.nav.doc-nav.flex-column.ms-3');
+                    if (parentNav && parentNav.previousElementSibling?.classList.contains('nav-link')) {
+                        parentNav.previousElementSibling.classList.add('active');
+                    }
+                }
+            });
+        }
+
+        function loadPageContent(pageId) {
+            const pageData = docPagesData[pageId];
+            if (!pageData) {
+                docPageContainer.innerHTML = `<article class="doc-page"><h1>Page Not Found</h1><p>The documentation page you requested (<code>${pageId}</code>) could not be found.</p><p><a href="#introduction">Back to Introduction</a></p></article>`;
+                updateActiveSidebarLink("#introduction"); // Default to intro if page not found
+                return;
+            }
+
+            let html = `<article class="doc-page" id="${pageId.substring(1)}">`;
+            html += pageData.content;
+            html += `<div class="doc-page-navigation">`;
+            if (pageData.prev && docPagesData[pageData.prev]) {
+                html += `<a href="${pageData.prev}" class="btn-nav prev-page"><i class="bi bi-arrow-left"></i> Previous: ${docPagesData[pageData.prev].title}</a>`;
+            } else {
+                html += `<span class="btn-nav disabled"><i class="bi bi-arrow-left"></i> Previous</span>`;
+            }
+            if (pageData.next && docPagesData[pageData.next]) {
+                html += `<a href="${pageData.next}" class="btn-nav next-page">Next: ${docPagesData[pageData.next].title} <i class="bi bi-arrow-right"></i></a>`;
+            } else {
+                html += `<span class="btn-nav disabled">Next <i class="bi bi-arrow-right"></i></span>`;
+            }
+            html += `</div></article>`;
+
+            docPageContainer.innerHTML = html;
+            updateActiveSidebarLink(pageId);
+
+            docPageContainer.querySelectorAll('.doc-page-navigation .btn-nav:not(.disabled)').forEach(link => {
+                link.addEventListener('click', handlePageNavigationClick);
+            });
+
+            searchResultsContainer.style.display = 'none';
+            aiSearchSuggestion.style.display = 'none';
+
+            const navbarHeight = mainNav ? mainNav.offsetHeight : 70; // Approx height if mainNav not found
+            const targetElementForScroll = document.getElementById(pageId.substring(1)) || docPageContainer;
+            const elementPosition = targetElementForScroll.getBoundingClientRect().top + window.pageYOffset;
+            const offsetPosition = elementPosition - navbarHeight - 20; /* 20px buffer */
+
+            window.scrollTo({ top: offsetPosition, behavior: 'auto' });
+
+            if (history.pushState) {
+                history.pushState({page: pageId}, pageData.title, pageId);
+            } else {
+                window.location.hash = pageId;
+            }
+        }
+
+        function handlePageNavigationClick(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            loadPageContent(targetId);
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            buildLunrIndex();
+
+            if (mainNav) {
+                window.addEventListener('scroll', () => mainNav.classList.toggle('scrolled', window.scrollY > 50));
+            }
+            const currentYearSpan = document.getElementById('currentYear');
+            if (currentYearSpan) currentYearSpan.textContent = new Date().getFullYear();
+
+            const mainNavLinks = document.querySelectorAll('#mainNav .nav-link');
+            const currentPath = window.location.pathname.split("/").pop() || 'index.html';
+            mainNavLinks.forEach(link => {
+                const linkPath = (link.getAttribute('href') || "").split("/").pop().split("#")[0] || 'index.html';
+                link.classList.toggle('active', linkPath === currentPath && currentPath === 'documentation.html');
+            });
+
+            docSidebarNav.querySelectorAll('.nav-link').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    loadPageContent(targetId);
+                });
+            });
+
+            const initialHash = window.location.hash || "#introduction";
+            if (docPagesData[initialHash]) {
+                loadPageContent(initialHash);
+            } else {
+                loadPageContent("#introduction");
+            }
+
+            window.addEventListener('popstate', function(event) {
+                const hash = (event.state && event.state.page) ? event.state.page : (window.location.hash || "#introduction");
+                 if (docPagesData[hash]) {
+                    loadPageContent(hash);
+                } else {
+                    loadPageContent("#introduction"); // Fallback
+                }
+            });
+
+            if(searchButton && searchInput) {
+                searchButton.addEventListener('click', performSearch);
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') performSearch();
+                });
+                searchInput.addEventListener('input', function() {
+                    if(this.value.trim() === '') {
+                        searchResultsContainer.style.display = 'none';
+                        aiSearchSuggestion.style.display = 'none';
+                    }
+                });
+            }
+
+            if (askAIButton) {
+                askAIButton.addEventListener('click', function() {
+                    const query = searchInput.value.trim();
+                    searchResultsList.innerHTML = `
+                        <p class="no-results"><i class="bi bi-tools me-2"></i>ArttulAI is under construction!</p>
+                        <p>We're working hard to bring you advanced AI-powered search for the ArttulOS documentation. This feature will allow you to ask natural language questions and get precise answers.</p>
+                        <p>For your query "<strong>${query || 'your question'}</strong>", please check the keyword search results above or browse the Table of Contents.</p>
+                        <p>Stay tuned for updates!</p>`;
+                    searchResultsContainer.style.display = 'block';
+                    aiSearchSuggestion.style.display = 'none';
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,664 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Contact the ArttulOS team for inquiries, support, or feedback.">
+    <meta name="author" content="The ArttulOS Team">
+    <title>Contact ArttulOS - We're Here to Help</title>
+
+    <!-- CSS FILES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Using FreeSans -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <style>
+    @font-face {
+        font-family: 'FreeSans';
+        src: url('fonts/FreeSans.woff2') format('woff2'),
+             url('fonts/FreeSans.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+    }
+    @font-face {
+        font-family: 'FreeSans';
+        src: url('fonts/FreeSansBold.woff2') format('woff2'),
+             url('fonts/FreeSansBold.woff') format('woff');
+        font-weight: bold;
+        font-style: normal;
+        font-display: swap;
+    }
+
+     :root {
+        /* Established ArttulOS Color Palette */
+        --primary-color: #5E35B1;
+        --primary-color-rgb: 94, 53, 177;
+        --secondary-color: #3949AB;
+        --secondary-color-rgb: 57, 73, 171;
+        --accent-color: #7E57C2;
+        --accent-color-rgb: 126, 87, 194;
+
+        --white-color: #E0D6EF;
+        --white-color-rgb: 224, 214, 239;
+        --dark-color: #1C2331;
+        --dark-color-rgb: 28, 35, 49;
+
+        --text-color-on-dark: var(--white-color);
+        --heading-color-on-dark: #D1C4E9;
+        --link-color-on-dark: #B39DDB;
+        --link-hover-on-dark: var(--white-color);
+
+        --body-font-family: 'FreeSans', sans-serif;
+
+        /* Unique Layout - Contact Page Focus */
+        --bg-main-start: var(--dark-color);
+        --bg-main-end: #100E24; /* Darker, bluer-purple base */
+
+        --contact-hero-bg-start: var(--accent-color);
+        --contact-hero-bg-end: var(--secondary-color);
+
+        --contact-card-bg: rgba(var(--primary-color-rgb), 0.12);
+        --contact-card-border: rgba(var(--accent-color-rgb), 0.3);
+        --contact-card-shadow: 0 8px 30px rgba(0,0,0,0.2);
+
+        --form-input-bg: rgba(var(--dark-color-rgb), 0.4);
+        --form-input-border: rgba(var(--accent-color-rgb), 0.5);
+        --form-input-focus-border: var(--accent-color);
+        --form-input-focus-shadow: rgba(var(--accent-color-rgb), 0.25);
+
+        --button-primary-bg-start: var(--accent-color);
+        --button-primary-bg-end: var(--primary-color);
+        --button-primary-hover-bg-start: var(--primary-color);
+        --button-primary-hover-bg-end: var(--accent-color);
+
+        --footer-bg-color: #0A071A; /* Darkest */
+
+        --border-radius-small:         8px;
+        --border-radius-medium:        16px;
+        --border-radius-large:         24px;
+
+        --h1-font-size:                clamp(2.6rem, 5.5vw, 3.8rem);
+        --h2-font-size:                clamp(1.8rem, 4vw, 2.6rem);
+        --h3-font-size:                clamp(1.4rem, 3vw, 1.9rem);
+     }
+
+    /* --- Global & Body --- */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+        font-family: var(--body-font-family);
+        background-color: var(--bg-main-start);
+        background-image: linear-gradient(175deg, var(--bg-main-start) 0%, var(--bg-main-end) 100%);
+        background-attachment: fixed;
+        color: var(--text-color-on-dark);
+        overflow-x: hidden;
+        line-height: 1.7;
+    }
+    h1, h2, h3, h4, h5, h6 { color: var(--heading-color-on-dark); font-family: var(--body-font-family); font-weight: bold; }
+    h1 { font-size: var(--h1-font-size); }
+    h2 { font-size: var(--h2-font-size); margin-bottom: 1.5rem;}
+    h3 { font-size: var(--h3-font-size); margin-bottom: 1.2rem;}
+    p { margin-bottom: 1.25rem; color: rgba(var(--white-color-rgb), 0.85); font-weight: normal; }
+    p.lead { font-size: clamp(1.1rem, 2.5vw, 1.35rem); font-weight: 300; color: rgba(var(--white-color-rgb), 0.9); }
+    a { color: var(--link-color-on-dark); text-decoration: none; transition: color 0.3s ease; }
+    a:hover { color: var(--white-color); }
+    .section-padding { padding-top: 100px; padding-bottom: 100px; }
+
+    /* --- Navigation Bar (Consistent) --- */
+    .navbar { /* Styles from previous gorgeous page designs */ }
+    /* ... (Copy navbar styles from previous gorgeous designs for consistency) ... */
+    .navbar {
+        background: rgba(var(--dark-color-rgb), 0.5); backdrop-filter: blur(18px);
+        padding: 1rem 0; border-bottom: 1px solid rgba(var(--primary-color-rgb), 0.15);
+        position: sticky; top: 0; z-index: 1030; /* Make navbar sticky */
+    }
+    .navbar.scrolled { background: rgba(var(--dark-color-rgb), 0.8); box-shadow: 0 5px 25px rgba(0,0,0,0.25); }
+    .navbar-brand { font-size: 1.8em; font-weight: bold; color: var(--white-color) !important; }
+    .navbar-brand:hover { color: var(--accent-color) !important; }
+    .navbar-nav .nav-link {
+        color: rgba(var(--white-color-rgb), 0.8); font-weight: 500;
+        padding: 0.5rem 1rem; position: relative;
+    }
+    .navbar-nav .nav-link::after {
+        content: ''; position: absolute; bottom: -2px; left: 50%; transform: translateX(-50%);
+        width: 0; height: 3px; background-color: var(--accent-color); border-radius:3px;
+        transition: width 0.35s ease;
+    }
+    .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active { color: var(--white-color); }
+    .navbar-nav .nav-link:hover::after, .navbar-nav .nav-link.active::after { width: 40%; }
+    .navbar-toggler { border-color: rgba(var(--white-color-rgb), 0.4); }
+    .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28224, 214, 239, 0.95%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+
+    /* --- Contact Hero Section --- */
+    .contact-hero {
+        padding: 9rem 0 7rem 0; /* Adjusted padding as nav is sticky */
+        background-image: linear-gradient(135deg, var(--contact-hero-bg-start) 0%, var(--contact-hero-bg-end) 100%);
+        position: relative; text-align: center; overflow: hidden;
+    }
+    .contact-hero .section-overlay-pattern {
+        content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+        background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-29c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm63 43c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zM34 90c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm59-60c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zM20 60c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7z" fill="rgba(224, 214, 239, 0.02)" fill-rule="evenodd"/></svg>');
+        opacity: 0.8; animation: subtleMove 20s linear infinite alternate;
+    }
+    @keyframes subtleMove { from { background-position: 0 0; } to { background-position: 50px 50px; } }
+    .contact-hero .container { position: relative; z-index: 1; }
+    .contact-hero h1 {
+        font-size: var(--h1-font-size); color: var(--white-color) !important; font-weight: 700;
+        text-shadow: 0 3px 20px rgba(var(--dark-color-rgb),0.4);
+        animation: popIn 0.9s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.2s backwards;
+    }
+    .contact-hero p.lead {
+        color: rgba(var(--white-color-rgb), 0.95) !important;
+        font-size: clamp(1.15rem, 2.8vw, 1.45rem);
+        margin-bottom: 0; font-weight: 300;
+        animation: slideUpFade 1.1s ease-out 0.5s backwards;
+    }
+
+    /* --- Contact Content Area --- */
+    .contact-content-section { /* Wrapper for the two columns */
+        background: transparent; /* Let body gradient show */
+    }
+    .contact-card {
+        background: var(--contact-card-bg);
+        border: 1px solid var(--contact-card-border);
+        border-radius: var(--border-radius-large);
+        padding: 2.5rem;
+        height: 100%;
+        box-shadow: var(--contact-card-shadow);
+        animation: popInCards 0.6s ease-out backwards;
+    }
+    .contact-card.details-card { animation-delay: 0.2s; }
+    .contact-card.form-card { animation-delay: 0.35s; }
+
+    .contact-card h3 {
+        color: var(--heading-color-on-dark);
+        margin-bottom: 2rem; /* More space under H3 */
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid rgba(var(--accent-color-rgb), 0.2);
+        display: inline-block; /* So border only spans text width */
+    }
+
+    /* Contact Details Card */
+    .contact-item {
+        display: flex; align-items: flex-start; margin-bottom: 1.8rem;
+    }
+    .contact-item-icon {
+        font-size: 1.8rem; /* Larger icon */
+        color: var(--accent-color);
+        margin-right: 1.2rem; width: 40px; /* Fixed width */
+        text-align: center; line-height: 1; /* Better vertical alignment */
+        flex-shrink: 0;
+    }
+    .contact-item-text p { margin-bottom: 0.15rem; line-height: 1.6; color: rgba(var(--white-color-rgb), 0.85); font-size: 0.95rem;}
+    .contact-item-text strong { color: var(--white-color); display: block; margin-bottom: 0.25rem; font-size: 1.05rem; font-weight: 500;}
+    .contact-item-text a { word-break: break-all; } /* Break long emails */
+
+    .contact-social-links a {
+        font-size: 1.8rem; margin-right: 1.2rem; color: var(--link-color-on-dark);
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+    .contact-social-links a:hover { color: var(--white-color); transform: scale(1.1); }
+    .contact-social-links a:last-child { margin-right: 0; }
+
+    /* Contact Form Card */
+    .contact-form .form-floating > .form-control {
+        background-color: var(--form-input-bg) !important;
+        color: var(--white-color) !important;
+        border: 1px solid var(--form-input-border) !important;
+        border-radius: var(--border-radius-medium) !important;
+        padding: 1rem 1.25rem !important; /* Adjust padding for floating label */
+        line-height: 1.5;
+    }
+    .contact-form .form-floating > label {
+        color: rgba(var(--white-color-rgb), 0.6) !important;
+        padding: 1rem 1.25rem !important;
+    }
+    .contact-form .form-floating > .form-control:focus {
+        background-color: rgba(var(--dark-color-rgb), 0.5) !important;
+        border-color: var(--form-input-focus-border) !important;
+        box-shadow: 0 0 0 0.2rem var(--form-input-focus-shadow) !important;
+    }
+    .contact-form .form-floating > .form-control:not(:placeholder-shown) ~ label {
+        opacity: .65;
+        transform: scale(.85) translateY(-.7rem) translateX(.15rem); /* Bootstrap's default but ensure it's applied */
+    }
+    .contact-form textarea.form-control { min-height: 150px; resize: vertical; }
+    .btn-form-submit { /* Main submit button for form */
+        display: inline-block;
+        background: linear-gradient(145deg, var(--button-primary-bg-start), var(--button-primary-bg-end));
+        color: var(--white-color) !important; border: none;
+        font-weight: bold; padding: 0.9rem 2.5rem;
+        border-radius: var(--border-radius-large);
+        text-transform: uppercase; letter-spacing: 0.5px;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 5px 15px rgba(var(--primary-color-rgb),0.3);
+    }
+    .btn-form-submit:hover {
+        transform: translateY(-3px) scale(1.03);
+        box-shadow: 0 8px 25px rgba(var(--accent-color-rgb),0.4);
+        background: linear-gradient(145deg, var(--button-primary-hover-bg-start), var(--button-primary-hover-bg-end));
+    }
+
+    /* Map Section */
+    .map-section { background: var(--bg-main-end); /* Darker for contrast */ }
+    .google-map-wrapper {
+        border-radius: var(--border-radius-large);
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        border: 2px solid var(--contact-card-border);
+    }
+    .google-map {
+         filter: grayscale(100%) invert(95%) hue-rotate(230deg) saturate(300%) brightness(0.7) contrast(1.1);
+         /* More complex filter for a dark, themed map. Adjust as needed. */
+    }
+
+    /* Modal Styles (Consistent with other gorgeous pages) */
+    .modal-content {
+        background-color: var(--dark-color); color: var(--white-color);
+        border-radius: var(--border-radius-medium);
+        border: 1px solid var(--accent-color);
+        box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    }
+    .modal-header { border-bottom: 1px solid rgba(var(--accent-color-rgb), 0.3); }
+    .modal-header .btn-close { filter: invert(1) grayscale(100%) brightness(200%); }
+    .modal-title { color: var(--heading-color-on-dark); }
+    .modal-body p { color: rgba(var(--white-color-rgb), 0.9); }
+    .modal-body .form-check-label { font-size: 0.95rem; }
+    .modal-footer { border-top: 1px solid rgba(var(--accent-color-rgb), 0.3); }
+    .modal-footer .btn-secondary {
+        background-color: rgba(var(--white-color-rgb), 0.1);
+        border-color: rgba(var(--white-color-rgb), 0.1);
+        color: var(--white-color);
+    }
+    .modal-footer .btn-secondary:hover { background-color: rgba(var(--white-color-rgb), 0.2); }
+    .modal-footer .btn-primary {
+        background-color: var(--primary-color); border-color: var(--primary-color);
+    }
+     .modal-footer .btn-primary:hover {
+        background-color: var(--accent-color); border-color: var(--accent-color);
+     }
+
+
+    /* Animations */
+    @keyframes popIn { /* ... */ }
+    @keyframes slideUpFade { /* ... */ }
+    @keyframes popInCards { /* ... */ }
+
+    /* Responsive */
+    @media (max-width: 991px) {
+        .contact-card { margin-bottom: 2rem; } /* Ensure spacing when stacked */
+        .contact-details-section, .contact-form-section { height: auto; } /* Reset height on stack */
+    }
+    @media (max-width: 768px) {
+        .contact-hero { padding: 7rem 0 5rem 0; }
+        .contact-card { padding: 2rem 1.5rem; }
+    }
+
+	</style>
+</head>
+
+<body>
+    <main>
+        <nav class="navbar navbar-expand-lg sticky-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">ArttulOS</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                     <ul class="navbar-nav align-items-lg-center ms-auto me-lg-5">
+                        <li class="nav-item"><a class="nav-link" href="index.html#section_1">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="community.html">Community</a></li>
+                        <li class="nav-item"><a class="nav-link" href="roadmap.html">Roadmap</a></li>
+                        <li class="nav-item"><a class="nav-link" href="documentation.html">Docs</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="contact.html">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="download.html">Download</a></li>
+                        <li class="nav-item"><a class="nav-link" href="arttulcat.html">ArttulCat</a></li>
+                        <li class="nav-item"><a class="nav-link" href="https://matrix.to/#/#arttulos:matrix.org" target="_blank" rel="noopener">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <section class="contact-hero">
+            <div class="section-overlay-pattern"></div>
+            <div class="container text-center position-relative">
+                <h1 class="mb-3">Get in Touch</h1>
+                <p class="lead">We're here to listen. Whether it's a question, feedback, or a brilliant idea, let's connect.</p>
+            </div>
+        </section>
+
+        <section class="contact-content-section section-padding">
+            <div class="container">
+                <div class="row gy-4 gx-lg-5"> {/* gy-4 for vertical gap, gx-lg-5 for horizontal gap on large screens */}
+                    <div class="col-lg-5">
+                        <div class="contact-card details-card">
+                            <h3>Direct Contact</h3>
+                            <div class="contact-item">
+                                <i class="bi bi-envelope-paper-fill contact-item-icon"></i>
+                                <div class="contact-item-text">
+                                    <strong>General & Feedback</strong>
+                                    <p><a href="mailto:arttulos@proton.me" class="email-link" data-bs-toggle="modal" data-bs-target="#checkDocsModal" data-email-recipient="arttulos@proton.me" data-email-subject="General Inquiry/Feedback">arttulos@proton.me</a></p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="bi bi-shield-lock-fill contact-item-icon"></i>
+                                <div class="contact-item-text">
+                                    <strong>Security Vulnerabilities</strong>
+                                    <p><a href="mailto:security@arttulos.org" class="email-link" data-bs-toggle="modal" data-bs-target="#checkDocsModal" data-email-recipient="security@arttulos.org" data-email-subject="Security Report">security@arttulos.org</a></p>
+                                </div>
+                            </div>
+                             <div class="contact-item">
+                                <i class="bi bi-megaphone-fill contact-item-icon"></i>
+                                <div class="contact-item-text">
+                                    <strong>Press & Media Inquiries</strong>
+                                    <p><a href="mailto:press@arttulos.org" class="email-link" data-bs-toggle="modal" data-bs-target="#checkDocsModal" data-email-recipient="press@arttulos.org" data-email-subject="Press Inquiry">press@arttulos.org</a></p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="bi bi-chat-quote-fill contact-item-icon"></i>
+                                <div class="contact-item-text">
+                                    <strong>Community Support</strong>
+                                    <p>For quick answers and community help, please visit our <a href="community.html">Community Page</a> or join our <a href="https://matrix.to/#/#arttulos:matrix.org" target="_blank" rel="noopener">Matrix Chat</a>.</p>
+                                </div>
+                            </div>
+
+                            <h3 class="mt-5">Connect Socially</h3>
+                            <div class="contact-social-links">
+                                <a href="https://x.com/ArttulOS" target="_blank" rel="noopener" title="ArttulOS on X/Twitter"><i class="bi bi-twitter"></i></a>
+                                <a href="https://github.com/ArttulOS" target="_blank" rel="noopener" title="ArttulOS on GitHub"><i class="bi bi-github"></i></a>
+                                <a href="https://mastodon.social/@arttulos" target="_blank" rel="noopener" title="ArttulOS on Mastodon"><i class="bi bi-mastodon"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-7">
+                        <div class="contact-card form-card">
+                            <h3>Send Us a Message</h3>
+                            <p class="mb-4" style="font-size: 0.9rem; opacity: 0.7;">Before sending, please consider if your question might be answered in our <a href="documentation.html" target="_blank">Documentation</a> or <a href="community.html#faq" target="_blank">FAQ</a>.</p>
+                            <form class="custom-form contact-form" id="mainContactForm" action="#" method="post" role="form">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" name="contact-name" id="contact-name" class="form-control" placeholder="Full name" required>
+                                            <label for="contact-name">Full name</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating mb-3">
+                                            <input type="email" name="contact-email" id="contact-email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email address" required>
+                                            <label for="contact-email">Email address</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" name="contact-subject" id="contact-subject" class="form-control" placeholder="Subject" required>
+                                    <label for="contact-subject">Subject</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control" id="contact-message" name="contact-message" placeholder="Your message" rows="5" required></textarea>
+                                    <label for="contact-message">Your message</label>
+                                </div>
+                                <div class="text-center mt-4">
+                                    <button type="submit" class="btn btn-form-submit">Send Message <i class="bi bi-arrow-right-circle-fill ms-2"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Optional Map Section -->
+                <div class="row map-section section-padding">
+                    <div class="col-12 text-center">
+                        <h2 class="mb-4">Our (Conceptual) Headquarters</h2>
+                         <p class="lead mb-5">While we're a globally distributed team, here's a little placeholder for fun!</p>
+                        <div class="google-map-wrapper">
+                            <iframe class="google-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15955.20910164966!2d-73.98802930651856!3d40.75801585452666!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6452691%3A0x723072e0e38e850d!2sTimes%20Square!5e0!3m2!1sen!2sus!4v1678886573969!5m2!1sen!2sus" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Check Documentation Modal -->
+    <div class="modal fade" id="checkDocsModal" tabindex="-1" aria-labelledby="checkDocsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="checkDocsModalLabel"><i class="bi bi-info-circle-fill me-2"></i>Before You Contact Us...</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Many common questions are answered in our comprehensive documentation or FAQ.</p>
+                    <p>Please take a moment to check these resources first:</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="documentation.html" target="_blank" class="btn btn-outline-light btn-sm d-block"><i class="bi bi-book-half me-2"></i>Browse Documentation</a></li>
+                        <li><a href="documentation.html#faq" target="_blank" class="btn btn-outline-light btn-sm d-block"><i class="bi bi-patch-question-fill me-2"></i>Check our FAQ</a></li>
+                    </ul>
+                    <hr style="border-color: rgba(var(--white-color-rgb), 0.2);">
+                    <div class="form-check mt-3">
+                        <input class="form-check-input" type="checkbox" value="" id="docsCheckedConfirmation">
+                        <label class="form-check-label" for="docsCheckedConfirmation">
+                            I confirm I have checked the documentation and FAQ.
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="proceedWithContact" disabled>Proceed to Contact</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thank You / Message Sent Modal (Generic) -->
+    <div class="modal fade" id="messageSentModal" tabindex="-1" aria-labelledby="messageSentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="messageSentModalLabel"><i class="bi bi-check-circle-fill me-2 text-success"></i> Action Initiated</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Thank you! If you sent a message via the form, we'll get back to you as soon as possible if a response is needed.</p>
+                    <p>If you chose to email, your email client should now be open.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Okay</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="site-footer">
+        <!-- ... (Footer HTML from previous response) ... -->
+        <div class="site-footer-top py-4">
+             <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-12 mb-3 mb-lg-0 text-center text-lg-start">
+                        <h2 class="text-white mb-0">ArttulOS</h2></div>
+                    <div class="col-lg-6 col-12 d-flex justify-content-center justify-content-lg-end align-items-center">
+                        <ul class="social-icon d-flex mb-0">
+                            <li class="social-icon-item"><a href="https://x.com/ArttulOS" target="_blank" rel="noopener" class="social-icon-link bi-twitter"></a></li>
+                            <li class="social-icon-item"><a href="https://github.com/ArttulOS" target="_blank" rel="noopener" class="social-icon-link bi-github"></a></li>
+                            <li class="social-icon-item"><a href="https://mastodon.social/@arttulos" target="_blank" rel="noopener" class="social-icon-link bi-mastodon"></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-12 mb-4">
+                    <h5 class="site-footer-title mb-3">Quick Links</h5>
+                    <ul class="site-footer-links">
+                        <li class="site-footer-link-item"><a href="index.html#section_1" class="site-footer-link">Home</a></li>
+                        <li class="site-footer-link-item"><a href="about.html" class="site-footer-link">About ArttulOS</a></li>
+                        <li class="site-footer-link-item"><a href="community.html" class="site-footer-link">Community</a></li>
+                        <li class="site-footer-link-item"><a href="roadmap.html" class="site-footer-link">Roadmap</a></li>
+                        <li class="site-footer-link-item"><a href="documentation.html" class="site-footer-link">Documentation</a></li>
+                        <li class="site-footer-link-item"><a href="contact.html" class="site-footer-link">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12 mb-4">
+                    <h5 class="site-footer-title mb-3">Get In Touch</h5>
+                    <p class="d-flex mb-1 flex-wrap"><a href="mailto:arttulos@proton.me" class="site-footer-link email-link" style="word-break: break-all;" data-bs-toggle="modal" data-bs-target="#checkDocsModal" data-email-recipient="arttulos@proton.me" data-email-subject="General Inquiry">arttulos@proton.me</a></p>
+                    <p class="d-flex mt-2"><a href="https://matrix.to/#/#arttulos:matrix.org" target="_blank" rel="noopener" class="site-footer-link">Matrix Chat</a></p>
+                </div>
+                <div class="col-lg-4 col-md-12 col-12 mb-4">
+                    <h5 class="site-footer-title mb-3">Project Essentials</h5>
+                    <p class="d-flex mt-3 mb-2"><a href="https://github.com/ArttulOS" target="_blank" rel="noopener" class="site-footer-link"><i class="bi bi-github me-2"></i>GitHub Repository</a></p>
+                    <p class="d-flex mt-2 mb-2"><a href="arttulos_contributing.html" class="site-footer-link"><i class="bi bi-file-code-fill me-2"></i>Contribution Guidelines</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="site-footer-bottom py-3">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-7 col-md-7 col-12 text-center text-md-start">
+                        <p class="copyright-text mb-0">Copyright © <span id="currentYear"></span> The ArttulOS Project. All Rights Reserved.</p>
+                         <p class="copyright-text small mb-0 mt-1">Original Template: <a href="https://templatemo.com/tm-583-festava-live" target="_blank" rel="noopener">Festava Live</a> by TemplateMo. Distributed by: <a href="https://themewagon.com" target="_blank" rel="noopener">ThemeWagon</a></p>
+                    </div>
+                    <div class="col-lg-5 col-md-5 col-12 text-center text-md-end mt-3 mt-md-0">
+                        <ul class="site-footer-links d-inline-flex flex-wrap justify-content-center justify-content-md-end">
+                            <li class="site-footer-link-item mx-2"><a href="TermsandConditions.html" class="site-footer-link">Terms</a></li>
+                            <li class="site-footer-link-item mx-2"><a href="privacypolicy.html" class="site-footer-link">Privacy</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous" defer></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const mainNav = document.getElementById('mainNav');
+            if (mainNav) {
+                window.addEventListener('scroll', () => mainNav.classList.toggle('scrolled', window.scrollY > 50));
+            }
+
+            const currentYearSpan = document.getElementById('currentYear');
+            if (currentYearSpan) currentYearSpan.textContent = new Date().getFullYear();
+
+            // Active nav link
+            const navLinks = document.querySelectorAll('#mainNav .nav-link');
+            const currentPath = window.location.pathname.split("/").pop() || 'index.html';
+            navLinks.forEach(link => {
+                const linkPath = (link.getAttribute('href') || "").split("/").pop().split("#")[0] || 'index.html';
+                link.classList.toggle('active', linkPath === currentPath && currentPath === 'contact.html');
+            });
+             if (currentPath === 'contact.html') {
+                 const contactPageLink = document.querySelector('.navbar-nav .nav-link[href="contact.html"]');
+                 if(contactPageLink && !contactPageLink.classList.contains('active')) {
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    contactPageLink.classList.add('active');
+                 }
+            }
+
+
+            // Modal Logic for "Check Docs First"
+            const checkDocsModalEl = document.getElementById('checkDocsModal');
+            const messageSentModalEl = document.getElementById('messageSentModal');
+            const contactForm = document.getElementById('mainContactForm');
+            const emailLinks = document.querySelectorAll('.email-link');
+            const docsCheckedConfirmation = document.getElementById('docsCheckedConfirmation');
+            const proceedWithContactButton = document.getElementById('proceedWithContact');
+
+            let checkDocsModalInstance = checkDocsModalEl ? new bootstrap.Modal(checkDocsModalEl) : null;
+            let messageSentModalInstance = messageSentModalEl ? new bootstrap.Modal(messageSentModalEl) : null;
+            let currentContactAction = null; // To store 'form' or 'email'
+            let currentEmailRecipient = '';
+            let currentEmailSubject = '';
+
+
+            if (docsCheckedConfirmation && proceedWithContactButton) {
+                docsCheckedConfirmation.addEventListener('change', function() {
+                    proceedWithContactButton.disabled = !this.checked;
+                });
+            }
+
+            if (proceedWithContactButton && checkDocsModalInstance) {
+                proceedWithContactButton.addEventListener('click', function() {
+                    checkDocsModalInstance.hide(); // Hide the check docs modal first
+
+                    if (currentContactAction === 'form' && contactForm) {
+                        // Simulate form submission (in a real app, you'd submit via AJAX or let the form submit)
+                        console.log("Simulating form submission...");
+                        contactForm.reset();
+                        if (messageSentModalInstance) messageSentModalInstance.show();
+                    } else if (currentContactAction === 'email' && currentEmailRecipient) {
+                        // Construct mailto link based on stored recipient
+                        const name = document.getElementById('contact-name')?.value || "N/A"; // Optional if form not filled for email
+                        const subject = currentEmailSubject || `Inquiry from ${name}`;
+                        const mailtoLink = `mailto:${currentEmailRecipient}?subject=${encodeURIComponent(subject)}`;
+                        window.location.href = mailtoLink;
+
+                        // Show thank you/confirmation after attempting to open mail client
+                        setTimeout(() => {
+                           if (messageSentModalInstance) messageSentModalInstance.show();
+                        }, 500); // Small delay to allow mail client to open
+                    }
+                    // Reset for next interaction
+                    docsCheckedConfirmation.checked = false;
+                    proceedWithContactButton.disabled = true;
+                    currentContactAction = null;
+                    currentEmailRecipient = '';
+                    currentEmailSubject = '';
+                });
+            }
+
+            if (contactForm && checkDocsModalInstance) {
+                contactForm.addEventListener('submit', function(event) {
+                    event.preventDefault(); // Prevent actual form submission
+                    currentContactAction = 'form';
+                    currentEmailRecipient = ''; // Clear email recipient if form is used
+                    currentEmailSubject = document.getElementById('contact-subject')?.value || 'Website Contact Form';
+                    checkDocsModalInstance.show();
+                });
+            }
+
+            emailLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault(); // Prevent default mailto action initially
+                    currentContactAction = 'email';
+                    currentEmailRecipient = this.dataset.emailRecipient;
+                    currentEmailSubject = this.dataset.emailSubject || 'Inquiry via Website';
+                    if (checkDocsModalInstance) checkDocsModalInstance.show();
+                });
+            });
+             // Reset checkbox when modal is hidden without proceeding
+            if (checkDocsModalEl) {
+                checkDocsModalEl.addEventListener('hidden.bs.modal', function () {
+                    if (!proceedWithContactButton.disabled) { // Only reset if they didn't proceed
+                        docsCheckedConfirmation.checked = false;
+                        proceedWithContactButton.disabled = true;
+                    }
+                });
+            }
+
+
+            // Card animation staggering (optional, if you add more cards later)
+            const contactCards = document.querySelectorAll('.contact-card');
+            contactCards.forEach((card, index) => {
+                card.style.animationDelay = `${0.2 + index * 0.15}s`;
+            });
+        });
+    </script>
+
+</body>
+</html>

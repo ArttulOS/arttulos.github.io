@@ -1,0 +1,619 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="About ArttulOS: Our vision for open, beautiful, and functional software, and our journey to change the world for the better.">
+    <meta name="author" content="The ArttulOS Team">
+
+    <title>About ArttulOS - Our Vision, Our Journey</title>
+
+    <!-- CSS FILES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Using FreeSans from your main stylesheet -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <style>
+    @font-face {
+        font-family: 'FreeSans';
+        src: url('fonts/FreeSans.woff2') format('woff2'),
+             url('fonts/FreeSans.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+    }
+    @font-face {
+        font-family: 'FreeSans';
+        src: url('fonts/FreeSansBold.woff2') format('woff2'),
+             url('fonts/FreeSansBold.woff') format('woff');
+        font-weight: bold;
+        font-style: normal;
+        font-display: swap;
+    }
+    /* Add Oblique and BoldOblique if you have those font files and need them */
+
+     :root {
+        /* Established ArttulOS Color Palette */
+        --primary-color: #5E35B1; /* Deep Purple */
+        --primary-color-rgb: 94, 53, 177;
+        --secondary-color: #3949AB; /* Indigo/Blue */
+        --secondary-color-rgb: 57, 73, 171;
+        --accent-color: #7E57C2; /* Lighter Purple */
+        --accent-color-rgb: 126, 87, 194;
+
+        --white-color: #E0D6EF; /* Very Light Lavender */
+        --white-color-rgb: 224, 214, 239;
+        --dark-color: #1C2331; /* Dark Blue/Grey */
+        --dark-color-rgb: 28, 35, 49;
+
+        --text-color-on-dark: var(--white-color);
+        --heading-color-on-dark: #D1C4E9; /* Slightly brighter for headings */
+        --link-color-on-dark: #B39DDB;
+        --link-hover-on-dark: var(--white-color);
+
+        --body-font-family: 'FreeSans', sans-serif;
+
+        /* New variables for "gorgeous" design - About Page Focus */
+        --bg-main-start: var(--dark-color);
+        --bg-main-end: #0F0C29; /* Even darker for depth */
+
+        --page-hero-bg-start: var(--secondary-color); /* Using secondary for a different hero feel */
+        --page-hero-bg-end: var(--primary-color);
+
+        --content-section-bg: rgba(var(--primary-color-rgb), 0.05); /* Very subtle bg for content sections */
+        --story-quote-bg: rgba(var(--accent-color-rgb), 0.1);
+        --story-quote-border: var(--accent-color);
+
+        --card-bg: rgba(var(--white-color-rgb), 0.04);
+        --card-border: rgba(var(--accent-color-rgb), 0.2);
+        --card-hover-border: rgba(var(--accent-color-rgb), 0.6);
+        --glow-effect: 0 0 15px rgba(var(--accent-color-rgb), 0.3), 0 0 30px rgba(var(--accent-color-rgb), 0.2);
+
+        --footer-bg-color: #0A0F1A;
+
+        --border-radius-small:         8px;
+        --border-radius-medium:        12px;
+        --border-radius-large:         24px;
+
+        --h1-font-size:                clamp(2.8rem, 6vw, 4rem);
+        --h2-font-size:                clamp(2rem, 4.5vw, 2.8rem);
+        --h3-font-size:                clamp(1.6rem, 3.5vw, 2.2rem);
+     }
+
+    /* --- Global & Body --- */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+        font-family: var(--body-font-family);
+        background-color: var(--bg-main-start);
+        background-image: linear-gradient(170deg, var(--bg-main-start) 0%, var(--bg-main-end) 70%, var(--secondary-color) 100%);
+        background-attachment: fixed;
+        color: var(--text-color-on-dark);
+        overflow-x: hidden;
+        line-height: 1.8; /* Slightly more generous line height for readability */
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--heading-color-on-dark);
+        font-family: var(--body-font-family);
+        font-weight: bold;
+    }
+    h1 { font-size: var(--h1-font-size); }
+    h2 { font-size: var(--h2-font-size); margin-bottom: 1.5rem;}
+    h3 { font-size: var(--h3-font-size); margin-bottom: 1rem;}
+
+    p {
+        margin-bottom: 1.5rem;
+        color: rgba(var(--white-color-rgb), 0.85);
+        font-weight: normal; /* Ensure paragraphs aren't bold by default */
+    }
+    p.lead {
+        font-size: 1.2rem;
+        font-weight: 300; /* Lighter for lead paragraphs */
+        color: rgba(var(--white-color-rgb), 0.9);
+    }
+
+    a {
+        color: var(--link-color-on-dark);
+        text-decoration: none;
+        transition: color 0.3s ease, text-shadow 0.3s ease;
+    }
+    a:hover {
+        color: var(--white-color);
+        text-shadow: 0 0 8px rgba(var(--accent-color-rgb),0.5);
+    }
+
+    .section-padding { padding-top: 100px; padding-bottom: 100px; }
+    .content-section {
+        background-color: var(--content-section-bg);
+        border-top: 1px solid rgba(var(--primary-color-rgb), 0.1);
+        border-bottom: 1px solid rgba(var(--primary-color-rgb), 0.1);
+    }
+
+    /* --- Navigation Bar (Consistent) --- */
+    .navbar {
+        background: rgba(var(--dark-color-rgb), 0.6);
+        backdrop-filter: blur(15px);
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(var(--primary-color-rgb), 0.2);
+        transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+    .navbar.scrolled {
+        background: rgba(var(--dark-color-rgb), 0.85);
+        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    }
+    .navbar-brand {
+        font-size: 1.8em; font-weight: bold; color: var(--white-color) !important;
+        transition: color 0.3s ease;
+    }
+    .navbar-brand:hover { color: var(--accent-color) !important; }
+    .navbar-nav .nav-link {
+        color: rgba(var(--white-color-rgb), 0.75); font-weight: 500;
+        padding: 0.5rem 1rem; position: relative; transition: color 0.3s ease;
+    }
+    .navbar-nav .nav-link::after {
+        content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+        width: 0; height: 2px; background-color: var(--accent-color); transition: width 0.3s ease;
+    }
+    .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active { color: var(--white-color); }
+    .navbar-nav .nav-link:hover::after, .navbar-nav .nav-link.active::after { width: 50%; }
+    .navbar-toggler { border-color: rgba(var(--white-color-rgb), 0.4); }
+    .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28224, 214, 239, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    /* --- Page Hero Section --- */
+    .page-hero-section {
+        padding: 10rem 0 8rem 0;
+        background-image: linear-gradient(145deg, var(--page-hero-bg-start) 0%, var(--page-hero-bg-end) 100%);
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+    }
+    .page-hero-section .section-overlay {
+        background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-29c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm63 43c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zM34 90c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm59-60c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zM20 60c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7z" fill="rgba(224, 214, 239, 0.02)" fill-rule="evenodd"/></svg>');
+        opacity: 0.6; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    }
+    .page-hero-section .container { position: relative; z-index: 1; }
+    .page-hero-section h1 {
+        color: var(--white-color) !important; font-weight: 700;
+        text-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        animation: popIn 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.2s backwards;
+    }
+    .page-hero-section p.hero-tagline { /* Specific class for hero tagline */
+        color: rgba(var(--white-color-rgb), 0.9) !important;
+        font-size: clamp(1.2rem, 3vw, 1.6rem);
+        margin-top: 1rem; margin-bottom: 0; /* Adjust spacing for hero */
+        font-weight: 300; max-width: 800px; margin-left: auto; margin-right: auto;
+        animation: slideUpFade 1s ease-out 0.5s backwards;
+    }
+
+    /* --- Content Styling: Vision, Story, Values --- */
+    .icon-heading { /* For headings with an icon */
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+    .icon-heading .bi {
+        font-size: 2.2rem;
+        color: var(--accent-color);
+        margin-right: 1rem;
+        background: rgba(var(--accent-color-rgb),0.1);
+        padding: 0.5rem;
+        border-radius: var(--border-radius-small);
+    }
+    .icon-heading h2, .icon-heading h3 {
+        margin-bottom: 0; /* Reset margin as it's handled by .icon-heading */
+    }
+
+    .our-story-section blockquote {
+        background-color: var(--story-quote-bg);
+        border-left: 5px solid var(--story-quote-border);
+        padding: 2rem 2.5rem;
+        border-radius: var(--border-radius-medium);
+        margin: 2.5rem 0;
+        font-size: 1.15rem;
+        font-style: italic;
+        color: rgba(var(--white-color-rgb), 0.95);
+        box-shadow: 0 5px 15px rgba(var(--dark-color-rgb),0.1);
+    }
+    .our-story-section blockquote p {
+        margin-bottom: 0.5rem;
+    }
+    .our-story-section blockquote footer {
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 500;
+        color: var(--accent-color);
+        text-align: right;
+        margin-top: 1rem;
+    }
+    .our-story-section strong { /* Emphasize key phrases in story */
+        color: var(--accent-color);
+        font-weight: bold;
+    }
+
+    .values-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2.5rem;
+        margin-top: 2rem;
+    }
+    .value-card {
+        background: var(--card-bg);
+        padding: 2rem;
+        border-radius: var(--border-radius-medium);
+        border: 1px solid var(--card-border);
+        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        text-align: center; /* Center align value cards */
+    }
+    .value-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1), var(--glow-effect);
+        border-color: var(--card-hover-border);
+    }
+    .value-card .bi {
+        font-size: 2.5rem;
+        color: var(--accent-color);
+        margin-bottom: 1rem;
+    }
+    .value-card h4 {
+        color: var(--heading-color-on-dark);
+        margin-bottom: 0.75rem;
+        font-size: 1.4rem;
+    }
+
+    /* --- Call to Action Button (Consistent with Homepage Redesign) --- */
+    .cta-button {
+        display: inline-block;
+        background: linear-gradient(145deg, var(--accent-color), var(--primary-color));
+        color: var(--white-color) !important;
+        border: none;
+        font-weight: bold;
+        padding: 0.9rem 2.5rem;
+        border-radius: var(--border-radius-large);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 5px 15px rgba(var(--primary-color-rgb),0.3);
+        margin-top: 1.5rem;
+    }
+    .cta-button:hover {
+        transform: translateY(-3px) scale(1.03);
+        box-shadow: 0 8px 25px rgba(var(--accent-color-rgb),0.4);
+        background: linear-gradient(145deg, var(--primary-color), var(--accent-color));
+    }
+    .cta-button .bi { margin-left: 0.5rem; }
+
+
+    /* --- Footer (Consistent) --- */
+    .site-footer {
+        background-color: var(--footer-bg-color);
+        border-top: 1px solid rgba(var(--primary-color-rgb), 0.2);
+        padding-top: 3rem; padding-bottom: 1rem;
+    }
+    .site-footer-top {
+        border-bottom: 1px solid rgba(var(--white-color-rgb), 0.08); padding-bottom: 2rem; margin-bottom: 2rem;
+    }
+    .site-footer h2, .site-footer h5.site-footer-title { color: var(--heading-color-on-dark); }
+    .site-footer-links .site-footer-link { color: var(--link-color-on-dark); transition: color 0.3s ease; }
+    .site-footer-links .site-footer-link:hover {
+        color: var(--white-color); text-shadow: 0 0 5px rgba(var(--accent-color-rgb),0.4);
+    }
+    .site-footer p, .site-footer .text-white, .site-footer p.text-white {
+        color: var(--link-color-on-dark) !important; opacity: 0.8;
+    }
+    .site-footer .copyright-text {
+        color: var(--link-color-on-dark) !important; opacity: 0.7; font-size: 0.85rem;
+    }
+    .site-footer .copyright-text a { color: var(--white-color) !important; }
+    .site-footer .social-icon-item .social-icon-link {
+        background-color: rgba(var(--white-color-rgb), 0.05); color: var(--link-color-on-dark);
+        border-radius: 50%; width: 40px; height: 40px; display: inline-flex;
+        align-items: center; justify-content: center;
+        transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    }
+    .site-footer .social-icon-item .social-icon-link:hover {
+        background-color: var(--accent-color); color: var(--white-color); transform: scale(1.1);
+    }
+
+    /* --- Animations --- */
+    @keyframes popIn {
+        0% { opacity: 0; transform: scale(0.8) translateY(15px); }
+        100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    @keyframes slideUpFade {
+        0% { opacity: 0; transform: translateY(30px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+    /* Simple scroll reveal for sections */
+    .scroll-reveal-section {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .scroll-reveal-section.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* --- Responsive Design Tweaks --- */
+    @media (max-width: 768px) {
+        .page-hero-section { padding: 8rem 0 6rem 0; }
+        .icon-heading { flex-direction: column; text-align: center; }
+        .icon-heading .bi { margin-right: 0; margin-bottom: 1rem; }
+        .our-story-section blockquote { padding: 1.5rem; font-size: 1.05rem;}
+    }
+	</style>
+</head>
+
+<body>
+    <main>
+        <nav class="navbar navbar-expand-lg sticky-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">ArttulOS</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav align-items-lg-center ms-auto me-lg-5">
+                        <li class="nav-item"><a class="nav-link" href="index.html#section_1">Home</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="about.html">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.html#section_features">Features</a></li>
+                        <li class="nav-item"><a class="nav-link" href="community.html">Community</a></li>
+                        <li class="nav-item"><a class="nav-link" href="roadmap.html">Roadmap</a></li>
+                        <li class="nav-item"><a class="nav-link" href="documentation.html">Docs</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="download.html">Download</a></li>
+                        <li class="nav-item"><a class="nav-link" href="arttulcat.html">ArttulCat</a></li>
+                        <li class="nav-item"><a class="nav-link" href="https://matrix.to/#/#arttulos:matrix.org" target="_blank" rel="noopener">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <section class="page-hero-section">
+            <div class="section-overlay"></div>
+            <div class="container position-relative">
+                <h1 class="mb-3">About ArttulOS</h1>
+                <p class="hero-tagline">Forging a future where software is open, beautiful, powerful, and empowering for everyone.</p>
+            </div>
+        </section>
+
+        <section class="our-vision-section section-padding content-section scroll-reveal-section" id="our-vision">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 col-xl-8 text-center">
+                        <div class="icon-heading justify-content-center">
+                            <i class="bi bi-eye-fill"></i>
+                            <h2>Our Vision for Tomorrow</h2>
+                        </div>
+                        <p class="lead">
+                            At ArttulOS, we envision a digital world that is fundamentally <strong>open, inherently free, and endlessly productive</strong>.
+                            We believe that software should not only function flawlessly but also inspire creativity and joy through elegant design.
+                        </p>
+                        <p>
+                            Our goal is to craft an operating system that embodies these ideals: a platform where technology serves humanity,
+                            fostering collaboration, innovation, and a shared sense of progress. We aim to break down barriers, making powerful tools
+                            accessible and delightful to use for people from all walks of life.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="our-story-section section-padding scroll-reveal-section" id="our-story">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 col-xl-8">
+                        <div class="icon-heading">
+                            <i class="bi bi-compass-fill"></i>
+                            <h2>Our Journey: From Challenge to Change</h2>
+                        </div>
+                        <p>
+                            The ArttulOS project was born not from privilege, but from resilience. Many of us on the core team
+                            come from <strong>backgrounds marked by significant challenges and adversity</strong>. We've navigated paths that could have easily
+                            led to cynicism or despair.
+                        </p>
+                        <blockquote>
+                            <p>"In the face of difficulty, we saw a choice: to be consumed by the shadows, or to ignite a light. We chose to build, to create, to contribute something meaningful that could uplift others."</p>
+                            <footer>— The ArttulOS Founders</footer>
+                        </blockquote>
+                        <p>
+                            Instead of succumbing to negativity, we found a shared purpose in technology's potential for good.
+                            We decided to channel our experiences, our insights, and our determination into creating something that reflects
+                            the world we want to live in – a world that is more equitable, more open, and more empowering.
+                            ArttulOS is our testament to the belief that even from the toughest soils, something beautiful and strong can grow.
+                            <strong>We are here to change the world, one line of code, one design, one community interaction at a time.</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="our-values-section section-padding content-section scroll-reveal-section" id="our-values">
+            <div class="container">
+                <div class="row text-center mb-5">
+                    <div class="col-12">
+                        <div class="icon-heading justify-content-center">
+                             <i class="bi bi-heart-pulse-fill"></i>
+                            <h2>Our Core Values</h2>
+                        </div>
+                        <p class="lead" style="max-width: 700px; margin-left:auto; margin-right:auto;">These principles guide every decision we make and every line of code we write for ArttulOS.</p>
+                    </div>
+                </div>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <i class="bi bi-unlock-fill"></i>
+                        <h4>Openness & Freedom</h4>
+                        <p>Championing open-source principles, transparency in development, and the fundamental freedom for users to control their digital lives.</p>
+                    </div>
+                    <div class="value-card">
+                        <i class="bi bi-brush-fill"></i>
+                        <h4>Beauty & Functionality</h4>
+                        <p>Believing that software should be a pleasure to use – aesthetically pleasing, intuitive, and highly effective at its tasks.</p>
+                    </div>
+                    <div class="value-card">
+                        <i class="bi bi-people-fill"></i>
+                        <h4>Community-Centric</h4>
+                        <p>Building with and for our community. Every voice matters, and collaboration is key to our collective success and innovation.</p>
+                    </div>
+                     <div class="value-card">
+                        <i class="bi bi-arrow-repeat"></i>
+                        <h4>Resilience & Progress</h4>
+                        <p>Drawing strength from challenges to continuously improve, adapt, and push the boundaries of what's possible for a better future.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="join-us-section section-padding scroll-reveal-section" id="join-us">
+            <div class="container text-center">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <i class="bi bi-rocket-takeoff-fill display-1 mb-4" style="color: var(--accent-color);"></i>
+                        <h2>Be Part of the Movement</h2>
+                        <p class="lead">
+                            ArttulOS is more than an operating system; it's a shared vision. Whether you're a developer, designer, writer, tester, or simply an enthusiast for a better digital future, there's a place for you here.
+                        </p>
+                        <a href="community.html" class="cta-button">Join Our Community <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="site-footer-top py-4">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-12 mb-3 mb-lg-0 text-center text-lg-start">
+                        <h2 class="text-white mb-0">ArttulOS</h2></div>
+                    <div class="col-lg-6 col-12 d-flex justify-content-center justify-content-lg-end align-items-center">
+                        <ul class="social-icon d-flex mb-0">
+                            <li class="social-icon-item"><a href="https://x.com/ArttulOS" target="_blank" rel="noopener" class="social-icon-link"><span class="bi-twitter"></span></a></li>
+                            <li class="social-icon-item"><a href="https://github.com/ArttulOS" target="_blank" rel="noopener" class="social-icon-link"><span class="bi-github"></span></a></li>
+                            <li class="social-icon-item"><a href="https://mastodon.social/@arttulos" target="_blank" rel="noopener" class="social-icon-link"><span class="bi-mastodon"></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-12 mb-4">
+                    <h5 class="site-footer-title mb-3">Quick Links</h5>
+                    <ul class="site-footer-links">
+                        <li class="site-footer-link-item"><a href="index.html#section_1" class="site-footer-link">Home</a></li>
+                        <li class="site-footer-link-item"><a href="about.html" class="site-footer-link">About ArttulOS</a></li>
+                        <li class="site-footer-link-item"><a href="community.html" class="site-footer-link">Community</a></li>
+                        <li class="site-footer-link-item"><a href="roadmap.html" class="site-footer-link">Roadmap</a></li>
+                        <li class="site-footer-link-item"><a href="documentation.html" class="site-footer-link">Documentation</a></li>
+                        <li class="site-footer-link-item"><a href="contact.html" class="site-footer-link">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12 mb-4">
+                    <h5 class="site-footer-title mb-3">Get In Touch</h5>
+                    <p class="d-flex mb-1 flex-wrap"><a href="mailto:arttulos@proton.me" class="site-footer-link" style="word-break: break-all;">arttulos@proton.me</a></p>
+                    <p class="d-flex mt-2"><a href="community.html" class="site-footer-link">Community Forums</a></p>
+                </div>
+                <div class="col-lg-4 col-md-12 col-12 mb-4">
+                    <h5 class="site-footer-title mb-3">Project Essentials</h5>
+                    <p class="d-flex mt-3 mb-2"><a href="https://github.com/ArttulOS" target="_blank" rel="noopener" class="site-footer-link"><i class="bi bi-github me-2"></i>GitHub Repository</a></p>
+                    <p class="d-flex mt-2 mb-2"><a href="#" class="site-footer-link"><i class="bi bi-bug-fill me-2"></i>Bug Tracker</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="site-footer-bottom py-3">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-7 col-md-7 col-12 text-center text-md-start">
+                        <p class="copyright-text mb-0">Copyright © <span id="currentYear"></span> The ArttulOS Project. All Rights Reserved.</p>
+                         <p class="copyright-text small mb-0 mt-1">Original Template: <a href="https://templatemo.com/tm-583-festava-live" target="_blank" rel="noopener">Festava Live</a> by TemplateMo. Distributed by: <a href="https://themewagon.com" target="_blank" rel="noopener">ThemeWagon</a></p>
+                    </div>
+                    <div class="col-lg-5 col-md-5 col-12 text-center text-md-end mt-3 mt-md-0">
+                        <ul class="site-footer-links d-inline-flex flex-wrap justify-content-center justify-content-md-end">
+                            <li class="site-footer-link-item mx-2"><a href="TermsandConditions.html" class="site-footer-link">Terms</a></li>
+                            <li class="site-footer-link-item mx-2"><a href="privacypolicy.html" class="site-footer-link">Privacy</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous" defer></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Sticky Nav on Scroll
+            const mainNav = document.getElementById('mainNav');
+            if (mainNav) {
+                window.addEventListener('scroll', function () {
+                    if (window.scrollY > 50) {
+                        mainNav.classList.add('scrolled');
+                    } else {
+                        mainNav.classList.remove('scrolled');
+                    }
+                });
+            }
+
+            // Set current year in footer
+            const currentYearSpan = document.getElementById('currentYear');
+            if (currentYearSpan) {
+                currentYearSpan.textContent = new Date().getFullYear();
+            }
+
+             // Active nav link highlighting for internal pages
+            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+            const currentPath = window.location.pathname.split("/").pop();
+
+            navLinks.forEach(link => {
+                const linkPath = link.getAttribute('href').split("/").pop().split("#")[0];
+                if (linkPath === currentPath && currentPath === 'about.html') { // Be specific for about.html
+                    navLinks.forEach(l => l.classList.remove('active')); // Remove from all first
+                    link.classList.add('active');
+                } else if (linkPath === currentPath) {
+                    link.classList.add('active');
+                }
+                 else {
+                    link.classList.remove('active');
+                }
+            });
+            // If on about.html and no other link matched, ensure "About" is active
+            if (currentPath === 'about.html') {
+                 const aboutPageLink = document.querySelector('.navbar-nav .nav-link[href="about.html"]');
+                 if(aboutPageLink && !aboutPageLink.classList.contains('active')) {
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    aboutPageLink.classList.add('active');
+                 }
+            }
+
+
+            // Simple Scroll Reveal for sections
+            const scrollRevealSections = document.querySelectorAll('.scroll-reveal-section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Optional: stop observing after revealed
+                    }
+                });
+            }, { threshold: 0.15 }); // Trigger when 15% of the element is visible
+
+            scrollRevealSections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+
+</body>
+</html>
