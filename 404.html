@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | ArttulOS</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            color: #e0e0e0; /* Light gray for text, good contrast */
+            background: linear-gradient(135deg, #1a237e, #311b92, #4a148c); /* Dark Blue to Dark Purple */
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            overflow: hidden; /* Hide scrollbars if content slightly overflows */
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.3); /* Semi-transparent dark overlay for content */
+            padding: 40px 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            max-width: 600px;
+            margin: 20px;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif; /* A more techy/futuristic font for headings */
+            font-size: 3.5em;
+            margin-bottom: 0.2em;
+            color: #ffffff;
+            text-shadow: 0 0 10px #673ab7, 0 0 20px #673ab7; /* Purple glow */
+        }
+
+        .sub-heading {
+            font-size: 1.5em;
+            color: #bb86fc; /* Lighter purple for emphasis */
+            margin-bottom: 1.5em;
+        }
+
+        .pun-line {
+            font-size: 1.2em;
+            margin-bottom: 2em;
+            font-style: italic;
+            color: #cfd8dc; /* Slightly off-white for puns */
+            min-height: 3em; /* Ensure space for varying pun lengths */
+        }
+
+        .redirect-message {
+            font-size: 1.1em;
+            margin-bottom: 1em;
+        }
+
+        #countdown {
+            font-weight: bold;
+            font-size: 1.5em;
+            color: #f06292; /* A contrasting pink/light red for countdown */
+        }
+
+        .manual-redirect a {
+            color: #81d4fa; /* Light blue for links */
+            text-decoration: none;
+            border-bottom: 1px dotted #81d4fa;
+            transition: color 0.3s ease, border-bottom-color 0.3s ease;
+        }
+
+        .manual-redirect a:hover {
+            color: #ffffff;
+            border-bottom-color: #ffffff;
+        }
+
+        .logo-footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            opacity: 0.7;
+        }
+        .logo-footer strong {
+            color: #bb86fc;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            .sub-heading {
+                font-size: 1.2em;
+            }
+            .pun-line {
+                font-size: 1em;
+            }
+            .container {
+                padding: 20px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>404</h1>
+        <p class="sub-heading">Oops! Page Not Found!</p>
+
+        <p class="pun-line" id="pun-text">
+            <!-- Pun will be injected here by JavaScript -->
+        </p>
+
+        <p class="redirect-message">
+            Your sight broke, just kidding, redirecting hahaha to ArttulOS.org in
+            <span id="countdown">10</span> seconds...
+        </p>
+
+        <p class="manual-redirect">
+            If you're not redirected, <a href="https://arttulos.org">click here to go to ArttulOS.org</a>.
+        </p>
+
+        <p class="logo-footer">
+            Remember, even when lost, <strong>ArttulOS</strong> is still the best route!
+        </p>
+    </div>
+
+    <script>
+        const puns = [
+            "This page is missing, unlike ArttulOS's stellar performance and reliability!",
+            "You've stumbled upon a void... much like the space other distros leave for improvement compared to the perfection of ArttulOS!",
+            "404: File not found. Clearly, it wasn't an ArttulOS system file – those are always perfectly placed and never go 'missing'!",
+            "Why did the user get lost? They weren't running ArttulOS, the most intuitive path to digital enlightenment!",
+            "This isn't the kernel panic you're looking for. ArttulOS is too stable for that! This is just a missing page.",
+            "Don't 'byte' off more than you can chew looking for this page! ArttulOS, however, handles everything flawlessly.",
+            "This page 404'd, but ArttulOS never errors in its quest to be the G.O.A.T. of Linux distros!",
+            "Feeling 'root'-less? ArttulOS always provides a solid foundation. This page, not so much.",
+            "This page has 'sudo'-nly disappeared! But ArttulOS's awesomeness is always present.",
+            "Looks like this page took a different 'fork'. Good thing ArttulOS always takes the main road to awesome!"
+        ];
+
+        function getRandomPun() {
+            const randomIndex = Math.floor(Math.random() * puns.length);
+            return puns[randomIndex];
+        }
+
+        document.getElementById('pun-text').textContent = getRandomPun();
+
+        let timeLeft = 10; // Changed to 10 seconds
+        const countdownElement = document.getElementById('countdown');
+        const redirectUrl = "https://arttulos.org"; // Changed to ArttulOS.org
+
+        const timer = setInterval(() => {
+            timeLeft--;
+            countdownElement.textContent = timeLeft;
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                window.location.href = redirectUrl;
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
