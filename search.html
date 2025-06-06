@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ArttulOS Insight</title>
+
+  <!-- Favicon Placeholder: Prevents an unnecessary favicon.ico request if not provided -->
+  <link rel="icon" href="data:,">
+
+  <style>
+    /* ArttulOS Custom Fonts - Prioritizing woff2/woff for better performance */
+    @font-face {
+        font-family: 'FreeSans';
+        src: url('fonts/FreeSans.woff2') format('woff2'),
+             url('fonts/FreeSans.woff') format('woff'),
+             url('fonts/FreeSans.ttf') format('truetype'); /* Keep .ttf as a fallback */
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap; /* Ensures text is visible during font loading */
+    }
+    @font-face {
+        font-family: 'FreeSans';
+        src: url('fonts/FreeSansBold.woff2') format('woff2'),
+             url('fonts/FreeSansBold.woff') format('woff'),
+             url('fonts/FreeSansBold.ttf') format('truetype');
+        font-weight: bold;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    /* ArttulOS Color Palette & Variables */
+    :root {
+        --primary-color: #5E35B1; /* Deep Purple */
+        --primary-color-rgb: 94, 53, 177;
+        --secondary-color: #3949AB; /* Indigo/Blue */
+        --secondary-color-rgb: 57, 73, 171;
+        --accent-color: #7E57C2; /* Lighter Purple */
+        --accent-color-rgb: 126, 87, 194;
+
+        /* Harmonized vibrant accent color - vibrant purple-pink/fuchsia */
+        --vibrant-accent-color: #D05CE3;
+        --vibrant-accent-color-rgb: 208, 92, 227;
+
+        --white-color: #E0D6EF; /* Very Light Lavender */
+        --white-color-rgb: 224, 214, 239;
+        --dark-color: #1C2331; /* Dark Blue/Grey */
+        --dark-color-rgb: 28, 35, 49;
+
+        --text-color-on-dark: var(--white-color);
+        --text-color-on-dark-rgb: 224, 214, 239;
+        --heading-color-on-dark: #D1C4E9; /* Slightly brighter for headings */
+        --link-color-on-dark: #B39DDB;
+        --link-hover-on-dark: var(--white-color);
+
+        --body-font-family: 'FreeSans', sans-serif;
+
+        --bg-main-start: var(--dark-color);
+        --bg-main-end: #0F0C29; /* Even darker for depth */
+
+        --border-radius-small:         8px;
+        --border-radius-medium:        12px;
+        --border-radius-large:         24px;
+        --border-radius-full:          9999px; /* For pill-shaped elements */
+    }
+
+    /* Base styles, consistent with ArttulOS pages */
+    body {
+      margin: 0;
+      font-family: var(--body-font-family);
+      background: linear-gradient(170deg, var(--bg-main-start) 0%, var(--bg-main-end) 70%, var(--secondary-color) 100%);
+      background-attachment: fixed;
+      color: var(--text-color-on-dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    header {
+      width: 100%;
+      text-align: center;
+      padding: 3rem 1rem 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 3.8rem;
+      color: var(--heading-color-on-dark);
+      letter-spacing: 0.05em;
+      text-shadow: 0 4px 10px rgba(var(--dark-color-rgb), 0.5);
+      transition: color 0.3s ease;
+    }
+
+    header h1:hover {
+        color: var(--white-color);
+    }
+
+    .search-main {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      padding: 0 1rem;
+      box-sizing: border-box;
+    }
+
+    .search-container {
+      background: rgba(var(--dark-color-rgb), 0.2);
+      border: 1px solid rgba(var(--primary-color-rgb), 0.08);
+      border-radius: var(--border-radius-large);
+      padding: 2.5rem 2rem;
+      max-width: 720px;
+      width: 100%;
+      box-shadow: 0 5px 20px rgba(var(--dark-color-rgb), 0.15);
+      text-align: center;
+      transition: all 0.3s ease-in-out;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.8rem;
+      position: relative;
+    }
+
+    .search-container:hover {
+        box-shadow: 0 8px 30px rgba(var(--dark-color-rgb), 0.25);
+    }
+
+    /* Accessibility: Visually hidden label */
+    .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+    }
+
+    /* Search Controls Group: Input, Search Button, AI Launcher Button */
+    .search-controls {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .search-form {
+      display: flex;
+      flex-grow: 1;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .search-form input[type="search"] {
+      flex-grow: 1;
+      padding: 1.1rem 1.6rem;
+      border: 1px solid rgba(var(--accent-color-rgb), 0.3);
+      border-radius: var(--border-radius-full);
+      background-color: rgba(var(--dark-color-rgb), 0.88);
+      color: var(--text-color-on-dark);
+      font-family: var(--body-font-family);
+      font-size: 1.2rem;
+      outline: none;
+      box-shadow: inset 0 2px 5px rgba(var(--dark-color-rgb), 0.4);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    }
+
+    .search-form input[type="search"]::placeholder {
+      color: rgba(var(--text-color-on-dark-rgb), 0.6);
+      font-weight: normal;
+    }
+
+    .search-form input[type="search"]:focus {
+      border-color: var(--vibrant-accent-color);
+      background-color: rgba(var(--dark-color-rgb), 0.98);
+      box-shadow: inset 0 2px 8px rgba(var(--dark-color-rgb), 0.6),
+                  0 0 15px rgba(var(--vibrant-accent-color-rgb), 0.4);
+    }
+
+    .search-form button[type="submit"] {
+      flex-shrink: 0;
+      background-color: var(--primary-color);
+      color: var(--text-color-on-dark);
+      padding: 0.9rem 1.8rem;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: var(--border-radius-large);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      transition: all 0.2s ease-in-out;
+      box-shadow: 0 4px 10px rgba(var(--primary-color-rgb), 0.25);
+      cursor: pointer;
+      min-width: 120px;
+    }
+
+    .search-form button[type="submit"]:hover {
+      background-color: var(--secondary-color);
+      transform: translateY(-1px);
+      box-shadow: 0 5px 12px rgba(var(--secondary-color-rgb), 0.35);
+    }
+
+    .search-form button[type="submit"]:active {
+        transform: translateY(0);
+        box-shadow: inset 0 2px 5px rgba(var(--dark-color-rgb), 0.5);
+    }
+
+    /* Circular AI Launcher Button */
+    .ai-launcher-button {
+        flex-shrink: 0;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: linear-gradient(145deg, var(--vibrant-accent-color), var(--primary-color));
+        color: var(--white-color);
+        border: none;
+        box-shadow: 0 4px 12px rgba(var(--vibrant-accent-color-rgb), 0.3);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease-in-out;
+        font-size: 1.6rem;
+        position: relative;
+        z-index: 2;
+    }
+
+    .ai-launcher-button:hover {
+        background: linear-gradient(145deg, var(--primary-color), var(--vibrant-accent-color));
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 6px 18px rgba(var(--vibrant-accent-color-rgb), 0.5);
+    }
+
+    .ai-launcher-button:active {
+        transform: translateY(0) scale(1);
+        box-shadow: inset 0 2px 5px rgba(var(--dark-color-rgb), 0.5);
+    }
+
+    /* AI Options Pop-up */
+    .ai-options-popup {
+        position: absolute;
+        top: calc(100% + 15px);
+        right: 0;
+        background: rgba(var(--dark-color-rgb), 0.85);
+        border: 1px solid rgba(var(--accent-color-rgb), 0.2);
+        border-radius: var(--border-radius-medium);
+        padding: 1rem;
+        box-shadow: 0 8px 30px rgba(var(--dark-color-rgb), 0.4);
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        z-index: 10;
+        min-width: 200px;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(10px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .ai-options-popup.active {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    .ai-options-popup .ai-button {
+        width: 100%;
+        padding: 0.7rem 1.2rem;
+        font-size: 0.95rem;
+        border-radius: var(--border-radius-medium);
+        box-shadow: none;
+        background: none;
+        color: var(--link-color-on-dark);
+        justify-content: flex-start;
+    }
+
+    .ai-options-popup .ai-button:hover {
+        background-color: rgba(var(--primary-color-rgb), 0.1);
+        transform: none;
+        box-shadow: none;
+        color: var(--white-color);
+    }
+
+    .ai-options-popup .ai-button .icon {
+        font-size: 1.2em;
+        line-height: 1;
+        transition: none;
+    }
+
+    .ai-options-popup .ai-button:hover .icon {
+        transform: scale(1.1);
+    }
+
+
+    /* Cute and Gorgeous Canine Tools Credit (positioned below all search controls) */
+    .canine-credit {
+        padding: 0.8rem 1.2rem;
+        background: rgba(var(--dark-color-rgb), 0.6);
+        border-radius: var(--border-radius-full);
+        border: 1px solid rgba(var(--accent-color-rgb), 0.15);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 0.95rem;
+        color: rgba(var(--white-color-rgb), 0.8);
+        box-shadow: 0 2px 8px rgba(var(--dark-color-rgb), 0.15);
+        transition: all 0.2s ease-in-out;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .canine-credit:hover {
+        background: rgba(var(--dark-color-rgb), 0.7);
+        box-shadow: 0 3px 10px rgba(var(--dark-color-rgb), 0.25);
+        transform: translateY(-1px) scale(1.005);
+        border-color: rgba(var(--vibrant-accent-color-rgb), 0.3);
+    }
+
+    .canine-credit .icon {
+        font-size: 1.3em;
+        line-height: 1;
+        color: var(--vibrant-accent-color);
+        text-shadow: 0 0 6px rgba(var(--vibrant-accent-color-rgb), 0.5);
+        transition: all 0.2s ease;
+        transform-origin: center;
+    }
+
+    .canine-credit:hover .icon {
+        color: var(--white-color);
+        text-shadow: 0 0 10px rgba(var(--white-color-rgb), 0.7);
+        transform: scale(1.1) rotate(10deg);
+    }
+
+    .canine-credit a {
+        color: var(--link-color-on-dark);
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.2s ease;
+        text-shadow: none;
+    }
+
+    .canine-credit a:hover {
+        color: var(--link-hover-on-dark);
+        text-shadow: 0 0 8px rgba(var(--white-color-rgb), 0.5);
+    }
+
+    footer {
+      margin-top: auto;
+      text-align: center;
+      padding: 1.5rem;
+      color: var(--link-color-on-dark);
+      font-size: 0.95em;
+      width: 100%;
+    }
+
+    footer a {
+        color: var(--heading-color-on-dark);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+        color: var(--white-color);
+    }
+
+    /* Media queries for responsiveness */
+    @media (min-width: 600px) {
+      .search-form {
+        flex-direction: row;
+        justify-content: center;
+        gap: 0.8rem;
+      }
+      .search-form input[type="search"] {
+        flex-grow: 1;
+      }
+      .ai-tools { /* This class is no longer directly used for button layout on page */
+        gap: 1.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+        .search-controls {
+            flex-direction: column;
+            gap: 1.5rem;
+            max-width: 480px;
+        }
+        .search-form {
+            width: 100%;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        .search-form input[type="search"],
+        .search-form button[type="submit"] {
+            width: 100%;
+            max-width: none;
+        }
+        .ai-launcher-button {
+            width: 55px;
+            height: 55px;
+            font-size: 2rem;
+        }
+        .ai-options-popup {
+            right: 50%;
+            transform: translateX(50%) translateY(10px);
+        }
+        .ai-options-popup.active {
+            transform: translateX(50%) translateY(0);
+        }
+    }
+
+    @media (max-width: 480px) {
+        header h1 {
+            font-size: 2.8rem;
+        }
+        .search-container {
+            padding: 1.8rem 1rem;
+            gap: 1.2rem;
+        }
+        .search-form input[type="search"],
+        .search-form button[type="submit"] { /* Re-add direct button styling for small screens */
+            min-width: unset;
+        }
+        .ai-options-popup .ai-button {
+            font-size: 0.9rem;
+            padding: 0.6rem 1rem;
+        }
+        .canine-credit {
+            font-size: 0.85rem;
+            padding: 0.6rem 0.9rem;
+            gap: 0.4rem;
+        }
+        .canine-credit .icon {
+            font-size: 1.1em;
+        }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ArttulOS Insight</h1>
+  </header>
+
+  <main class="search-main">
+    <div class="search-container">
+      <div class="search-controls">
+        <form class="search-form" action="https://search.canine.tools/" method="GET">
+          <label for="search-input" class="sr-only">Search query</label>
+          <input type="search" id="search-input" name="q" placeholder="Search the internet for insights..." required autofocus>
+          <button type="submit">Search</button>
+        </form>
+        <button class="ai-launcher-button" id="aiLauncherButton" aria-haspopup="true" aria-expanded="false">
+            <span class="icon" aria-hidden="true">✨</span>
+            <span class="sr-only">Toggle AI tools</span>
+        </button>
+      </div>
+
+      <!-- AI Options Pop-up (hidden by default) -->
+      <div class="ai-options-popup" id="aiOptionsPopup">
+        <a href="https://aistudio.google.com/prompts/new_chat" target="_blank" rel="noopener noreferrer" class="ai-button">
+          <span class="icon" aria-hidden="true">✨</span>
+          <span>Connect to AI (Gemini)</span>
+        </a>
+        <a href="https://aistudio.google.com/gen-media" target="_blank" rel="noopener noreferrer" class="ai-button">
+            <span class="icon" aria-hidden="true">🎨</span>
+            <span>Image Generator</span>
+        </a>
+        <a href="https://aistudio.google.com/generate-video" target="_blank" rel="noopener noreferrer" class="ai-button">
+            <span class="icon" aria-hidden="true">🎥</span>
+            <span>Video Generator</span>
+        </a>
+      </div>
+
+      <div class="canine-credit">
+        <span class="icon" aria-hidden="true">🐾</span>
+        <span>Powered by <a href="https://search.canine.tools/" target="_blank" rel="noopener noreferrer">Canine Tools Search</a></span>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 <a href="https://arttulos.org" target="_blank" rel="noopener">ArttulOS</a> — Respect & Innovation.
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const aiLauncherButton = document.getElementById('aiLauncherButton');
+        const aiOptionsPopup = document.getElementById('aiOptionsPopup');
+        const searchContainer = document.querySelector('.search-container'); // To handle clicks outside popup
+
+        if (aiLauncherButton && aiOptionsPopup) {
+            aiLauncherButton.addEventListener('click', function(event) {
+                event.stopPropagation(); // Prevent click from immediately closing popup
+                const isActive = aiOptionsPopup.classList.toggle('active');
+                aiLauncherButton.setAttribute('aria-expanded', isActive);
+            });
+
+            // Close popup if clicked outside
+            document.addEventListener('click', function(event) {
+                // Check if the click is outside the popup AND outside the launcher button
+                if (!aiOptionsPopup.contains(event.target) && !aiLauncherButton.contains(event.target)) {
+                    aiOptionsPopup.classList.remove('active');
+                    aiLauncherButton.setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            // Prevent clicks inside the popup from closing it (stops propagation to document)
+            aiOptionsPopup.addEventListener('click', function(event) {
+                event.stopPropagation();
+            });
+        }
+    });
+  </script>
+</body>
+</html>

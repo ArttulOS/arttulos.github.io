@@ -218,32 +218,6 @@
         background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(var(--white-color-rgb), 0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
     }
 
-    /* NEW: Styles for the always-visible search icon button */
-    .search-icon-btn {
-        color: rgba(var(--white-color-rgb), 0.85); /* Slightly brighter than regular nav-link */
-        font-size: 1.5rem; /* Larger icon */
-        width: 48px; /* Square button shape */
-        height: 48px;
-        padding: 0; /* Remove default padding from nav-link if applied */
-        display: flex; /* Use flex to center the icon inside */
-        align-items: center;
-        justify-content: center;
-        border-radius: var(--border-radius-small); /* Match nav-link border-radius */
-        transition: color 0.3s ease, background-color 0.3s ease, text-shadow 0.3s ease, transform 0.2s ease;
-        text-shadow: none; /* Ensure no text shadow is applied to icon if it's text */
-        flex-shrink: 0; /* Prevent it from shrinking */
-    }
-    .search-icon-btn:hover {
-        color: var(--white-color);
-        background-color: rgba(var(--white-color-rgb), 0.1);
-        text-shadow: var(--text-glow-subtle);
-        transform: translateY(-2px); /* Slight lift on hover */
-    }
-    /* Adjust margin for the toggler next to it */
-    .navbar-toggler {
-        margin-left: 1rem !important; /* Ensure separation from search icon */
-    }
-
     .hero-section {
         background: none;
         min-height: 100vh;
@@ -350,7 +324,7 @@
         background: linear-gradient(90deg, transparent, rgba(var(--white-color-rgb), 0.25), transparent);
         transition: left 0.6s ease;
     }
-    .custom-btn:hover::before, .btn-download-cta::before {
+    .custom-btn:hover::before, .btn-download-cta:hover::before {
         left: 150%;
     }
     .custom-btn:hover, .custom-btn:focus,
@@ -635,21 +609,12 @@
                  <a class="navbar-brand d-flex align-items-center" href="index.html">
                     ArttulOS
                 </a>
-
-                <!-- Search Icon and Toggler Group (Always Visible) -->
-                <div class="d-flex align-items-center ms-auto order-lg-last">
-                    <a class="nav-link search-icon-btn d-flex align-items-center justify-content-center"
-                       href="#" data-bs-toggle="modal" data-bs-target="#searchWarningModal" aria-label="Search functionality">
-                        <i class="bi bi-search"></i>
-                    </a>
-                    <button class="navbar-toggler ms-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                </div>
-
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav align-items-lg-center mx-lg-auto">
+                    <ul class="navbar-nav align-items-lg-center ms-auto me-lg-5">
                         <li class="nav-item"><a class="nav-link click-scroll active" href="#section_1">Home</a></li>
                         <li class="nav-item"><a class="nav-link click-scroll" href="#section_2">About</a></li>
                         <li class="nav-item"><a class="nav-link click-scroll" href="#section_features">Features</a></li>
@@ -885,7 +850,6 @@
         </section>
     </main>
 
-    <!-- Existing Modals (no changes here) -->
     <div class="modal fade" id="emailChoiceModal" tabindex="-1" aria-labelledby="emailChoiceModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -934,31 +898,6 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn custom-btn" data-bs-dismiss="modal">Okay</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- NEW: Search Warning Modal -->
-    <div class="modal fade" id="searchWarningModal" tabindex="-1" aria-labelledby="searchWarningModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="searchWarningModalLabel">Important Notice about ArttulOS Insight</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>
-                        Please be aware that while ArttulOS values freedom, some integrated online services (like search, AI, and generative tools) are provided by third-party companies.
-                        These services may not align with "free as in freedom" principles and might have their own terms of service and data collection policies.
-                    </p>
-                    <p class="mb-0">
-                        We recommend reviewing their terms before use.
-                    </p>
-                </div>
-                <div class="modal-footer d-flex justify-content-between">
-                    <button type="button" class="btn btn-outline-light-purple" data-bs-dismiss="modal">Cancel</button>
-                    <a href="search.html" class="btn custom-btn">Proceed to ArttulOS Insight <i class="bi bi-arrow-right-short ms-1"></i></a>
                 </div>
             </div>
         </div>
@@ -1061,16 +1000,12 @@
                 let index = sections.length;
                 while(--index && window.scrollY + navHeight + 50 < sections[index].offsetTop) {} // +50 buffer
 
-                // Remove active from all nav links
                 navLinks.forEach((link) => link.classList.remove('active'));
-
-                // Find the currently active link based on scroll position
                 if (index >= 0 && navLinks[index]) {
                     navLinks[index].classList.add('active');
                 } else if (navLinks.length > 0 && window.scrollY < sections[0].offsetTop) {
                      navLinks[0].classList.add('active'); // Activate first link if at top of page
                 }
-                // The new search button is not part of .navbar-nav or .click-scroll, so it won't be affected by this logic.
             }
             if(sections.length > 0 && navLinks.length > 0) {
                 changeNavActiveState();
@@ -1131,6 +1066,33 @@
             scrollRevealElements.forEach(el => {
                 observer.observe(el);
             });
+
+            // Smooth scroll for .click-scroll links (ensure it's not overriding the external click-scroll.js)
+            // If click-scroll.js handles this, this block is redundant.
+            // Given it's already using click-scroll.js, I'll comment out the duplicate logic
+            // for cleaner code, assuming the external script handles it.
+            /*
+            document.querySelectorAll('a.click-scroll').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const navbarHeight = document.getElementById('mainNav').offsetHeight;
+                        const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                        const offsetPosition = elementPosition - navbarHeight;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                        // Update active state when clicked, in case scroll event doesn't trigger immediately
+                        navLinks.forEach(link => link.classList.remove('active'));
+                        this.classList.add('active');
+                    }
+                });
+            });
+            */
         });
     </script>
 
