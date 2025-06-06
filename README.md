@@ -137,7 +137,7 @@ Have questions, feedback, or just want to connect?
 
 *   **General Inquiries:** `arttulos@proton.me`
 *   **Community Chat:** Join us on [Matrix](https://matrix.to/#/#arttulos:matrix.org)
-*   **Contribution Guidelines (for the OS):** See our [developer guidelines](arttulos_contributing.html) page.
+*   **Contribution Guidelines (for the OS):** See our [developer guidelines]([arttulos_contributing.html](https://arttulos.org/behavioralguidelines.html)) page.
 
 ---
 *Crafted with care by The ArttulOS Team.*
