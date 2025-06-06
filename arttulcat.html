@@ -4,21 +4,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ArttulCat Browser - Your Web, Your Rules.</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon Placeholder: Prevents an unnecessary favicon.ico request if not provided -->
+    <link rel="icon" href="data:,">
+
+    <!-- Preconnect to domains for faster loading of external resources -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com"> <!-- For Font Awesome -->
+
+    <!-- Font Awesome CSS: Kept external for CDN benefits -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
+        /* ArttulOS Custom Fonts - Assumes 'fonts/FreeSans.woff2' and 'fonts/FreeSans.woff' exist locally */
+        @font-face {
+            font-family: 'FreeSans';
+            src: url('fonts/FreeSans.woff2') format('woff2'),
+                 url('fonts/FreeSans.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'FreeSans';
+            src: url('fonts/FreeSansBold.woff2') format('woff2'),
+                 url('fonts/FreeSansBold.woff') format('woff');
+            font-weight: bold;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* ArttulOS Color Palette & Variables */
         :root {
-            --purple-deep: #5C2A9D; /* Rich purple for depth */
-            --purple-mid: #8344C2;  /* Vibrant mid-purple */
-            --purple-light: #B88BDA; /* Softer, elegant purple */
-            --pink-hot: #FF57A5;    /* Energetic hot pink */
-            --pink-soft: #FFA8D9;   /* Gentle soft pink */
-            --blue-accent: #4DA6FF; /* A cool blue for trust/privacy accents */
-            --text-light: #F5F5FA;
-            --text-dark: #1A1A2E;   /* Deep navy for text on light backgrounds */
-            --bg-dark-main: #120A1E; /* Very dark purple base */
-            --bg-card: rgba(255, 255, 255, 0.06); /* Subtle translucent card */
-            --border-glow: rgba(255, 87, 165, 0.5); /* Pink glow border */
+            --primary-color: #5E35B1; /* Deep Purple */
+            --primary-color-rgb: 94, 53, 177;
+            --secondary-color: #3949AB; /* Indigo/Blue */
+            --secondary-color-rgb: 57, 73, 171;
+            --accent-color: #7E57C2; /* Lighter Purple */
+            --accent-color-rgb: 126, 87, 194;
+
+            --vibrant-accent-color: #F06292; /* Pink/Light Red - from 404 page, mapping to original pink-hot */
+            --vibrant-accent-color-rgb: 240, 98, 146;
+
+            --white-color: #E0D6EF; /* Very Light Lavender */
+            --white-color-rgb: 224, 214, 239;
+            --dark-color: #1C2331; /* Dark Blue/Grey */
+            --dark-color-rgb: 28, 35, 49;
+
+            --text-color-on-dark: var(--white-color);
+            --heading-color-on-dark: #D1C4E9; /* Slightly brighter for headings, mapping to original pink-soft */
+            --link-color-on-dark: #B39DDB;
+            --link-hover-on-dark: var(--white-color);
+
+            --body-font-family: 'FreeSans', sans-serif;
+            --heading-font-family: 'FreeSans', sans-serif; /* For consistency with headings */
+
+            --bg-main-start: var(--dark-color);
+            --bg-main-end: #0F0C29; /* Even darker for depth */
+
+            --card-bg: rgba(var(--white-color-rgb), 0.04); /* Subtler translucent card, from about page */
+            --border-glow-main: rgba(var(--vibrant-accent-color-rgb), 0.5); /* Based on new vibrant accent */
+
+            --border-radius-small:         8px;
+            --border-radius-medium:        12px;
+            --border-radius-large:         24px;
+            --border-radius-pill:          50px; /* Specific for pill buttons/elements */
+
+            --h1-font-size:                clamp(2.5rem, 6vw, 4.2rem); /* Adjusted to match original h1 on this page */
+            --h2-font-size:                clamp(2rem, 4.5vw, 2.8rem); /* from about page */
+            --h3-font-size:                clamp(1.6rem, 3.5vw, 2.2rem); /* from about page */
         }
 
         * {
@@ -32,14 +86,14 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            color: var(--text-light);
-            background-color: var(--bg-dark-main);
+            font-family: var(--body-font-family);
+            color: var(--text-color-on-dark);
+            background-color: var(--bg-main-start);
             background-image:
-                radial-gradient(circle at 10% 20%, var(--purple-mid) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, var(--pink-hot) 0%, transparent 40%),
-                linear-gradient(160deg, var(--bg-dark-main) 40%, #2A1B3D 100%);
-            background-attachment: fixed; /* Keeps gradients in place on scroll */
+                radial-gradient(circle at 10% 20%, var(--accent-color) 0%, transparent 40%), /* Mapped purple-mid to accent-color */
+                radial-gradient(circle at 90% 80%, var(--vibrant-accent-color) 0%, transparent 40%), /* Mapped pink-hot to vibrant-accent-color */
+                linear-gradient(160deg, var(--bg-main-start) 40%, var(--bg-main-end) 100%); /* Mapped bg-dark-main and #2A1B3D to ArttulOS vars */
+            background-attachment: fixed;
             overflow-x: hidden;
             line-height: 1.75;
         }
@@ -58,14 +112,14 @@
             left: 0;
             width: 100%;
             padding: 18px 0;
-            background: rgba(18, 10, 30, 0.7);
+            background: rgba(var(--dark-color-rgb), 0.7); /* Mapped bg-dark-main to dark-color-rgb */
             backdrop-filter: blur(12px);
             z-index: 1000;
             transition: background 0.3s ease, box-shadow 0.3s ease;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(var(--white-color-rgb), 0.08); /* Mapped white */
         }
         .main-nav.scrolled {
-            background: rgba(25, 15, 40, 0.9);
+            background: rgba(var(--dark-color-rgb), 0.9); /* Mapped darker background */
             box-shadow: 0 3px 15px rgba(0,0,0,0.2);
         }
         .main-nav .container {
@@ -74,17 +128,17 @@
             align-items: center;
         }
         .nav-logo a {
-            font-family: 'Poppins', sans-serif;
+            font-family: var(--heading-font-family); /* Mapped Poppins */
             font-size: 1.9em;
             font-weight: 700;
-            color: var(--pink-soft);
+            color: var(--heading-color-on-dark); /* Mapped pink-soft */
             text-decoration: none;
             display: flex;
             align-items: center;
         }
-        .nav-logo a i { /* Optional: icon next to logo */
+        .nav-logo a i {
             margin-right: 8px;
-            color: var(--pink-hot);
+            color: var(--vibrant-accent-color); /* Mapped pink-hot */
         }
         .nav-links {
             list-style: none;
@@ -92,7 +146,7 @@
         }
         .nav-links li { margin-left: 35px; }
         .nav-links a {
-            color: var(--purple-light);
+            color: var(--link-color-on-dark); /* Mapped purple-light */
             text-decoration: none;
             font-weight: 500;
             font-size: 0.95em;
@@ -102,11 +156,14 @@
         }
         .nav-links a::after {
             content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
-            width: 0; height: 2px; background-color: var(--pink-hot);
+            width: 0; height: 2px; background-color: var(--vibrant-accent-color); /* Mapped pink-hot */
             transition: width 0.3s ease;
         }
         .nav-links a:hover::after, .nav-links a.active::after { width: 60%; }
-        .nav-links a:hover, .nav-links a.active { color: var(--pink-soft); text-shadow: 0 0 8px var(--border-glow); }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--heading-color-on-dark); /* Mapped pink-soft */
+            text-shadow: 0 0 8px var(--border-glow-main); /* Mapped border-glow */
+        }
 
         /* --- Hero Section --- */
         .hero {
@@ -115,7 +172,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding-top: 100px; /* Account for nav */
+            padding-top: 100px;
             position: relative;
             overflow: hidden;
         }
@@ -125,10 +182,10 @@
             max-width: 850px;
         }
         .hero-content h1 {
-            font-family: 'Poppins', sans-serif;
-            font-size: clamp(2.5rem, 6vw, 4.2rem); /* Responsive font size */
+            font-family: var(--heading-font-family); /* Mapped Poppins */
+            font-size: var(--h1-font-size); /* Using ArttulOS h1 size */
             font-weight: 700;
-            color: var(--text-light);
+            color: var(--text-color-on-dark); /* Mapped text-light */
             margin-bottom: 25px;
             line-height: 1.2;
             text-shadow: 0 4px 15px rgba(0,0,0,0.3);
@@ -136,7 +193,7 @@
         }
         .hero-content .tagline {
             font-size: clamp(1.1rem, 2.5vw, 1.6rem);
-            color: var(--purple-light);
+            color: var(--link-color-on-dark); /* Mapped purple-light */
             margin-bottom: 40px;
             font-weight: 300;
             max-width: 700px;
@@ -146,10 +203,10 @@
         }
         .cta-button {
             display: inline-block;
-            background: linear-gradient(145deg, var(--pink-hot), var(--purple-mid));
-            color: var(--text-light);
+            background: linear-gradient(145deg, var(--vibrant-accent-color), var(--primary-color)); /* Mapped pink-hot & purple-mid */
+            color: var(--text-color-on-dark); /* Mapped text-light */
             padding: 16px 40px;
-            border-radius: 50px;
+            border-radius: var(--border-radius-pill); /* Mapped 50px */
             text-decoration: none;
             font-weight: 600;
             font-size: 1.15em;
@@ -160,7 +217,7 @@
         .cta-button i { margin-left: 10px; }
         .cta-button:hover {
             transform: translateY(-5px) scale(1.03);
-            box-shadow: 0 8px 30px rgba(255, 87, 165, 0.6);
+            box-shadow: 0 8px 30px rgba(var(--vibrant-accent-color-rgb), 0.6); /* Mapped pink-hot */
         }
 
         /* --- Section Styling --- */
@@ -168,28 +225,28 @@
             padding: 90px 0;
             position: relative;
         }
-        .section-angled-bg::before { /* Angled background effect */
+        .section-angled-bg::before {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(170deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 50%);
-            transform: skewY(-2deg); /* Angle the background */
+            background: linear-gradient(170deg, rgba(var(--white-color-rgb),0.03) 0%, rgba(var(--white-color-rgb),0) 50%); /* Mapped white */
+            transform: skewY(-2deg);
             transform-origin: top left;
             z-index: -1;
         }
 
         .section-title {
             text-align: center;
-            font-family: 'Poppins', sans-serif;
-            font-size: clamp(2rem, 5vw, 2.8rem);
-            color: var(--pink-soft);
+            font-family: var(--heading-font-family); /* Mapped Poppins */
+            font-size: var(--h2-font-size); /* Mapped clamp(2rem, 5vw, 2.8rem) to h2-font-size */
+            color: var(--heading-color-on-dark); /* Mapped pink-soft */
             margin-bottom: 20px;
             font-weight: 600;
         }
         .section-subtitle {
             text-align: center;
             font-size: clamp(1rem, 2vw, 1.2rem);
-            color: var(--purple-light);
+            color: var(--link-color-on-dark); /* Mapped purple-light */
             max-width: 750px;
             margin: 0 auto 70px auto;
             font-weight: 300;
@@ -202,19 +259,19 @@
             gap: 35px;
         }
         .feature-card {
-            background: var(--bg-card);
+            background: var(--card-bg); /* Mapped bg-card */
             padding: 35px;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius-medium); /* Mapped 16px */
+            border: 1px solid rgba(var(--white-color-rgb), 0.1); /* Mapped white */
             box-shadow: 0 8px 32px rgba(0,0,0,0.15);
             transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
             position: relative;
-            overflow: hidden; /* For glow effect */
+            overflow: hidden;
         }
         .feature-card:hover {
             transform: translateY(-10px) scale(1.02);
             box-shadow: 0 12px 45px rgba(0,0,0,0.2);
-            border-color: var(--border-glow);
+            border-color: var(--border-glow-main); /* Mapped border-glow */
         }
         .feature-card .icon {
             font-size: 2.8em;
@@ -222,120 +279,138 @@
             display: inline-block;
             padding: 15px;
             border-radius: 50%;
-            background: linear-gradient(145deg, rgba(255,87,165,0.1), rgba(131,68,194,0.15));
-            color: var(--pink-hot); /* Default icon color */
+            background: linear-gradient(145deg, rgba(var(--vibrant-accent-color-rgb),0.1), rgba(var(--accent-color-rgb),0.15)); /* Mapped pink-hot and purple-mid */
+            color: var(--vibrant-accent-color); /* Mapped pink-hot */
         }
-        .feature-card .icon.privacy-icon { color: var(--blue-accent); } /* Specific color for privacy */
-        .feature-card .icon.usability-icon { color: var(--purple-light); }
-        .feature-card .icon.telemetry-icon { color: #FF6347; } /* Tomato red for "no" telemetry */
+        .feature-card .icon.privacy-icon { color: var(--secondary-color); } /* Mapped blue-accent to secondary-color */
+        .feature-card .icon.usability-icon { color: var(--link-color-on-dark); } /* Mapped purple-light */
+        .feature-card .icon.telemetry-icon { color: #FF6347; } /* Kept specific Tomato red for "no" telemetry */
 
         .feature-card h3 {
-            font-family: 'Poppins', sans-serif;
+            font-family: var(--heading-font-family); /* Mapped Poppins */
             font-size: 1.6em;
-            color: var(--pink-soft);
+            color: var(--heading-color-on-dark); /* Mapped pink-soft */
             margin-bottom: 12px;
             font-weight: 600;
         }
         .feature-card p {
             font-size: 0.98em;
-            color: var(--purple-light);
+            color: rgba(var(--white-color-rgb), 0.85); /* Mapped purple-light to a general paragraph text color */
             line-height: 1.7;
         }
 
         /* --- Call To Action / Get Started --- */
         #get-started {
             text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), /* Dark overlay */
-                        radial-gradient(ellipse at center, var(--purple-mid) 0%, var(--bg-dark-main) 70%);
+            background: linear-gradient(rgba(var(--dark-color-rgb),0.2), rgba(var(--dark-color-rgb),0.2)), /* Mapped dark overlay */
+                        radial-gradient(ellipse at center, var(--primary-color) 0%, var(--bg-main-start) 70%); /* Mapped purple-mid and bg-dark-main */
         }
-        #get-started .section-title { color: var(--text-light); }
-        #get-started .section-subtitle { color: var(--purple-light); }
-        /* Keep the original CTA button style for "Coming Soon" */
-        #get-started .cta-button {
-            margin-top: 20px;
-            /* background: linear-gradient(145deg, var(--blue-accent), var(--purple-mid)); */ /* Original: Blue accent for download/action */
-        }
-         /* #get-started .cta-button:hover {
-            box-shadow: 0 8px 30px rgba(77, 166, 255, 0.5);
-        } */
+        #get-started .section-title { color: var(--text-color-on-dark); } /* Mapped text-light */
+        #get-started .section-subtitle { color: var(--link-color-on-dark); } /* Mapped purple-light */
+        /* cta-button style is handled by general .cta-button rule, no specific override for get-started needed */
 
         /* --- Platform Availability (in Get Started section) --- */
         .platform-availability {
-            margin-top: 50px; /* Space above platform info */
+            margin-top: 50px;
             text-align: center;
         }
         .platform-availability h3 {
-            font-family: 'Poppins', sans-serif;
+            font-family: var(--heading-font-family); /* Mapped Poppins */
             font-size: 1.4em;
-            color: var(--pink-soft);
-            margin-bottom: 30px; /* Increased margin */
+            color: var(--heading-color-on-dark); /* Mapped pink-soft */
+            margin-bottom: 30px;
             font-weight: 600;
         }
         .platform-icons {
             display: flex;
             justify-content: center;
-            align-items: flex-start; /* Align items to start for consistent text baseline */
-            gap: 45px; /* Increased gap */
+            align-items: flex-start;
+            gap: 45px;
             flex-wrap: wrap;
-            margin-bottom: 30px; /* Increased margin */
+            margin-bottom: 30px;
         }
         .platform-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            color: var(--purple-light);
+            color: var(--link-color-on-dark); /* Mapped purple-light */
             transition: color 0.3s ease, transform 0.3s ease;
-            width: 100px; /* Give some fixed width for better wrapping */
+            width: 100px;
         }
         .platform-item:hover {
-            color: var(--pink-soft);
-            transform: scale(1.08); /* Slightly more noticeable hover */
+            color: var(--heading-color-on-dark); /* Mapped pink-soft */
+            transform: scale(1.08);
         }
         .platform-item i {
-            font-size: 3.2em; /* Larger icons */
+            font-size: 3.2em;
             margin-bottom: 12px;
         }
         .platform-item span {
-            font-size: 1em; /* Slightly larger text */
+            font-size: 1em;
             font-weight: 500;
         }
         .linux-distro-info {
-            font-size: 0.95em; /* Slightly larger */
-            color: var(--purple-light);
-            max-width: 650px; /* Wider for better readability */
+            font-size: 0.95em;
+            color: var(--link-color-on-dark); /* Mapped purple-light */
+            max-width: 650px;
             margin: 0 auto;
             line-height: 1.65;
             padding: 15px;
-            background: rgba(255,255,255,0.03);
-            border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.07);
+            background: rgba(var(--white-color-rgb),0.03); /* Mapped white */
+            border-radius: var(--border-radius-small); /* Mapped 8px */
+            border: 1px solid rgba(var(--white-color-rgb),0.07); /* Mapped white */
         }
         .linux-distro-info strong {
-            color: var(--pink-soft);
+            color: var(--heading-color-on-dark); /* Mapped pink-soft */
         }
 
+        p a { /* Specific style for links in main paragraph content */
+            color: var(--heading-color-on-dark); /* Mapped pink-soft for stronger emphasis */
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+        p a:hover {
+            color: var(--white-color);
+        }
 
         /* --- Footer --- */
         .main-footer {
-            background-color: rgba(10, 5, 20, 0.9);
+            background-color: rgba(var(--dark-color-rgb), 0.8); /* Mapped darker background */
             padding: 50px 0 30px;
             text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.08);
+            border-top: 1px solid rgba(var(--white-color-rgb),0.08); /* Mapped white */
         }
         .footer-logo {
-            font-family: 'Poppins', sans-serif;
+            font-family: var(--heading-font-family); /* Mapped Poppins */
             font-size: 2em;
-            color: var(--pink-soft);
+            color: var(--heading-color-on-dark); /* Mapped pink-soft */
             margin-bottom: 20px;
             text-decoration: none;
         }
         .footer-links { list-style: none; padding: 0; margin-bottom: 25px; }
         .footer-links li { display: inline-block; margin: 0 15px; }
-        .footer-links a { color: var(--purple-light); text-decoration: none; transition: color 0.3s ease; font-size: 0.9em; }
-        .footer-links a:hover { color: var(--pink-soft); }
-        .footer-social-icons a { color: var(--purple-light); font-size: 1.6em; margin: 0 12px; transition: color 0.3s ease, transform 0.3s ease; }
-        .footer-social-icons a:hover { color: var(--pink-hot); transform: scale(1.2); }
-        .footer-copyright { font-size: 0.85em; color: var(--purple-mid); margin-top: 25px; }
+        .footer-links a {
+            color: var(--link-color-on-dark); /* Mapped purple-light */
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.9em;
+        }
+        .footer-links a:hover { color: var(--heading-color-on-dark); } /* Mapped pink-soft */
+        .footer-social-icons a {
+            color: var(--link-color-on-dark); /* Mapped purple-light */
+            font-size: 1.6em;
+            margin: 0 12px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .footer-social-icons a:hover {
+            color: var(--vibrant-accent-color); /* Mapped pink-hot */
+            transform: scale(1.2);
+        }
+        .footer-copyright {
+            font-size: 0.85em;
+            color: var(--link-color-on-dark); /* Mapped purple-mid for copyright text */
+            margin-top: 25px;
+        }
 
         /* --- Animations --- */
         @keyframes popIn {
@@ -362,15 +437,13 @@
         }
         @media (max-width: 480px) {
             .platform-icons {
-                flex-direction: column; /* Stack icons vertically on very small screens */
+                flex-direction: column;
                 gap: 25px;
             }
             .platform-item {
-                width: auto; /* Allow full width when stacked */
+                width: auto;
             }
         }
-
-
     </style>
 </head>
 <body>
@@ -381,6 +454,7 @@
                 <a href="#hero"><i class="fas fa-cat"></i> ArttulCat</a>
             </div>
             <ul class="nav-links">
+                <!-- Kept active class as provided in original code, though JS logic usually handles this dynamically -->
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="#why-arttulcat">Why ArttulCat?</a></li>
                 <li><a href="#features">Features</a></li>
@@ -471,7 +545,6 @@
                 <h2 class="section-title">Ready to Reclaim Your Web?</h2>
                 <p class="section-subtitle">ArttulCat is launching soon! Prepare to experience a browser that puts you first.
                 It's free, open-source, and built with passion for your privacy and ease of use.</p>
-                <!-- Main CTA Button (Kept as "Coming Soon" or similar if no direct download yet) -->
                 <a href="#" class="cta-button">Stay Tuned! <i class="fas fa-bell"></i></a>
 
                 <div class="platform-availability">
@@ -497,8 +570,8 @@
                     </p>
                 </div>
 
-                <p style="margin-top: 40px; font-size: 0.9em; color: var(--purple-light);">
-                    Follow our progress & contribute on <a href="https://github.com/arttulos" style="color: var(--pink-soft); text-decoration:underline;">GitHub/<a href="https://gitlab.arttulos.org"  style="color: var(--pink-soft); text-decoration:underline;">GitLab</a></a>!
+                <p style="margin-top: 40px; font-size: 0.9em; color: var(--link-color-on-dark);">
+                    Follow our progress & contribute on <a href="https://github.com/arttulos">GitHub</a>/<a href="https://gitlab.arttulos.org">GitLab</a>!
                 </p>
             </div>
         </section>
@@ -517,7 +590,6 @@
                 <a href="https:///gitlab.arttulos.org" title="Project Repository"><i class="fab fa-git-alt"></i></a>
                 <a href="https://github.com/arttulos" title="GitHub Repository"><i class="fab fa-github-alt"></i></a>
                 <a href="https://app.element.io/#/room/#arttulos:matrix.org" title="Community Forum/Chat"><i class="fas fa-comments"></i></a>
-                <!-- Add more relevant social links -->
             </div>
             <p class="footer-copyright">© <span id="currentYear"></span> The ArttulCat Project. Built on Firefox. Your privacy is paramount.</p>
         </div>
@@ -555,7 +627,6 @@
             if (pageYOffset < sections[0].offsetTop - offset && heroLink) {
                  currentId = 'hero';
             }
-
 
             navLinks.forEach(link => {
                 link.classList.remove('active');

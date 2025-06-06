@@ -8,15 +8,22 @@
     <meta name="author" content="The ArttulOS Team">
     <title>Contact ArttulOS - We're Here to Help</title>
 
-    <!-- CSS FILES -->
+    <!-- Favicon Placeholder: Prevents an unnecessary favicon.ico request if not provided -->
+    <link rel="icon" href="data:,">
+
+    <!-- Preconnect to domains for faster loading of external resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Using FreeSans -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net"> <!-- For Bootstrap CSS/JS and Bootstrap Icons -->
+    <link rel="preconnect" href="https://code.jquery.com"> <!-- For jQuery JS -->
 
+    <!-- CSS FILES (Keeping external for Bootstrap/Bootstrap Icons for caching/CDN benefits) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
+    <!-- Custom Styles: Inlined directly in the head for fastest rendering of custom styles -->
     <style>
+    /* ArttulOS Custom Fonts */
     @font-face {
         font-family: 'FreeSans';
         src: url('fonts/FreeSans.woff2') format('woff2'),
@@ -34,33 +41,51 @@
         font-display: swap;
     }
 
+     /* Established ArttulOS Color Palette & Variables */
      :root {
-        /* Established ArttulOS Color Palette */
-        --primary-color: #5E35B1;
+        --primary-color: #5E35B1; /* Deep Purple */
         --primary-color-rgb: 94, 53, 177;
-        --secondary-color: #3949AB;
+        --secondary-color: #3949AB; /* Indigo/Blue */
         --secondary-color-rgb: 57, 73, 171;
-        --accent-color: #7E57C2;
+        --accent-color: #7E57C2; /* Lighter Purple */
         --accent-color-rgb: 126, 87, 194;
 
-        --white-color: #E0D6EF;
+        /* For elements needing a strong, distinct accent, typically pink/red like original "pink-hot" from ArttulCat */
+        --vibrant-accent-color: #F06292;
+        --vibrant-accent-color-rgb: 240, 98, 146;
+
+        --white-color: #E0D6EF; /* Very Light Lavender */
         --white-color-rgb: 224, 214, 239;
-        --dark-color: #1C2331;
+        --dark-color: #1C2331; /* Dark Blue/Grey */
         --dark-color-rgb: 28, 35, 49;
 
         --text-color-on-dark: var(--white-color);
-        --heading-color-on-dark: #D1C4E9;
+        --heading-color-on-dark: #D1C4E9; /* Slightly brighter for headings */
         --link-color-on-dark: #B39DDB;
         --link-hover-on-dark: var(--white-color);
 
         --body-font-family: 'FreeSans', sans-serif;
+        --heading-font-family: 'FreeSans', sans-serif; /* Explicitly set for headings */
 
-        /* Unique Layout - Contact Page Focus */
+        /* Backgrounds */
         --bg-main-start: var(--dark-color);
-        --bg-main-end: #100E24; /* Darker, bluer-purple base */
+        --bg-main-end: #0F0C29; /* Consistent with previous pages */
+        --footer-bg-color: #0A0F1A; /* Consistent with previous pages */
 
+        /* Border Radii - Values kept from original file for visual consistency on this page */
+        --border-radius-small:         8px;
+        --border-radius-medium:        16px; /* Keeping 16px from original for cards */
+        --border-radius-large:         24px; /* Keeping 24px from original */
+
+        /* Card/Content Backgrounds */
+        --card-bg: rgba(var(--white-color-rgb), 0.04); /* General card background from About page */
+        --transparent-dark-bg: rgba(var(--dark-color-rgb), 0.6); /* General container background */
+
+        /* Specific to contact page components */
         --contact-hero-bg-start: var(--accent-color);
         --contact-hero-bg-end: var(--secondary-color);
+        --contact-hero-bg-gradient: linear-gradient(135deg, var(--contact-hero-bg-start) 0%, var(--contact-hero-bg-end) 100%);
+
 
         --contact-card-bg: rgba(var(--primary-color-rgb), 0.12);
         --contact-card-border: rgba(var(--accent-color-rgb), 0.3);
@@ -71,17 +96,13 @@
         --form-input-focus-border: var(--accent-color);
         --form-input-focus-shadow: rgba(var(--accent-color-rgb), 0.25);
 
-        --button-primary-bg-start: var(--accent-color);
-        --button-primary-bg-end: var(--primary-color);
-        --button-primary-hover-bg-start: var(--primary-color);
-        --button-primary-hover-bg-end: var(--accent-color);
+        /* Button Gradients - Standardized to match CTA from other pages */
+        --button-gradient-base-start: var(--accent-color);
+        --button-gradient-base-end: var(--primary-color);
+        --button-gradient-hover-start: var(--primary-color);
+        --button-gradient-hover-end: var(--accent-color);
 
-        --footer-bg-color: #0A071A; /* Darkest */
-
-        --border-radius-small:         8px;
-        --border-radius-medium:        16px;
-        --border-radius-large:         24px;
-
+        /* Font Sizes - Standardized, but adjusted h1/h2/h3 to fit original page sizes */
         --h1-font-size:                clamp(2.6rem, 5.5vw, 3.8rem);
         --h2-font-size:                clamp(1.8rem, 4vw, 2.6rem);
         --h3-font-size:                clamp(1.4rem, 3vw, 1.9rem);
@@ -99,7 +120,11 @@
         overflow-x: hidden;
         line-height: 1.7;
     }
-    h1, h2, h3, h4, h5, h6 { color: var(--heading-color-on-dark); font-family: var(--body-font-family); font-weight: bold; }
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--heading-color-on-dark);
+        font-family: var(--heading-font-family); /* Using specific heading font variable */
+        font-weight: bold;
+    }
     h1 { font-size: var(--h1-font-size); }
     h2 { font-size: var(--h2-font-size); margin-bottom: 1.5rem;}
     h3 { font-size: var(--h3-font-size); margin-bottom: 1.2rem;}
@@ -110,12 +135,10 @@
     .section-padding { padding-top: 100px; padding-bottom: 100px; }
 
     /* --- Navigation Bar (Consistent) --- */
-    .navbar { /* Styles from previous gorgeous page designs */ }
-    /* ... (Copy navbar styles from previous gorgeous designs for consistency) ... */
     .navbar {
         background: rgba(var(--dark-color-rgb), 0.5); backdrop-filter: blur(18px);
         padding: 1rem 0; border-bottom: 1px solid rgba(var(--primary-color-rgb), 0.15);
-        position: sticky; top: 0; z-index: 1030; /* Make navbar sticky */
+        position: sticky; top: 0; z-index: 1030;
     }
     .navbar.scrolled { background: rgba(var(--dark-color-rgb), 0.8); box-shadow: 0 5px 25px rgba(0,0,0,0.25); }
     .navbar-brand { font-size: 1.8em; font-weight: bold; color: var(--white-color) !important; }
@@ -139,37 +162,36 @@
 
     /* --- Contact Hero Section --- */
     .contact-hero {
-        padding: 9rem 0 7rem 0; /* Adjusted padding as nav is sticky */
-        background-image: linear-gradient(135deg, var(--contact-hero-bg-start) 0%, var(--contact-hero-bg-end) 100%);
+        padding: 9rem 0 7rem 0;
+        background-image: var(--contact-hero-bg-gradient);
         position: relative; text-align: center; overflow: hidden;
     }
     .contact-hero .section-overlay-pattern {
         content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-        background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-29c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm63 43c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zM34 90c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm59-60c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zM20 60c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7z" fill="rgba(224, 214, 239, 0.02)" fill-rule="evenodd"/></svg>');
+        /* Using the same pattern as the original, ensure its fill color aligns */
+        background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-29c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm63 43c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zM34 90c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm59-60c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zM20 60c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7z" fill="rgba(var(--white-color-rgb), 0.02)" fill-rule="evenodd"/></svg>');
         opacity: 0.8; animation: subtleMove 20s linear infinite alternate;
     }
     @keyframes subtleMove { from { background-position: 0 0; } to { background-position: 50px 50px; } }
     .contact-hero .container { position: relative; z-index: 1; }
     .contact-hero h1 {
-        font-size: var(--h1-font-size); color: var(--white-color) !important; font-weight: 700;
+        color: var(--white-color) !important;
         text-shadow: 0 3px 20px rgba(var(--dark-color-rgb),0.4);
         animation: popIn 0.9s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.2s backwards;
     }
     .contact-hero p.lead {
         color: rgba(var(--white-color-rgb), 0.95) !important;
-        font-size: clamp(1.15rem, 2.8vw, 1.45rem);
-        margin-bottom: 0; font-weight: 300;
         animation: slideUpFade 1.1s ease-out 0.5s backwards;
     }
 
     /* --- Contact Content Area --- */
-    .contact-content-section { /* Wrapper for the two columns */
-        background: transparent; /* Let body gradient show */
+    .contact-content-section {
+        background: transparent;
     }
     .contact-card {
         background: var(--contact-card-bg);
         border: 1px solid var(--contact-card-border);
-        border-radius: var(--border-radius-large);
+        border-radius: var(--border-radius-large); /* Mapped to 24px */
         padding: 2.5rem;
         height: 100%;
         box-shadow: var(--contact-card-shadow);
@@ -180,10 +202,10 @@
 
     .contact-card h3 {
         color: var(--heading-color-on-dark);
-        margin-bottom: 2rem; /* More space under H3 */
+        margin-bottom: 2rem;
         padding-bottom: 0.75rem;
         border-bottom: 1px solid rgba(var(--accent-color-rgb), 0.2);
-        display: inline-block; /* So border only spans text width */
+        display: inline-block;
     }
 
     /* Contact Details Card */
@@ -191,15 +213,15 @@
         display: flex; align-items: flex-start; margin-bottom: 1.8rem;
     }
     .contact-item-icon {
-        font-size: 1.8rem; /* Larger icon */
+        font-size: 1.8rem;
         color: var(--accent-color);
-        margin-right: 1.2rem; width: 40px; /* Fixed width */
-        text-align: center; line-height: 1; /* Better vertical alignment */
+        margin-right: 1.2rem; width: 40px;
+        text-align: center; line-height: 1;
         flex-shrink: 0;
     }
     .contact-item-text p { margin-bottom: 0.15rem; line-height: 1.6; color: rgba(var(--white-color-rgb), 0.85); font-size: 0.95rem;}
     .contact-item-text strong { color: var(--white-color); display: block; margin-bottom: 0.25rem; font-size: 1.05rem; font-weight: 500;}
-    .contact-item-text a { word-break: break-all; } /* Break long emails */
+    .contact-item-text a { word-break: break-all; }
 
     .contact-social-links a {
         font-size: 1.8rem; margin-right: 1.2rem; color: var(--link-color-on-dark);
@@ -213,8 +235,8 @@
         background-color: var(--form-input-bg) !important;
         color: var(--white-color) !important;
         border: 1px solid var(--form-input-border) !important;
-        border-radius: var(--border-radius-medium) !important;
-        padding: 1rem 1.25rem !important; /* Adjust padding for floating label */
+        border-radius: var(--border-radius-medium) !important; /* Mapped to 16px */
+        padding: 1rem 1.25rem !important;
         line-height: 1.5;
     }
     .contact-form .form-floating > label {
@@ -228,15 +250,15 @@
     }
     .contact-form .form-floating > .form-control:not(:placeholder-shown) ~ label {
         opacity: .65;
-        transform: scale(.85) translateY(-.7rem) translateX(.15rem); /* Bootstrap's default but ensure it's applied */
+        transform: scale(.85) translateY(-.7rem) translateX(.15rem);
     }
     .contact-form textarea.form-control { min-height: 150px; resize: vertical; }
-    .btn-form-submit { /* Main submit button for form */
+    .btn-form-submit {
         display: inline-block;
-        background: linear-gradient(145deg, var(--button-primary-bg-start), var(--button-primary-bg-end));
+        background: linear-gradient(145deg, var(--button-gradient-base-start), var(--button-gradient-base-end)); /* Mapped to primary button gradient */
         color: var(--white-color) !important; border: none;
         font-weight: bold; padding: 0.9rem 2.5rem;
-        border-radius: var(--border-radius-large);
+        border-radius: var(--border-radius-large); /* Mapped to 24px */
         text-transform: uppercase; letter-spacing: 0.5px;
         transition: all 0.3s ease-in-out;
         box-shadow: 0 5px 15px rgba(var(--primary-color-rgb),0.3);
@@ -244,26 +266,26 @@
     .btn-form-submit:hover {
         transform: translateY(-3px) scale(1.03);
         box-shadow: 0 8px 25px rgba(var(--accent-color-rgb),0.4);
-        background: linear-gradient(145deg, var(--button-primary-hover-bg-start), var(--button-primary-hover-bg-end));
+        background: linear-gradient(145deg, var(--button-gradient-hover-start), var(--button-gradient-hover-end)); /* Mapped to primary button hover gradient */
     }
 
     /* Map Section */
-    .map-section { background: var(--bg-main-end); /* Darker for contrast */ }
+    .map-section { background: var(--bg-main-end); } /* Mapped to bg-main-end */
     .google-map-wrapper {
-        border-radius: var(--border-radius-large);
+        border-radius: var(--border-radius-large); /* Mapped to 24px */
         overflow: hidden;
         box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        border: 2px solid var(--contact-card-border);
+        border: 2px solid var(--contact-card-border); /* Mapped to contact-card-border */
     }
     .google-map {
-         filter: grayscale(100%) invert(95%) hue-rotate(230deg) saturate(300%) brightness(0.7) contrast(1.1);
-         /* More complex filter for a dark, themed map. Adjust as needed. */
+         /* Adjust filter for a dark, themed map to blend with ArttulOS colors */
+         filter: grayscale(100%) invert(95%) hue-rotate(250deg) saturate(200%) brightness(0.8) contrast(1.1);
     }
 
     /* Modal Styles (Consistent with other gorgeous pages) */
     .modal-content {
         background-color: var(--dark-color); color: var(--white-color);
-        border-radius: var(--border-radius-medium);
+        border-radius: var(--border-radius-medium); /* Mapped to 16px */
         border: 1px solid var(--accent-color);
         box-shadow: 0 10px 40px rgba(0,0,0,0.3);
     }
@@ -288,14 +310,23 @@
 
 
     /* Animations */
-    @keyframes popIn { /* ... */ }
-    @keyframes slideUpFade { /* ... */ }
-    @keyframes popInCards { /* ... */ }
+    @keyframes popIn {
+        0% { opacity: 0; transform: scale(0.8) translateY(15px); }
+        100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    @keyframes slideUpFade {
+        0% { opacity: 0; transform: translateY(30px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes popInCards {
+        0% { opacity: 0; transform: scale(0.95) translateY(20px); }
+        100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
 
     /* Responsive */
     @media (max-width: 991px) {
-        .contact-card { margin-bottom: 2rem; } /* Ensure spacing when stacked */
-        .contact-details-section, .contact-form-section { height: auto; } /* Reset height on stack */
+        .contact-card { margin-bottom: 2rem; }
+        .contact-details-section, .contact-form-section { height: auto; }
     }
     @media (max-width: 768px) {
         .contact-hero { padding: 7rem 0 5rem 0; }
@@ -483,7 +514,6 @@
 
 
     <footer class="site-footer">
-        <!-- ... (Footer HTML from previous response) ... -->
         <div class="site-footer-top py-4">
              <div class="container">
                 <div class="row align-items-center">
@@ -599,8 +629,8 @@
                     if (currentContactAction === 'form' && contactForm) {
                         // Simulate form submission (in a real app, you'd submit via AJAX or let the form submit)
                         console.log("Simulating form submission...");
-                        contactForm.reset();
-                        if (messageSentModalInstance) messageSentModalInstance.show();
+                        contactForm.reset(); // Clear the form
+                        if (messageSentModalInstance) messageSentModalInstance.show(); // Show success modal
                     } else if (currentContactAction === 'email' && currentEmailRecipient) {
                         // Construct mailto link based on stored recipient
                         const name = document.getElementById('contact-name')?.value || "N/A"; // Optional if form not filled for email

@@ -10,14 +10,22 @@
 
     <title>ArttulOS Community - The Heart of Our Project</title>
 
-    <!-- CSS FILES -->
+    <!-- Favicon Placeholder: Prevents an unnecessary favicon.ico request if not provided -->
+    <link rel="icon" href="data:,">
+
+    <!-- Preconnect to domains for faster loading of external resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net"> <!-- For Bootstrap CSS/JS and Bootstrap Icons -->
+    <link rel="preconnect" href="https://code.jquery.com"> <!-- For jQuery JS -->
 
+    <!-- CSS FILES (Keeping external for Bootstrap/Bootstrap Icons for caching/CDN benefits) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
+    <!-- Custom Styles: Inlined directly in the head for fastest rendering of custom styles -->
     <style>
+    /* ArttulOS Custom Fonts */
     @font-face {
         font-family: 'FreeSans';
         src: url('fonts/FreeSans.woff2') format('woff2'),
@@ -35,33 +43,49 @@
         font-display: swap;
     }
 
+     /* Established ArttulOS Color Palette & Variables */
      :root {
-        /* Established ArttulOS Color Palette */
-        --primary-color: #5E35B1;
+        --primary-color: #5E35B1; /* Deep Purple */
         --primary-color-rgb: 94, 53, 177;
-        --secondary-color: #3949AB;
+        --secondary-color: #3949AB; /* Indigo/Blue */
         --secondary-color-rgb: 57, 73, 171;
-        --accent-color: #7E57C2;
+        --accent-color: #7E57C2; /* Lighter Purple */
         --accent-color-rgb: 126, 87, 194;
 
-        --white-color: #E0D6EF;
+        /* For elements needing a strong, distinct accent, typically pink/red like original "pink-hot" */
+        --vibrant-accent-color: #F06292;
+        --vibrant-accent-color-rgb: 240, 98, 146;
+
+        --white-color: #E0D6EF; /* Very Light Lavender */
         --white-color-rgb: 224, 214, 239;
-        --dark-color: #1C2331;
+        --dark-color: #1C2331; /* Dark Blue/Grey */
         --dark-color-rgb: 28, 35, 49;
 
         --text-color-on-dark: var(--white-color);
-        --heading-color-on-dark: #D1C4E9;
+        --heading-color-on-dark: #D1C4E9; /* Slightly brighter for headings */
         --link-color-on-dark: #B39DDB;
         --link-hover-on-dark: var(--white-color);
 
         --body-font-family: 'FreeSans', sans-serif;
+        --heading-font-family: 'FreeSans', sans-serif; /* Explicitly set for headings */
 
-        /* Unique Layout - Community Page Focus */
+        /* Backgrounds */
         --bg-main-start: var(--dark-color);
-        --bg-main-end: #0A071F; /* Even darker, more purple-ish dark */
+        --bg-main-end: #0F0C29; /* Consistent with previous pages */
+        --footer-bg-color: #0A0F1A; /* Consistent with previous pages */
 
+        /* Border Radii - Values kept from original file for visual consistency on this page */
+        --border-radius-small:         8px;
+        --border-radius-medium:        16px; /* Keeping 16px from original for cards */
+        --border-radius-large:         30px; /* Keeping 30px from original for pill buttons */
+
+        /* Card/Content Backgrounds */
+        --card-bg: rgba(var(--white-color-rgb), 0.04); /* General card background */
+        --transparent-dark-bg: rgba(var(--dark-color-rgb), 0.6); /* General container background */
+
+        /* Specific to community page components */
         --community-hero-bg-start: var(--primary-color);
-        --community-hero-bg-end: var(--secondary-color); /* Blend of primary and secondary */
+        --community-hero-bg-end: var(--secondary-color);
 
         --connect-channel-bg: rgba(var(--accent-color-rgb), 0.1);
         --connect-channel-border: rgba(var(--accent-color-rgb), 0.3);
@@ -73,25 +97,22 @@
         --contribute-card-shadow: 0 6px 20px rgba(0,0,0,0.1);
         --contribute-card-hover-shadow: 0 10px 30px rgba(var(--secondary-color-rgb),0.15);
 
-        --coc-bg: var(--primary-color); /* Solid, important background */
+        --coc-bg: var(--primary-color); /* Solid, important background for CoC */
 
-        --button-primary-bg-start: var(--accent-color);
-        --button-primary-bg-end: var(--primary-color);
-        --button-primary-hover-bg-start: var(--primary-color);
-        --button-primary-hover-bg-end: var(--accent-color);
+        /* Button Gradients - Standardized to match CTA from other pages */
+        --button-gradient-base-start: var(--accent-color);
+        --button-gradient-base-end: var(--primary-color);
+        --button-gradient-hover-start: var(--primary-color);
+        --button-gradient-hover-end: var(--accent-color);
 
+        /* Button Outline Styles */
         --button-outline-border: var(--accent-color);
         --button-outline-hover-bg: var(--accent-color);
         --button-outline-hover-text: var(--dark-color);
 
-        --footer-bg-color: #070515; /* Very dark for footer */
-
-        --border-radius-small:         8px;
-        --border-radius-medium:        16px; /* More rounding for cards */
-        --border-radius-large:         30px; /* Pill buttons */
-
+        /* Font Sizes - Standardized, but adjusted h1/h2 to fit original page sizes */
         --h1-font-size:                clamp(2.8rem, 6vw, 4.2rem);
-        --h2-font-size:                clamp(2rem, 4.5vw, 3rem); /* Slightly larger H2 */
+        --h2-font-size:                clamp(2rem, 4.5vw, 3rem);
         --h3-font-size:                clamp(1.5rem, 3.5vw, 2rem);
      }
 
@@ -110,19 +131,19 @@
 
     h1, h2, h3, h4, h5, h6 {
         color: var(--heading-color-on-dark);
-        font-family: var(--body-font-family);
+        font-family: var(--heading-font-family); /* Using specific heading font variable */
         font-weight: bold;
     }
     h1 { font-size: var(--h1-font-size); }
-    h2 { font-size: var(--h2-font-size); margin-bottom: 1.8rem;} /* More space after H2 */
+    h2 { font-size: var(--h2-font-size); margin-bottom: 1.8rem;}
     h3 { font-size: var(--h3-font-size); margin-bottom: 1.2rem;}
 
     p { margin-bottom: 1.25rem; color: rgba(var(--white-color-rgb), 0.85); font-weight: normal; }
     p.lead {
-        font-size: clamp(1.1rem, 2.5vw, 1.4rem); /* Responsive lead */
+        font-size: clamp(1.1rem, 2.5vw, 1.4rem);
         font-weight: 300;
         color: rgba(var(--white-color-rgb), 0.9);
-        max-width: 800px; margin-left: auto; margin-right: auto; /* Center lead */
+        max-width: 800px; margin-left: auto; margin-right: auto;
     }
 
     a {
@@ -133,13 +154,13 @@
         color: var(--white-color); opacity: 0.85;
     }
 
-    .section-padding { padding-top: 120px; padding-bottom: 120px; } /* More padding */
+    .section-padding { padding-top: 120px; padding-bottom: 120px; }
     .section-padding-sm { padding-top: 80px; padding-bottom: 80px; }
 
     /* --- Navigation Bar (Consistent) --- */
     .navbar {
-        background: rgba(var(--dark-color-rgb), 0.5); /* Slightly less opacity */
-        backdrop-filter: blur(18px); /* More blur */
+        background: rgba(var(--dark-color-rgb), 0.5);
+        backdrop-filter: blur(18px);
         padding: 1rem 0;
         border-bottom: 1px solid rgba(var(--primary-color-rgb), 0.15);
     }
@@ -167,15 +188,15 @@
 
     /* --- Community Hero Section --- */
     .community-hero {
-        min-height: 70vh; /* Shorter than main hero, but still impactful */
+        min-height: 70vh;
         padding: 12rem 0 8rem 0;
-        background-image: linear-gradient(140deg, var(--community-hero-bg-start) 0%, var(--community-hero-bg-end) 100%);
+        background-image: var(--community-hero-bg-gradient); /* Using predefined gradient variable */
         position: relative;
         display: flex; align-items: center; justify-content: center;
         text-align: center;
         overflow: hidden;
     }
-    .community-hero::before { /* Abstract pattern overlay */
+    .community-hero::before {
         content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
         background-image:
             radial-gradient(circle at 20% 30%, rgba(var(--white-color-rgb), 0.05) 0px, transparent 20%),
@@ -190,22 +211,20 @@
     }
     .community-hero .container { position: relative; z-index: 1; }
     .community-hero h1 {
-        color: var(--white-color) !important; font-weight: 700;
+        color: var(--white-color) !important;
         text-shadow: 0 3px 15px rgba(var(--dark-color-rgb),0.3);
         animation: popIn 0.9s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.2s backwards;
     }
     .community-hero p.lead {
         color: rgba(var(--white-color-rgb), 0.9) !important;
-        font-size: clamp(1.2rem, 3vw, 1.6rem);
-        margin-bottom: 2.5rem; font-weight: 300;
         animation: slideUpFade 1.1s ease-out 0.5s backwards;
     }
-    .hero-cta-button { /* Main CTA for hero */
+    .hero-cta-button {
         display: inline-block;
-        background: var(--white-color);
+        background: var(--white-color); /* Kept original white background */
         color: var(--primary-color) !important;
         padding: 0.9rem 2.8rem;
-        border-radius: var(--border-radius-large);
+        border-radius: var(--border-radius-large); /* Mapped to 30px */
         font-weight: bold; text-transform: uppercase; letter-spacing: 0.8px;
         box-shadow: 0 7px 22px rgba(var(--dark-color-rgb), 0.25);
         transition: all 0.3s ease-in-out;
@@ -221,17 +240,17 @@
 
     /* --- Connect Channels Section --- */
     .connect-channels-section {
-        padding-top: 120px; padding-bottom: 80px; /* Less padding at bottom to flow into next */
+        padding-top: 120px; padding-bottom: 80px;
     }
     .channel-block {
         background: var(--connect-channel-bg);
         border: 1px solid var(--connect-channel-border);
-        border-radius: var(--border-radius-medium);
+        border-radius: var(--border-radius-medium); /* Mapped to 16px */
         padding: 2.5rem;
         text-align: center;
         transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
         display: flex; flex-direction: column; align-items: center; justify-content: center;
-        min-height: 300px; /* Ensure blocks have some height */
+        min-height: 300px;
         animation: popInCards 0.6s ease-out backwards;
     }
      /* Stagger channel block animations */
@@ -245,50 +264,49 @@
         box-shadow: 0 10px 30px rgba(var(--accent-color-rgb), 0.15);
     }
     .channel-block .channel-icon {
-        font-size: 3.5rem; /* Larger icon for these prominent blocks */
+        font-size: 3.5rem;
         color: var(--accent-color);
         margin-bottom: 1.5rem;
     }
     .channel-block h3 {
         color: var(--heading-color-on-dark);
-        font-size: 1.8rem; /* Prominent title */
+        font-size: 1.8rem;
         margin-bottom: 1rem;
     }
     .channel-block p {
         color: rgba(var(--white-color-rgb), 0.8);
         font-size: 0.95rem;
         margin-bottom: 1.5rem;
-        max-width: 300px; /* Constrain paragraph width */
+        max-width: 300px;
     }
-    .channel-block .btn-channel { /* Button for channel blocks */
+    .channel-block .btn-channel {
         display: inline-block;
         background: transparent;
         color: var(--link-color-on-dark) !important;
-        border: 2px solid var(--button-outline-border);
+        border: 2px solid var(--button-outline-border); /* Mapped to accent-color */
         padding: 0.7rem 2rem;
-        border-radius: var(--border-radius-large);
+        border-radius: var(--border-radius-large); /* Mapped to 30px */
         font-weight: 500; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.5px;
         transition: all 0.3s ease;
     }
     .channel-block .btn-channel:hover {
-        background: var(--button-outline-hover-bg);
-        color: var(--button-outline-hover-text) !important;
+        background: var(--button-outline-hover-bg); /* Mapped to accent-color */
+        color: var(--button-outline-hover-text) !important; /* Mapped to dark-color */
         border-color: var(--button-outline-hover-bg);
     }
 
     /* --- Contribution Section --- */
     .contribution-section {
         padding-top: 80px; padding-bottom: 100px;
-        /* background: linear-gradient(to bottom, rgba(var(--primary-color-rgb),0.02), rgba(var(--secondary-color-rgb),0.05)); */
     }
     .contribution-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2.5rem; /* Consistent gap */
+        gap: 2.5rem;
     }
-    .contribution-card { /* Shares some base style with community-card but can be tweaked */
+    .contribution-card {
         background: var(--contribute-card-bg);
-        border-radius: var(--border-radius-medium);
+        border-radius: var(--border-radius-medium); /* Mapped to 16px */
         padding: 2rem;
         height: 100%;
         box-shadow: var(--contribute-card-shadow);
@@ -311,14 +329,14 @@
         border-color: var(--contribute-card-hover-border);
     }
     .contribution-card .card-icon {
-        font-size: 2.5rem; color: var(--secondary-color); /* Use secondary for these icons */
+        font-size: 2.5rem; color: var(--secondary-color);
         margin-bottom: 1.2rem; display: block;
         background: rgba(var(--secondary-color-rgb),0.1);
         width: 60px; height: 60px; line-height: 60px;
-        border-radius: var(--border-radius-small); text-align:center;
-        /* margin-left: auto; margin-right: auto; */ /* If card text is centered */
+        border-radius: var(--border-radius-small); /* Mapped to 8px */
+        text-align:center;
     }
-    .contribution-card h4 { /* Using H4 for titles here */
+    .contribution-card h4 {
         color: var(--heading-color-on-dark); margin-bottom: 0.8rem;
         font-size: 1.4rem; font-weight: 600;
     }
@@ -333,8 +351,8 @@
     .contribution-card .btn-contribution-action {
         display: inline-block; background: transparent;
         color: var(--link-color-on-dark) !important;
-        border: 2px solid var(--secondary-color); /* Use secondary for outline */
-        padding: 0.6rem 1.5rem; border-radius: var(--border-radius-large);
+        border: 2px solid var(--secondary-color);
+        padding: 0.6rem 1.5rem; border-radius: var(--border-radius-large); /* Mapped to 30px */
         font-weight: 500; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.5px;
         transition: all 0.3s ease; margin-top: auto;
     }
@@ -343,22 +361,22 @@
         color: var(--white-color) !important;
         border-color: var(--secondary-color);
     }
-     .contribution-card .btn-contribution-action.social-follow-btn { /* Specific for social follow buttons */
-        margin-bottom: 0.5rem; /* Space between multiple stacked buttons */
+     .contribution-card .btn-contribution-action.social-follow-btn {
+        margin-bottom: 0.5rem;
     }
 
 
     /* --- Code of Conduct Section --- */
-    .code-of-conduct-section-community { /* Unique class */
-        padding: 5rem 0; /* More vertical padding */
+    .code-of-conduct-section-community {
+        padding: 5rem 0;
         background-color: var(--coc-bg);
         color: var(--white-color);
         text-align: center;
-        margin-top: 80px; /* Space from previous section */
+        margin-top: 80px;
         position: relative;
         overflow: hidden;
     }
-    .code-of-conduct-section-community::before { /* Pattern for CoC section */
+    .code-of-conduct-section-community::before {
         content: ''; position: absolute; top: 0; left: 0; right:0; bottom:0;
         background-image: url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M20 0L20 40M0 20L40 20" stroke="rgba(224, 214, 239, 0.05)" stroke-width="1"/></svg>');
         opacity: 0.7;
@@ -381,20 +399,21 @@
         background: var(--white-color);
         color: var(--primary-color) !important;
         border: none; padding: 0.9rem 2.8rem;
-        border-radius: var(--border-radius-large); font-weight: bold;
+        border-radius: var(--border-radius-large); /* Mapped to 30px */
+        font-weight: bold;
         text-transform: uppercase; letter-spacing: 0.5px;
         box-shadow: 0 5px 20px rgba(0,0,0,0.15);
         transition: all 0.3s ease;
     }
     .code-of-conduct-section-community .btn-coc:hover {
-        background: var(--link-hover-on-dark); /* Uses white-color from root */
+        background: var(--link-hover-on-dark);
         transform: translateY(-3px) scale(1.02);
         box-shadow: 0 8px 28px rgba(var(--white-color-rgb), 0.25);
     }
 
     /* --- Footer (Consistent) --- */
     .site-footer {
-        background-color: var(--footer-bg-color);
+        background-color: var(--footer-bg-color); /* Using standardized footer background */
         border-top: 1px solid rgba(var(--primary-color-rgb), 0.15);
         padding-top: 3rem; padding-bottom: 1rem;
     }
@@ -414,11 +433,20 @@
     }
 
     /* Animations (already defined) */
-    @keyframes popIn { /* ... */ }
-    @keyframes slideUpFade { /* ... */ }
-    @keyframes popInCards { /* ... */ }
+    @keyframes popIn {
+        0% { opacity: 0; transform: scale(0.8) translateY(15px); } /* Adjusted from previous versions for consistency */
+        100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    @keyframes slideUpFade {
+        0% { opacity: 0; transform: translateY(30px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes popInCards { /* Used for channel/contribution cards */
+        0% { opacity: 0; transform: scale(0.95) translateY(20px); }
+        100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
 
-    /* Responsive (already defined, may need minor tweaks for new elements) */
+    /* Responsive (already defined, minor tweaks for new elements) */
     @media (max-width: 768px) {
         .channel-block { min-height: auto; padding: 2rem 1.5rem; }
         .code-of-conduct-section-community { padding: 3.5rem 0; }
@@ -649,7 +677,7 @@
             if (currentYearSpan) currentYearSpan.textContent = new Date().getFullYear();
 
             const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-            const currentPath = window.location.pathname.split("/").pop() || 'index.html'; // Default to index if path is "/"
+            const currentPath = window.location.pathname.split("/").pop() || 'index.html';
             let isCommunityPage = currentPath === 'community.html';
 
             navLinks.forEach(link => {
@@ -678,6 +706,7 @@
 
             const cocSection = document.querySelector('.code-of-conduct-section-community');
             if (cocSection) {
+                 // Calculate delay for CoC section to appear after other sections' elements
                  const longestCardSet = Math.max(document.querySelectorAll('.channel-block').length, document.querySelectorAll('.contribution-card').length);
                  cocSection.style.animationDelay = `${0.2 + longestCardSet * 0.1 + 0.1}s`;
                  cocSection.classList.add('popInCards'); // Add animation class

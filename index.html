@@ -10,14 +10,25 @@
 
     <title>ArttulOS - The New RPM Distro | Stunning & Dynamic</title>
 
+    <!-- Favicon Placeholder: Prevents an unnecessary favicon.ico request if not provided -->
+    <link rel="icon" href="data:,">
+
+    <!-- Preconnect to domains for faster loading of external resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net"> <!-- For Bootstrap CSS/JS and Bootstrap Icons -->
+    <link rel="preconnect" href="https://code.jquery.com"> <!-- For jQuery JS -->
 
+    <!-- CSS FILES (Keeping external for CDN benefits and cross-page caching) -->
+    <!-- Custom Fonts: Already uses optimized WOFF2/WOFF with font-display:swap -->
+    <!-- Bootstrap CSS from CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <!-- Bootstrap Icons CSS from CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-
+    <!-- Main Template Stylesheet: Kept external for caching across site pages -->
     <link href="css/templatemo-festava-live.css" rel="stylesheet">
 
+    <!-- Inlined Custom Styles: Essential for quick render and specific overrides -->
     <style>
     @font-face {
         font-family: 'FreeSans';
@@ -56,45 +67,45 @@
     }
 
      :root {
-        --primary-color: #673AB7; 
+        --primary-color: #673AB7;
         --primary-color-rgb: 103, 58, 183;
-        --secondary-color: #3F51B5; 
+        --secondary-color: #3F51B5;
         --secondary-color-rgb: 63, 81, 181;
-        --accent-color: #8E44AD; 
+        --accent-color: #8E44AD;
         --accent-color-rgb: 142, 68, 173;
 
-        --white-color: #F5F3F7; 
+        --white-color: #F5F3F7;
         --white-color-rgb: 245, 243, 247;
-        --dark-color: #121019; 
+        --dark-color: #121019;
         --dark-color-rgb: 18, 16, 25;
-        
-        --bg-main-start: var(--dark-color); 
-        --bg-main-end: #0a080f; 
-        --bg-main-mid: #1a1724; 
 
-        --text-color-on-dark: rgba(var(--white-color-rgb), 0.85); 
-        --heading-color-on-dark: var(--white-color); 
-        --link-color-on-dark: #A37ACC; 
+        --bg-main-start: var(--dark-color);
+        --bg-main-end: #0a080f;
+        --bg-main-mid: #1a1724;
+
+        --text-color-on-dark: rgba(var(--white-color-rgb), 0.85);
+        --heading-color-on-dark: var(--white-color);
+        --link-color-on-dark: #A37ACC;
         --link-hover-on-dark: var(--white-color);
 
-        --hero-overlay-start: rgba(var(--primary-color-rgb), 0.05); 
-        --hero-overlay-end: rgba(var(--secondary-color-rgb), 0.15); 
-        
-        --footer-bg-color: var(--bg-main-end); 
-        --footer-link-color: #BE9DDB; 
-        
-        --h1-font-size: clamp(2.8rem, 6vw, 4.2rem); 
-        --h2-font-size: clamp(2.2rem, 4.5vw, 3rem);   
+        --hero-overlay-start: rgba(var(--primary-color-rgb), 0.05);
+        --hero-overlay-end: rgba(var(--secondary-color-rgb), 0.15);
+
+        --footer-bg-color: var(--bg-main-end);
+        --footer-link-color: #BE9DDB;
+
+        --h1-font-size: clamp(2.8rem, 6vw, 4.2rem);
+        --h2-font-size: clamp(2.2rem, 4.5vw, 3rem);
         --h3-font-size: clamp(1.8rem, 3.8vw, 2.6rem);
         --h5-font-size: clamp(1.15rem, 2.8vw, 1.4rem);
 
-        --border-radius-small: 6px; 
+        --border-radius-small: 6px;
         --border-radius-medium: 10px;
-        --border-radius-large: 30px; 
+        --border-radius-large: 30px;
 
         --body-font-family: 'FreeSans', sans-serif;
 
-        --card-bg: rgba(var(--white-color-rgb), 0.03); 
+        --card-bg: rgba(var(--white-color-rgb), 0.03);
         --card-border: rgba(var(--accent-color-rgb), 0.15);
         --card-hover-border: rgba(var(--accent-color-rgb), 0.5);
         --card-shadow: 0 10px 30px rgba(var(--dark-color-rgb), 0.2);
@@ -113,20 +124,20 @@
     body {
         font-family: var(--body-font-family);
         background-color: var(--bg-main-start);
-        background-image: 
-            var(--noise-texture), 
-            linear-gradient(165deg, var(--bg-main-start) 0%, var(--bg-main-mid) 50%, var(--bg-main-end) 100%); 
+        background-image:
+            var(--noise-texture),
+            linear-gradient(165deg, var(--bg-main-start) 0%, var(--bg-main-mid) 50%, var(--bg-main-end) 100%);
         background-attachment: fixed;
         color: var(--text-color-on-dark);
         overflow-x: hidden;
-        line-height: 1.75; 
+        line-height: 1.75;
     }
 
     h1, h2, h3, h4, h5, h6 {
         color: var(--heading-color-on-dark);
-        font-family: var(--body-font-family); 
-        font-weight: 700; 
-        letter-spacing: -0.5px; 
+        font-family: var(--body-font-family);
+        font-weight: 700;
+        letter-spacing: -0.5px;
     }
     h1 { font-size: var(--h1-font-size); }
     h2 { font-size: var(--h2-font-size); }
@@ -143,28 +154,28 @@
         text-shadow: var(--text-glow-subtle);
     }
 
-    .section-padding { padding-top: 120px; padding-bottom: 120px; } 
+    .section-padding { padding-top: 120px; padding-bottom: 120px; }
 
     .navbar {
-        background: rgba(var(--dark-color-rgb), 0.35); 
-        backdrop-filter: blur(20px); 
-        -webkit-backdrop-filter: blur(20px); 
-        padding: 1.2rem 0; 
-        border-bottom: 1px solid rgba(var(--white-color-rgb), 0.07); 
+        background: rgba(var(--dark-color-rgb), 0.35);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        padding: 1.2rem 0;
+        border-bottom: 1px solid rgba(var(--white-color-rgb), 0.07);
         transition: background 0.3s ease, box-shadow 0.3s ease;
-        position: fixed; 
+        position: fixed;
         width:100%;
         top:0;
         z-index: 1050;
     }
-    .navbar.scrolled { 
-        background: rgba(var(--dark-color-rgb), 0.65); 
-        box-shadow: 0 8px 30px rgba(0,0,0,0.35); 
+    .navbar.scrolled {
+        background: rgba(var(--dark-color-rgb), 0.65);
+        box-shadow: 0 8px 30px rgba(0,0,0,0.35);
     }
     .navbar-brand {
-        font-size: 2em; 
+        font-size: 2em;
         font-weight: 700;
-        color: var(--white-color) !important; 
+        color: var(--white-color) !important;
         text-shadow: 0 0 12px rgba(var(--accent-color-rgb),0.5);
         transition: color 0.3s ease, text-shadow 0.3s ease;
     }
@@ -173,72 +184,72 @@
         text-shadow: 0 0 18px rgba(var(--accent-color-rgb),0.8);
     }
     .navbar-nav .nav-link {
-        color: rgba(var(--white-color-rgb), 0.8); 
-        font-weight: 500; 
-        padding: 0.6rem 1.2rem; 
+        color: rgba(var(--white-color-rgb), 0.8);
+        font-weight: 500;
+        padding: 0.6rem 1.2rem;
         position: relative;
         transition: color 0.3s ease, background-color 0.3s ease;
         border-radius: var(--border-radius-small);
     }
-    .navbar-nav .nav-link::after { 
+    .navbar-nav .nav-link::after {
         content: '';
         position: absolute;
-        bottom: -3px; 
+        bottom: -3px;
         left: 50%;
         transform: translateX(-50%) scaleX(0);
-        width: 60%; 
-        height: 2.5px; 
-        background: linear-gradient(90deg, var(--accent-color), var(--primary-color)); 
+        width: 60%;
+        height: 2.5px;
+        background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
         border-radius: 2px;
         transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         transform-origin: center;
     }
     .navbar-nav .nav-link:hover,
-    .navbar-nav .nav-link.active { 
+    .navbar-nav .nav-link.active {
         color: var(--white-color);
-        background-color: rgba(var(--white-color-rgb), 0.05); 
+        background-color: rgba(var(--white-color-rgb), 0.05);
     }
     .navbar-nav .nav-link:hover::after,
     .navbar-nav .nav-link.active::after {
         transform: translateX(-50%) scaleX(1);
     }
     .navbar-toggler { border: 1px solid rgba(var(--white-color-rgb), 0.2); }
-    .navbar-toggler-icon { 
+    .navbar-toggler-icon {
         background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(var(--white-color-rgb), 0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
     }
 
     .hero-section {
-        background: none; 
+        background: none;
         min-height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
         position: relative;
-        overflow: hidden; 
-        padding-top: 100px; 
+        overflow: hidden;
+        padding-top: 100px;
     }
-    .hero-section::before, .hero-section::after { 
+    .hero-section::before, .hero-section::after {
         content: '';
         position: absolute;
         border-radius: 50%;
-        opacity: 0.1; 
-        filter: blur(120px); 
+        opacity: 0.1;
+        filter: blur(120px);
         z-index: 0;
-        transition: opacity 0.5s ease; 
+        transition: opacity 0.5s ease;
     }
-    .hero-section::before { 
-        width: clamp(400px, 60vw, 800px); 
+    .hero-section::before {
+        width: clamp(400px, 60vw, 800px);
         height: clamp(400px, 60vw, 800px);
-        background: radial-gradient(circle, rgba(var(--primary-color-rgb),0.8) 0%, rgba(var(--primary-color-rgb),0) 70%); 
+        background: radial-gradient(circle, rgba(var(--primary-color-rgb),0.8) 0%, rgba(var(--primary-color-rgb),0) 70%);
         top: 0%; left: -10%;
         animation: pulse-ethereal 25s infinite alternate;
     }
-    .hero-section::after { 
+    .hero-section::after {
         width: clamp(350px, 50vw, 700px);
         height: clamp(350px, 50vw, 700px);
         background: radial-gradient(circle, rgba(var(--accent-color-rgb),0.7) 0%, rgba(var(--accent-color-rgb),0) 70%);
         bottom: 0%; right: -10%;
-        animation: pulse-ethereal 30s infinite alternate-reverse .5s; 
+        animation: pulse-ethereal 30s infinite alternate-reverse .5s;
     }
     @keyframes pulse-ethereal {
         0% { transform: scale(0.85) rotate(-10deg); opacity: 0.08; }
@@ -246,35 +257,35 @@
         100% { transform: scale(0.9) rotate(15deg); opacity: 0.07; }
     }
 
-    .hero-section .section-overlay { 
+    .hero-section .section-overlay {
         background: linear-gradient(to bottom, var(--hero-overlay-start) 0%, var(--hero-overlay-end) 100%);
-        opacity: 0.6; 
+        opacity: 0.6;
     }
     .hero-section .container > .row > .col-12 {
-        background: none !important; 
-        padding: 3rem 0 !important; 
-        position: relative; 
+        background: none !important;
+        padding: 3rem 0 !important;
+        position: relative;
         z-index: 1;
     }
     .hero-section h1 {
         font-size: var(--h1-font-size);
-        font-weight: 700; 
+        font-weight: 700;
         color: var(--white-color) !important;
-        text-shadow: 0 0 20px rgba(var(--white-color-rgb), 0.3), 0 0 40px rgba(var(--accent-color-rgb), 0.4); 
+        text-shadow: 0 0 20px rgba(var(--white-color-rgb), 0.3), 0 0 40px rgba(var(--accent-color-rgb), 0.4);
         animation: popInText 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s backwards;
     }
     @keyframes popInText {
       0% { opacity: 0; transform: translateY(40px) scale(0.95); }
       100% { opacity: 1; transform: translateY(0) scale(1); }
     }
-    .hero-section h2.fw-light { 
-        font-size: clamp(1.3rem, 3.5vw, 2rem); 
+    .hero-section h2.fw-light {
+        font-size: clamp(1.3rem, 3.5vw, 2rem);
         color: rgba(var(--white-color-rgb), 0.9) !important;
-        font-weight: 300 !important; 
+        font-weight: 300 !important;
         margin-bottom: 2rem !important;
         animation: slideUpFade 1.2s ease-out 0.6s backwards;
     }
-    .hero-section p.medium { 
+    .hero-section p.medium {
         font-size: clamp(1.05rem, 2.8vw, 1.35rem);
         color: var(--text-color-on-dark) !important;
         max-width: 750px;
@@ -284,7 +295,7 @@
         animation: slideUpFade 1.2s ease-out 0.8s backwards;
     }
     .hero-image-container img {
-        max-width: 180px; 
+        max-width: 180px;
         animation: popIn 1.2s ease-out 1s backwards;
         filter: drop-shadow(0 0 15px rgba(var(--accent-color-rgb), 0.3));
     }
@@ -293,9 +304,9 @@
         background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
         color: var(--white-color) !important;
         border: none;
-        font-weight: 600; 
-        padding: 0.9rem 2.4rem; 
-        border-radius: var(--border-radius-large); 
+        font-weight: 600;
+        padding: 0.9rem 2.4rem;
+        border-radius: var(--border-radius-large);
         text-transform: uppercase;
         letter-spacing: 0.8px;
         transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -303,7 +314,7 @@
         position: relative;
         overflow: hidden;
     }
-    .custom-btn::before, .btn-download-cta::before { 
+    .custom-btn::before, .btn-download-cta::before {
         content: '';
         position: absolute;
         top: 0;
@@ -318,7 +329,7 @@
     }
     .custom-btn:hover, .custom-btn:focus,
     .btn-download-cta:hover, .btn-download-cta:focus {
-        transform: translateY(-4px) scale(1.04); 
+        transform: translateY(-4px) scale(1.04);
         box-shadow: 0 10px 30px rgba(var(--accent-color-rgb),0.35), 0 0 25px rgba(var(--accent-color-rgb),0.3);
         background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
     }
@@ -341,12 +352,12 @@
         box-shadow: 0 0 20px rgba(var(--accent-color-rgb), 0.4);
     }
 
-    .section-padding { position: relative; overflow: hidden; } 
+    .section-padding { position: relative; overflow: hidden; }
     .section-title-container {
         margin-bottom: 4rem;
         animation: slideUpFade 0.8s ease-out backwards;
     }
-    .section-title-container i.section-icon { 
+    .section-title-container i.section-icon {
         font-size: 3rem; color: var(--accent-color);
         display: block; margin-bottom: 0.5rem;
         text-shadow: var(--glow-soft);
@@ -355,29 +366,29 @@
          text-shadow: 0 2px 8px rgba(var(--dark-color-rgb),0.5);
     }
     .section-title-container p.lead {
-        color: rgba(var(--white-color-rgb), 0.8); 
+        color: rgba(var(--white-color-rgb), 0.8);
         font-weight:300;
         max-width: 700px; margin-left:auto; margin-right:auto;
     }
 
     .value-prop-card, .feature-card {
         background-color: var(--card-bg);
-        padding: 2.8rem; 
+        padding: 2.8rem;
         border-radius: var(--border-radius-medium);
         border: 1px solid var(--card-border);
         height: 100%;
         transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
         box-shadow: var(--card-shadow);
-        backdrop-filter: blur(10px); 
+        backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
     }
     .value-prop-card:hover, .feature-card:hover {
-        transform: translateY(-12px) scale(1.02); 
+        transform: translateY(-12px) scale(1.02);
         box-shadow: var(--card-hover-shadow), var(--glow-strong);
         border-color: var(--card-hover-border);
     }
     .value-prop-icon, .feature-icon {
-        font-size: 3.2rem; 
+        font-size: 3.2rem;
         color: var(--accent-color);
         margin-bottom: 1.8rem;
         text-shadow: var(--glow-soft);
@@ -389,8 +400,8 @@
     }
     .value-prop-card h5, .feature-card h5 {
         color: var(--heading-color-on-dark);
-        font-size: 1.4rem; 
-        font-weight: 600; 
+        font-size: 1.4rem;
+        font-weight: 600;
         margin-bottom: 1rem;
     }
     .value-prop-card p, .feature-card p {
@@ -399,55 +410,55 @@
         font-size: 0.98rem;
     }
     .about-arttulos-section {
-        background: 
+        background:
             var(--noise-texture),
             linear-gradient(170deg, rgba(var(--dark-color-rgb),0.97) 0%, rgba(var(--bg-main-mid),0.92) 60%, rgba(var(--primary-color-rgb),0.15) 100%);
     }
     .features-section {
-         background: 
+         background:
             var(--noise-texture),
             linear-gradient(170deg, rgba(var(--bg-main-mid),0.92) 0%, rgba(var(--dark-color-rgb),0.97) 60%, rgba(var(--secondary-color-rgb),0.15) 100%);
     }
 
-    .community-cta-section { 
+    .community-cta-section {
         background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
         color: var(--white-color);
         position: relative;
         overflow: hidden;
-        box-shadow: inset 0 0 80px rgba(var(--dark-color-rgb),0.3); 
+        box-shadow: inset 0 0 80px rgba(var(--dark-color-rgb),0.3);
     }
-    .community-cta-section::before { 
+    .community-cta-section::before {
         content: "";
         position: absolute; top:0; left:0; width: 100%; height: 100%;
-        background-image: url('data:image/svg+xml;utf8,<svg width="70" height="70" viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="rgba(var(--white-color-rgb), 0.04)"><path d="M35 0L0 35L35 70L70 35Z M35 10L10 35L35 60L60 35Z"/></g></g></svg>'); 
+        background-image: url('data:image/svg+xml;utf8,<svg width="70" height="70" viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="rgba(var(--white-color-rgb), 0.04)"><path d="M35 0L0 35L35 70L70 35Z M35 10L10 35L35 60L60 35Z"/></g></g></svg>');
         opacity: 0.6;
         animation: rotatePattern 60s linear infinite;
     }
     @keyframes rotatePattern { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-    .community-cta-section .container { position: relative; z-index: 1;} 
+    .community-cta-section .container { position: relative; z-index: 1;}
     .community-cta-section h2 { color: var(--white-color) !important; text-shadow: 0 2px 10px rgba(var(--dark-color-rgb),0.5); }
     .community-cta-section p { color: rgba(var(--white-color-rgb), 0.95) !important; }
-    .community-cta-section .custom-btn { 
+    .community-cta-section .custom-btn {
          background: var(--white-color);
          color: var(--primary-color) !important;
          box-shadow: 0 8px 25px rgba(var(--dark-color-rgb),0.2);
     }
     .community-cta-section .custom-btn:hover {
-        background: var(--bg-main-mid); 
+        background: var(--bg-main-mid);
         color: var(--white-color) !important;
         box-shadow: 0 10px 30px rgba(var(--dark-color-rgb),0.3);
     }
 
     .roadmap-glimpse-section {
-        background: 
+        background:
             var(--noise-texture),
-            linear-gradient(160deg, var(--bg-main-mid) 0%, var(--dark-color) 100%); 
+            linear-gradient(160deg, var(--bg-main-mid) 0%, var(--dark-color) 100%);
     }
     .roadmap-glimpse-item {
         display: flex;
-        align-items: center; 
+        align-items: center;
         margin-bottom: 1.8rem;
-        padding: 1.8rem; 
+        padding: 1.8rem;
         background-color: var(--card-bg);
         border-radius: var(--border-radius-medium);
         border: 1px solid var(--card-border);
@@ -458,14 +469,14 @@
     .roadmap-glimpse-item:hover {
         background-color: rgba(var(--accent-color-rgb), 0.08);
         border-color: var(--card-hover-border);
-        transform: translateX(8px); 
+        transform: translateX(8px);
         box-shadow: var(--glow-soft);
     }
     .roadmap-glimpse-icon {
-        font-size: 2.5rem; 
+        font-size: 2.5rem;
         color: var(--accent-color);
-        margin-right: 1.8rem; 
-        flex-shrink: 0; 
+        margin-right: 1.8rem;
+        flex-shrink: 0;
         text-shadow: 0 0 10px rgba(var(--accent-color-rgb),0.4);
     }
 
@@ -474,25 +485,25 @@
         box-shadow: inset 0 0 60px rgba(var(--dark-color-rgb),0.25);
     }
     .download-cta-section h2, .download-cta-section p { color: var(--white-color) !important; text-shadow: 0 1px 5px rgba(var(--dark-color-rgb),0.4); }
-    .download-cta-section .btn-download-cta i { margin-right: 0.5em;} 
+    .download-cta-section .btn-download-cta i { margin-right: 0.5em;}
     .download-cta-section i.display-1 { text-shadow: 0 0 25px rgba(var(--dark-color-rgb),0.4); }
 
     .contact-section {
-         background: 
+         background:
             var(--noise-texture),
             linear-gradient(170deg, var(--dark-color) 0%, var(--bg-main-end) 80%);
     }
      .contact-form-homepage {
-        background-color: var(--card-bg); 
+        background-color: var(--card-bg);
         padding: 3rem;
-        border-radius: var(--border-radius-medium); 
+        border-radius: var(--border-radius-medium);
         border: 1px solid var(--card-border);
         box-shadow: 0 15px 40px rgba(var(--dark-color-rgb),0.25);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
      }
      .contact-form-homepage .form-control {
-        background-color: rgba(var(--dark-color-rgb), 0.5) !important; 
+        background-color: rgba(var(--dark-color-rgb), 0.5) !important;
         color: var(--white-color) !important;
         border: 1px solid rgba(var(--accent-color-rgb), 0.3) !important;
         border-radius: var(--border-radius-small) !important;
@@ -504,17 +515,17 @@
      }
      .contact-form-homepage .form-control:focus {
         background-color: rgba(var(--dark-color-rgb), 0.65) !important;
-        border-color: var(--accent-color) !important; 
+        border-color: var(--accent-color) !important;
         box-shadow: 0 0 0 0.2rem rgba(var(--accent-color-rgb), 0.2), 0 0 15px rgba(var(--accent-color-rgb),0.3) !important;
      }
 
      .site-footer {
-        background-color: var(--footer-bg-color); 
-        border-top: 1px solid rgba(var(--white-color-rgb), 0.05); 
+        background-color: var(--footer-bg-color);
+        border-top: 1px solid rgba(var(--white-color-rgb), 0.05);
         padding-top: 4rem; padding-bottom: 2rem;
      }
      .site-footer-top {
-        border-bottom: 1px solid rgba(var(--white-color-rgb), 0.05); 
+        border-bottom: 1px solid rgba(var(--white-color-rgb), 0.05);
         padding-bottom: 2.5rem; margin-bottom: 2.5rem;
      }
      .site-footer h2 { text-shadow: 0 0 10px rgba(var(--accent-color-rgb),0.3); }
@@ -531,7 +542,7 @@
         color: var(--white-color);
         text-shadow: var(--text-glow-subtle);
      }
-     .site-footer .social-icon-item .social-icon-link { 
+     .site-footer .social-icon-item .social-icon-link {
         background-color: rgba(var(--white-color-rgb), 0.04);
         color: var(--footer-link-color);
         border-radius: 50%;
@@ -549,7 +560,7 @@
     .copyright-text a:hover { color: var(--link-color-on-dark) !important; }
 
     .modal-content {
-        background-color: var(--bg-main-mid); 
+        background-color: var(--bg-main-mid);
         color: var(--white-color);
         border-radius: var(--border-radius-medium);
         border: 1px solid rgba(var(--accent-color-rgb),0.4);
@@ -566,11 +577,11 @@
     }
     .modal-footer .btn-secondary:hover { background-color: rgba(var(--white-color-rgb), 0.12); }
 
-    @keyframes popIn { 
+    @keyframes popIn {
         0% { opacity: 0; transform: scale(0.9) translateY(20px); }
         100% { opacity: 1; transform: scale(1) translateY(0); }
     }
-    @keyframes slideUpFade { 
+    @keyframes slideUpFade {
         0% { opacity: 0; transform: translateY(30px); }
         100% { opacity: 1; transform: translateY(0); }
     }
@@ -593,7 +604,7 @@
 
 <body>
     <main>
-        <nav class="navbar navbar-expand-lg" id="mainNav"> 
+        <nav class="navbar navbar-expand-lg" id="mainNav">
             <div class="container">
                  <a class="navbar-brand d-flex align-items-center" href="index.html">
                     ArttulOS
@@ -620,11 +631,11 @@
         </nav>
 
         <section class="hero-section" id="section_1">
-            <div class="section-overlay"></div> 
+            <div class="section-overlay"></div>
             <div class="container d-flex justify-content-center align-items-center">
                 <div class="row">
-                    <div class="col-12 mt-auto mb-5 text-center"> 
-                        <small class="text-uppercase fw-bold" style="color: rgba(var(--accent-color-rgb),0.7); letter-spacing: 0.5px; animation: slideUpFade 1s ease-out 0.1s backwards;">The ArttulOS Developers Present</small> 
+                    <div class="col-12 mt-auto mb-5 text-center">
+                        <small class="text-uppercase fw-bold" style="color: rgba(var(--accent-color-rgb),0.7); letter-spacing: 0.5px; animation: slideUpFade 1s ease-out 0.1s backwards;">The ArttulOS Developers Present</small>
                         <h1 class="mb-4 display-3 fw-bold">ArttulOS</h1>
                         <h2 class="mb-4 fw-light">The New RPM Distro: Crafted for You.</h2>
                         <p class="medium mb-5">Built on Rocky Linux, ArttulOS delivers a stable, performant, and memorable user experience.</p>
@@ -714,7 +725,7 @@
                         <p class="lead">Discover the core strengths that make ArttulOS stand out.</p>
                     </div>
                 </div>
-                <div class="row gy-4"> 
+                <div class="row gy-4">
                     <div class="col-lg-4 col-md-6 scroll-reveal">
                         <div class="feature-card">
                             <i class="bi bi-motherboard-fill feature-icon"></i>
@@ -761,7 +772,7 @@
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    <div class="col-lg-10 col-xl-8"> 
+                    <div class="col-lg-10 col-xl-8">
                         <div class="roadmap-glimpse-item scroll-reveal">
                             <i class="bi bi-flag-fill roadmap-glimpse-icon"></i>
                             <div>
@@ -783,7 +794,7 @@
                                 <p>Building a rich knowledge base to support users and developers at every level.</p>
                             </div>
                         </div>
-                        <div class="text-center mt-5 scroll-reveal delay-3"> 
+                        <div class="text-center mt-5 scroll-reveal delay-3">
                             <a href="roadmap.html" class="btn btn-outline-light-purple btn-lg">View Full Roadmap <i class="bi bi-calendar2-event ms-2"></i></a>
                         </div>
                     </div>
@@ -818,14 +829,14 @@
                     <div class="col-lg-8 col-12 mx-auto scroll-reveal">
                         <div class="contact-form-homepage">
                             <form class="custom-form" id="homepageContactForm" action="#" method="post" role="form">
-                                <div class="mb-4"> 
+                                <div class="mb-4">
                                     <input type="text" name="contact-name" id="contact-hp-name" class="form-control" placeholder="Full name" required>
                                 </div>
                                 <div class="mb-4">
                                     <input type="email" name="contact-email" id="contact-hp-email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email address" required>
                                 </div>
                                 <div class="mb-4">
-                                    <textarea class="form-control" id="contact-hp-message" name="contact-message" placeholder="Your message" rows="5" required></textarea> 
+                                    <textarea class="form-control" id="contact-hp-message" name="contact-message" placeholder="Your message" rows="5" required></textarea>
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-submit custom-btn">Send Message <i class="bi bi-arrow-right-short ms-1"></i></button>
@@ -844,12 +855,12 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="emailChoiceModalLabel">Choose Recipient</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button> 
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <p>Who would you like to email? Your message content will not be automatically included in the email.</p>
                     <div class="d-grid gap-2">
-                        <a href="#" id="emailNatalie" class="btn custom-btn btn-lg" role="button"> 
+                        <a href="#" id="emailNatalie" class="btn custom-btn btn-lg" role="button">
                             <i class="bi bi-person-fill me-2"></i>Email Natalie
                         </a>
                         <a href="#" id="emailLiv" class="btn custom-btn btn-lg mt-2" role="button">
@@ -865,7 +876,7 @@
                      <small class="d-block text-center mt-3 opacity-75">Emails: Natalie (natalie@arttulos.org), Liv (liv@arttulos.org), Jacob (jacob@arttulos.org), ArttulOS (arttulos@proton.me)</small>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-light-purple" data-bs-dismiss="modal">Close</button> 
+                    <button type="button" class="btn btn-outline-light-purple" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -886,7 +897,7 @@
                     </p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn custom-btn" data-bs-dismiss="modal">Okay</button> 
+                    <button type="button" class="btn custom-btn" data-bs-dismiss="modal">Okay</button>
                 </div>
             </div>
         </div>
@@ -894,12 +905,12 @@
 
 
     <footer class="site-footer">
-        <div class="site-footer-top py-5"> 
+        <div class="site-footer-top py-5">
             <div class="container"><div class="row"><div class="col-lg-6 col-12 mb-4 mb-lg-0 text-center text-lg-start"><h2 class="text-white mb-lg-0">ArttulOS</h2></div><div class="col-lg-6 col-12 d-flex justify-content-center justify-content-lg-end align-items-center"><ul class="social-icon d-flex justify-content-lg-end"><li class="social-icon-item"><a href="https://x.com/ArttulOS" target="_blank" rel="noopener" class="social-icon-link"><span class="bi-twitter"></span></a></li><li class="social-icon-item"><a href="https://github.com/ArttulOS" target="_blank" rel="noopener" class="social-icon-link"><span class="bi-github"></span></a></li><li class="social-icon-item"><a href="https://mastodon.social/@arttulos" target="_blank" rel="noopener" class="social-icon-link"><span class="bi-mastodon"></span></a></li></ul></div></div></div>
         </div>
-        <div class="container py-5"> 
+        <div class="container py-5">
             <div class="row">
-                <div class="col-lg-4 col-md-6 col-12 mb-4"> 
+                <div class="col-lg-4 col-md-6 col-12 mb-4">
                     <h5 class="site-footer-title mb-3">Quick Links</h5>
                     <ul class="site-footer-links">
                         <li class="site-footer-link-item"><a href="#section_1" class="site-footer-link click-scroll">Home</a></li>
@@ -912,7 +923,7 @@
                         <li class="site-footer-link-item"><a class="site-footer-link" href="https://matrix.to/#/#arttulos:matrix.org" target="_blank" rel="noopener">Support</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-4 col-md-6 col-12 mb-4"> 
+                <div class="col-lg-4 col-md-6 col-12 mb-4">
                     <h5 class="site-footer-title mb-3">Get In Touch</h5>
                     <p class="text-white d-flex mb-2 flex-wrap">
                         <i class="bi bi-envelope-fill me-2 opacity-75"></i> <a href="mailto:arttulos@proton.me" class="site-footer-link" style="word-break: break-all;">arttulos@proton.me</a>
@@ -924,14 +935,14 @@
                         Individual team emails available on the full contact page.
                     </p>
                 </div>
-                <div class="col-lg-4 col-md-12 col-12 mb-4"> 
+                <div class="col-lg-4 col-md-12 col-12 mb-4">
                     <h5 class="site-footer-title mb-3">Project Essentials</h5>
                     <p class="text-white d-flex mt-3 mb-2"><a href="https://github.com/ArttulOS" target="_blank" rel="noopener" class="site-footer-link"><i class="bi bi-github me-2"></i>GitHub Repository</a></p>
                     <p class="text-white d-flex mt-2 mb-2"><a href="roadmap.html" class="site-footer-link"><i class="bi bi-signpost-split-fill me-2"></i>Development Roadmap</a></p>
                 </div>
             </div>
         </div>
-        <div class="site-footer-bottom py-4"> 
+        <div class="site-footer-bottom py-4">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-7 col-12 text-center text-md-start">
@@ -954,18 +965,21 @@
     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous" defer></script>
 
-    <script src="js/jquery.sticky.js" defer></script> 
+    <script src="js/jquery.sticky.js" defer></script>
     <script src="js/click-scroll.js" defer></script>
     <script src="js/custom.js" defer></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const mainNav = document.getElementById('mainNav');
-            let lastScrollTop = 0;
+            // Sticky Nav behavior is already handled by jquery.sticky.js, but
+            // adding class manually on scroll is more robust/pure JS way
             if (mainNav) {
                 window.addEventListener('scroll', function () {
-                    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                    if (scrollTop > 50) { 
+                    // Check if the sticky.js might be setting position:fixed
+                    // If so, rely on its classes or integrate directly.
+                    // For now, mirroring the class add/remove behavior based on scrollY
+                    if (window.scrollY > 50) {
                         mainNav.classList.add('scrolled');
                     } else {
                         mainNav.classList.remove('scrolled');
@@ -980,21 +994,21 @@
 
             const sections = document.querySelectorAll('section[id]');
             const navLinks = document.querySelectorAll('.navbar-nav .nav-link.click-scroll');
-            const navHeight = mainNav ? mainNav.offsetHeight : 70;
+            const navHeight = mainNav ? mainNav.offsetHeight : 70; // Fallback height
 
             function changeNavActiveState() {
                 let index = sections.length;
-                while(--index && window.scrollY + navHeight + 50 < sections[index].offsetTop) {} 
+                while(--index && window.scrollY + navHeight + 50 < sections[index].offsetTop) {} // +50 buffer
 
                 navLinks.forEach((link) => link.classList.remove('active'));
-                if (index >= 0 && navLinks[index]) { 
+                if (index >= 0 && navLinks[index]) {
                     navLinks[index].classList.add('active');
-                } else if (navLinks.length > 0 && window.scrollY < sections[0].offsetTop) { 
-                     navLinks[0].classList.add('active');
+                } else if (navLinks.length > 0 && window.scrollY < sections[0].offsetTop) {
+                     navLinks[0].classList.add('active'); // Activate first link if at top of page
                 }
             }
             if(sections.length > 0 && navLinks.length > 0) {
-                changeNavActiveState(); 
+                changeNavActiveState();
                 window.addEventListener('scroll', changeNavActiveState);
             }
 
@@ -1012,11 +1026,11 @@
                     event.preventDefault();
                     const name = document.getElementById('contact-hp-name').value;
                     const subject = encodeURIComponent(`Message from ${name} via ArttulOS Website`);
-                    const body = encodeURIComponent(document.getElementById('contact-hp-message').value); 
+                    const body = encodeURIComponent(document.getElementById('contact-hp-message').value);
 
                     document.getElementById('emailNatalie').href = `mailto:natalie@arttulos.org?subject=${subject}&body=${body}`;
                     document.getElementById('emailLiv').href = `mailto:liv@arttulos.org?subject=${subject}&body=${body}`;
-                    document.getElementById('emailJacob').href = `mailto:jacob@arttulos.org?subject=${subject}&body=${body}`; 
+                    document.getElementById('emailJacob').href = `mailto:jacob@arttulos.org?subject=${subject}&body=${body}`;
                     document.getElementById('emailArttulOS').href = `mailto:arttulos@proton.me?subject=${subject}&body=${body}`;
 
                     if(emailChoiceModalInstance) emailChoiceModalInstance.show();
@@ -1024,16 +1038,16 @@
             }
 
             if(emailChoiceModalEl) {
-                ['emailNatalie', 'emailLiv', 'emailJacob', 'emailArttulOS'].forEach(id => { 
+                ['emailNatalie', 'emailLiv', 'emailJacob', 'emailArttulOS'].forEach(id => {
                     const mailLink = document.getElementById(id);
                     if(mailLink) {
                         mailLink.addEventListener('click', function(e) {
-                            e.preventDefault(); 
-                            window.open(this.href, '_blank'); 
+                            e.preventDefault();
+                            window.open(this.href, '_blank');
                             if(emailChoiceModalInstance) emailChoiceModalInstance.hide();
                             setTimeout(function() {
                                 if(thankYouModalInstance) thankYouModalInstance.show();
-                                if(contactForm) contactForm.reset(); 
+                                if(contactForm) contactForm.reset();
                             }, 500);
                         });
                     }
@@ -1047,12 +1061,17 @@
                         entry.target.classList.add('visible');
                     }
                 });
-            }, { threshold: 0.1 }); 
+            }, { threshold: 0.1 });
 
             scrollRevealElements.forEach(el => {
                 observer.observe(el);
             });
 
+            // Smooth scroll for .click-scroll links (ensure it's not overriding the external click-scroll.js)
+            // If click-scroll.js handles this, this block is redundant.
+            // Given it's already using click-scroll.js, I'll comment out the duplicate logic
+            // for cleaner code, assuming the external script handles it.
+            /*
             document.querySelectorAll('a.click-scroll').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
@@ -1062,18 +1081,18 @@
                         const navbarHeight = document.getElementById('mainNav').offsetHeight;
                         const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
                         const offsetPosition = elementPosition - navbarHeight;
-            
+
                         window.scrollTo({
                             top: offsetPosition,
                             behavior: 'smooth'
                         });
-                         navLinks.forEach(link => link.classList.remove('active'));
-                         this.classList.add('active');
+                        // Update active state when clicked, in case scroll event doesn't trigger immediately
+                        navLinks.forEach(link => link.classList.remove('active'));
+                        this.classList.add('active');
                     }
                 });
             });
-
-
+            */
         });
     </script>
 

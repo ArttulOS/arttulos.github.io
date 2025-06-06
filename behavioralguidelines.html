@@ -4,17 +4,70 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ArttulOS Behavior Guidelines</title>
+
+  <!-- Favicon Placeholder: Prevents an unnecessary favicon.ico request if not provided -->
+  <link rel="icon" href="data:,">
+
   <style>
+    /* ArttulOS Custom Fonts - Prioritizing woff2/woff for better performance */
     @font-face {
-      font-family: 'FreeSans';
-      src: url('fonts/FreeSans.ttf') format('truetype');
+        font-family: 'FreeSans';
+        src: url('fonts/FreeSans.woff2') format('woff2'),
+             url('fonts/FreeSans.woff') format('woff'),
+             url('fonts/FreeSans.ttf') format('truetype'); /* Keep .ttf as a fallback */
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap; /* Ensures text is visible during font loading */
+    }
+    /* Assuming a bold variant might exist from previous requests, adding it for consistency */
+    @font-face {
+        font-family: 'FreeSans';
+        src: url('fonts/FreeSansBold.woff2') format('woff2'),
+             url('fonts/FreeSansBold.woff') format('woff'),
+             url('fonts/FreeSansBold.ttf') format('truetype'); /* Assuming bold .ttf fallback */
+        font-weight: bold;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    /* ArttulOS Color Palette & Variables */
+    :root {
+        --primary-color: #5E35B1; /* Deep Purple */
+        --primary-color-rgb: 94, 53, 177;
+        --secondary-color: #3949AB; /* Indigo/Blue */
+        --secondary-color-rgb: 57, 73, 171;
+        --accent-color: #7E57C2; /* Lighter Purple */
+        --accent-color-rgb: 126, 87, 194;
+
+        --vibrant-accent-color: #F06292; /* Pink/Light Red - used for strong highlights/buttons */
+        --vibrant-accent-color-rgb: 240, 98, 146;
+
+        --white-color: #E0D6EF; /* Very Light Lavender */
+        --white-color-rgb: 224, 214, 239;
+        --dark-color: #1C2331; /* Dark Blue/Grey */
+        --dark-color-rgb: 28, 35, 49;
+
+        --text-color-on-dark: var(--white-color);
+        --heading-color-on-dark: #D1C4E9; /* Slightly brighter for headings */
+        --link-color-on-dark: #B39DDB;
+        --link-hover-on-dark: var(--white-color);
+
+        --body-font-family: 'FreeSans', sans-serif;
+
+        --bg-main-start: var(--dark-color);
+        --bg-main-end: #0F0C29; /* Even darker for depth */
+
+        --border-radius-small:         8px;
+        --border-radius-medium:        12px;
+        --border-radius-large:         24px; /* for CTA buttons etc. */
     }
 
     body {
       margin: 0;
-      font-family: 'FreeSans', sans-serif;
-      background: linear-gradient(135deg, #6a0dad, #ff69b4);
-      color: white;
+      font-family: var(--body-font-family); /* Use ArttulOS body font */
+      background: linear-gradient(170deg, var(--bg-main-start) 0%, var(--bg-main-end) 70%, var(--secondary-color) 100%); /* ArttulOS gradient */
+      background-attachment: fixed; /* Consistent with other ArttulOS pages */
+      color: var(--text-color-on-dark); /* ArttulOS text color */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -24,35 +77,44 @@
     header {
       width: 100%;
       text-align: center;
-      background: #6a0dad;
-      color: white;
+      background: var(--primary-color); /* Mapped to primary-color */
+      color: var(--text-color-on-dark); /* Mapped to white */
       padding: 2rem 1rem;
     }
 
     .container {
-      background: #000;
-      color: #fff;
+      background: rgba(var(--dark-color-rgb), 0.6); /* Semi-transparent dark consistent with ArttulOS containers */
+      color: var(--text-color-on-dark); /* Mapped to white */
       max-width: 800px;
       width: 90%;
       margin: 2rem auto;
       padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 0 20px #ff90cb;
+      border-radius: var(--border-radius-medium); /* Mapped to ArttulOS border-radius */
+      box-shadow: 0 0 20px rgba(var(--vibrant-accent-color-rgb), 0.5); /* Mapped to vibrant-accent-color */
       position: relative;
     }
 
+    h1, h2, h3, h4, h5, h6 { /* General heading styles from other pages */
+        font-family: var(--body-font-family);
+        font-weight: bold;
+        color: var(--heading-color-on-dark);
+    }
+
     h2 {
-      color: #ff69b4;
+      color: var(--vibrant-accent-color); /* Mapped to vibrant-accent-color */
+      margin-top: 1.5rem; /* Adjusted for better flow */
+      margin-bottom: 1rem; /* Adjusted for better flow */
     }
 
     p {
       line-height: 1.6;
       margin-bottom: 1rem;
+      color: rgba(var(--white-color-rgb), 0.85); /* Slightly muted white for paragraphs */
     }
 
     .highlight {
       font-weight: bold;
-      color: #ffe0f7;
+      color: var(--heading-color-on-dark); /* Mapped to heading-color-on-dark */
       margin-bottom: 1.5rem;
       font-size: 1.2rem;
     }
@@ -63,24 +125,42 @@
     }
 
     .nav-buttons a {
-      background: #ff69b4;
-      color: #fff;
-      padding: 0.5rem 1rem;
+      /* Reused CTA button gradient from previous ArttulOS page */
+      display: inline-block; /* Ensure it takes padding correctly */
+      background: linear-gradient(145deg, var(--vibrant-accent-color), var(--primary-color));
+      color: var(--text-color-on-dark); /* Mapped to white */
+      padding: 0.8rem 1.5rem; /* Adjusted padding to match CTA buttons */
       font-size: 1.1rem;
-      border-radius: 6px;
+      border-radius: var(--border-radius-large); /* Mapped to ArttulOS border-radius */
       text-decoration: none;
-      transition: background 0.3s;
+      font-weight: 600; /* Consistent with CTA buttons */
+      transition: all 0.3s ease-in-out; /* Match CTA button transition */
+      box-shadow: 0 5px 15px rgba(var(--primary-color-rgb),0.3); /* Match CTA button shadow */
     }
 
     .nav-buttons a:hover {
-      background: #ff85c1;
+      /* Reused CTA button hover gradient from previous ArttulOS page */
+      background: linear-gradient(145deg, var(--primary-color), var(--vibrant-accent-color));
+      transform: translateY(-3px) scale(1.03); /* Match CTA button hover effect */
+      box-shadow: 0 8px 25px rgba(var(--vibrant-accent-color-rgb),0.4); /* Match CTA button hover shadow */
     }
 
     footer {
       margin-top: auto;
       text-align: center;
       padding: 1rem;
-      color: #ffe0f7;
+      color: var(--link-color-on-dark); /* Mapped to link-color-on-dark */
+      font-size: 0.9em; /* Slightly smaller for footer text */
+    }
+
+    footer a {
+        color: var(--heading-color-on-dark); /* Mapped to heading-color-on-dark for footer links */
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+        color: var(--white-color);
     }
   </style>
 </head>
@@ -110,12 +190,12 @@
     </p>
 
     <div class="nav-buttons">
-      <a href="index.html">← Back to Terms & Conditions</a>
+      <a href="index.html">← Back to Home</a>
     </div>
   </div>
 
   <footer>
-    &copy; 2025 <a href="https://arttulos.org" style="color:#ffe0f7;" target="_blank">ArttulOS</a> — Respect & Innovation.
+    © 2025 <a href="https://arttulos.org" target="_blank" rel="noopener">ArttulOS</a> — Respect & Innovation.
   </footer>
 </body>
 </html>
