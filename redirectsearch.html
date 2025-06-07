@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting to ArttulOS Search | ArttulOS</title>
+
+    <!-- Meta Refresh for quick redirect (fallback if JS is disabled or slow) -->
+    <!-- This meta tag will redirect to arttulos.org/search.html after 2 seconds -->
+    <meta http-equiv="refresh" content="2;url=https://arttulos.org/search.html">
+
+    <!-- Preconnect to Google Fonts domain for faster font loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- Prevent browser from requesting a favicon.ico if not explicitly provided -->
+    <link rel="icon" href="data:,">
+
+    <style>
+        /* All CSS is inlined to remove external CSS file requests. */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            color: #e0e0e0; /* Light gray for text, good contrast */
+            background: linear-gradient(135deg, #1a237e, #311b92, #4a148c); /* Dark Blue to Dark Purple */
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            overflow: hidden; /* Hide scrollbars if content slightly overflows */
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.3); /* Semi-transparent dark overlay for content */
+            padding: 40px 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            max-width: 600px;
+            margin: 20px;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif; /* A more techy/futuristic font for headings */
+            font-size: 3.5em;
+            margin-bottom: 0.2em;
+            color: #ffffff;
+            text-shadow: 0 0 10px #673ab7, 0 0 20px #673ab7; /* Purple glow */
+        }
+
+        .sub-heading {
+            font-size: 1.5em;
+            color: #bb86fc; /* Lighter purple for emphasis */
+            margin-bottom: 1.5em;
+        }
+
+        .pun-line {
+            font-size: 1.2em;
+            margin-bottom: 2em;
+            font-style: italic;
+            color: #cfd8dc; /* Slightly off-white for puns */
+            min-height: 3em; /* Ensure space for varying pun lengths */
+        }
+
+        .redirect-message {
+            font-size: 1.5em; /* Slightly larger for emphasis */
+            margin-bottom: 1em;
+            color: #f06292; /* A contrasting pink/light red for the redirect message */
+            font-weight: bold;
+        }
+
+        /* Pulse animation for the redirect message */
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+
+        .redirect-message span {
+            display: inline-block; /* Required for animation to work well */
+            animation: pulse 1.5s infinite;
+        }
+
+        .manual-redirect a {
+            color: #81d4fa; /* Light blue for links */
+            text-decoration: none;
+            border-bottom: 1px dotted #81d4fa;
+            transition: color 0.3s ease, border-bottom-color 0.3s ease;
+        }
+
+        .manual-redirect a:hover {
+            color: #ffffff;
+            border-bottom-color: #ffffff;
+        }
+
+        .logo-footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            opacity: 0.7;
+        }
+        .logo-footer strong {
+            color: #bb86fc;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            .sub-heading {
+                font-size: 1.2em;
+            }
+            .pun-line {
+                font-size: 1em;
+            }
+            .container {
+                padding: 20px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Redirecting...</h1>
+        <p class="sub-heading">Taking you to ArttulOS Search!</p>
+
+        <p class="pun-line" id="pun-text">
+            <!-- Pun will be injected here by JavaScript -->
+        </p>
+
+        <p class="redirect-message">
+            <span>Processing request...</span>
+        </p>
+
+        <p class="manual-redirect">
+            If you're not redirected automatically, <a href="https://arttulos.org/search.html">click here to go to ArttulOS Search</a>.
+        </p>
+
+        <p class="logo-footer">
+            ArttulOS: Always finding the right path.
+        </p>
+    </div>
+
+    <script>
+        const puns = [
+            "Your journey continues! Just like ArttulOS constantly evolves to bring you the best.",
+            "Navigating the web is easy with ArttulOS, even when we're redirecting you to the right place!",
+            "Looks like you took a shortcut! We're redirecting you to the main search path, ArttulOS style.",
+            "We're rerouting your request with the precision of an ArttulOS update!",
+            "Hold on, we're performing a quick system transfer to your desired destination. ArttulOS approved!",
+            "This isn't a bug, it's a feature! A fast redirect to the search you're looking for, powered by ArttulOS.",
+            "No need to recompile, we're just redirecting! ArttulOS keeps things simple and efficient.",
+            "Even redirects are optimized for performance with ArttulOS principles!",
+            "We're not lost, just taking a scenic route directly to your search. ArttulOS always finds the way.",
+            "Your search results are just a redirect away, thanks to ArttulOS's intelligent routing!"
+        ];
+
+        function getRandomPun() {
+            const randomIndex = Math.floor(Math.random() * puns.length);
+            return puns[randomIndex];
+        }
+
+        document.getElementById('pun-text').textContent = getRandomPun();
+
+        const redirectUrl = "https://arttulos.org/search.html"; // The NEW target URL
+        const redirectDelay = 2000; // 2 seconds in milliseconds
+
+        // JavaScript redirect (as a backup/redundancy for the meta refresh)
+        setTimeout(() => {
+            window.location.href = redirectUrl;
+        }, redirectDelay);
+    </script>
+</body>
+</html>
